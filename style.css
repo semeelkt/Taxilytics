@@ -463,7 +463,14 @@
     background-color: #2980b9;
     color: white;
   }
- 
+ .btn-link2{
+  color: 2980b9;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95;
+  display: inline-block;
+  transition: color 0.3s ease;
+ }
   
   
   
