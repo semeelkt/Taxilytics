@@ -247,18 +247,17 @@
 
     <div class="faq">
       <button onclick="toggleFAQ(this)">What documents are needed for GST registration?</button>
-      <div class="faq-content">You’ll need PAN, Aadhaar, business proof, bank details, and digital signature (if
-        applicable).</div>
+      <div class="faq-content">You’ll need PAN, Aadhaar, business proof, bank details, and digital signature (if applicable).</div>
     </div>
 
     <div class="faq">
       <button onclick="toggleFAQ(this)">How does Taxilyctis help with TDS and TCS compliance?</button>
       <div class="faq-content">We assist in calculating, filing, and reconciling your TDS/TCS returns with ease.</div>
     </div>
+
     <div class="faq">
       <button onclick="toggleFAQ(this)">What is e-invoicing and do I need it for my business?</button>
-      <div class="faq-content">E-invoicing is mandatory for businesses over a certain turnover. We assist in full
-        integration.</div>
+      <div class="faq-content">E-invoicing is mandatory for businesses over a certain turnover. We assist in full integration.</div>
     </div>
 
     <div class="faq">
@@ -283,15 +282,16 @@
 
     <div class="faq">
       <button onclick="toggleFAQ(this)">Is my financial data safe with Taxilyctis?</button>
-      <div class="faq-content">Data security is our top priority. We follow strict confidentiality and encryption
-        protocols.</div>
+      <div class="faq-content">Data security is our top priority. We follow strict confidentiality and encryption protocols.</div>
     </div>
 
     <div class="faq">
       <button onclick="toggleFAQ(this)">Do you support businesses from all over India?</button>
       <div class="faq-content">Yes, our services are available nationwide and online.</div>
     </div>
-  </div>
+</div>
+
+
 
   <section id="about-us" class="about-us">
     <div class="about-content">
@@ -487,19 +487,14 @@
 
     // ❓ Toggle FAQ answers
     function toggleFAQ(button) {
-      const content = button.nextElementSibling;
-      const isVisible = content.style.display === 'block';
+    const content = button.nextElementSibling;
+    const isVisible = content.style.display === 'block';
 
-      document.querySelectorAll('.faq-content').forEach(div => {
-        div.style.display = 'none';
-      });
-      document.getElementById("call-btn").addEventListener("click", function () {
-  window.location.href = "tel:+919061707348";
-});
+    // Toggle the visibility: if it's open, close it; if it's closed, open it.
+    content.style.display = isVisible ? 'none' : 'block';
+}
 
 
-      content.style.display = isVisible ? 'none' : 'block';
-    }
   </script>
 
 
