@@ -340,103 +340,137 @@
   
   
   
-  
-  .hero-new {
-    background: #f5faff;
-    padding: 60px 20px;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  
+  /* Hero Section Styles */
+.hero-new {
+  background: linear-gradient(135deg, #f5faff 0%, #e2f0ff 100%);
+  padding: 80px 20px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-text {
+  flex: 1;
+  min-width: 280px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.hero-text h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #2980b9;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  animation: slideInLeft 1s ease-in-out;
+}
+
+.hero-text p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.25rem;
+  color: #333;
+  line-height: 1.7;
+  letter-spacing: 0.5px;
+  text-align: justify;
+  animation: slideInLeft 1s ease-in-out;
+}
+
+.hero-image {
+  flex: 1;
+  min-width: 280px;
+  display: flex;
+  justify-content: center;
+  animation: slideInRight 1.2s ease-in-out;
+}
+
+.hero-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.hero-image img:hover {
+  transform: scale(1.05);
+}
+
+/* Keyframe Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
   }
-  
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
   .hero-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 1200px;
-    width: 100%;
-    flex-wrap: wrap;
-    gap: 40px;
+    flex-direction: column;
+    text-align: center;
   }
-  
-  .hero-text {
-    flex: 1;
-    min-width: 280px;
-  }
-  
+
   .hero-text h1 {
-    font-size: 3rem;
-    font-weight: bold;
-    color: #2980b9;
-    margin-bottom: 20px;
+    font-size: 2.6rem;
   }
-  
+
   .hero-text p {
-    font-size: 1.3rem;
-    color: #444;
-    line-height: 1.6;
+    font-size: 1.1rem;
   }
-  
-  .hero-image {
-    flex: 1;
-    min-width: 280px;
-    display: flex;
-    justify-content: center;
+}
+
+@media (max-width: 480px) {
+  .hero-text h1 {
+    font-size: 2.2rem;
   }
-  
-  .hero-image img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+
+  .hero-text p {
+    font-size: 1rem;
   }
-  /* Animation Keyframes */
-  @keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1); }
-  }
-  
-  @keyframes slideInLeft {
-    from { opacity: 0; transform: translateX(-50px); }
-    to { opacity: 1; transform: translateX(0); }
-  }
-  
-  @keyframes slideInRight {
-    from { opacity: 0; transform: translateX(50px); }
-    to { opacity: 1; transform: translateX(0); }
-  }
-  
-  /* Apply Animations */
-  .hero-new {
-    animation: fadeIn 1s ease-in-out;
-  }
-  
-  .hero-text {
-    animation: slideInLeft 1s ease-in-out;
-  }
-  
-  .hero-image {
-    animation: slideInRight 1.2s ease-in-out;
-  }
-  
-  
-  /* Responsive Tweaks */
-  @media (max-width: 768px) {
-    .hero-content {
-      flex-direction: column;
-      text-align: center;
-    }
-  
-    .hero-text h1 {
-      font-size: 2.4rem;
-    }
-  
-    .hero-text p {
-      font-size: 1.1rem;
-    }
-  }
+}
+
   
   .card-buttons {
     display: flex;
