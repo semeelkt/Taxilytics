@@ -531,13 +531,15 @@
     justify-content: center;
     min-height: 80vh;
     overflow: hidden;
+    gap: 40px; /* Space between text and image */
   }
   
   .intro-content {
     max-width: 700px;
     animation: fadeIn 1.2s ease-out forwards;
     opacity: 0;
-    flex: 1; /* Ensures the content section takes available space */
+    flex: 1; /* Content will take up available space */
+    margin-left: 40px; /* Add margin to shift content from left */
   }
   
   .intro h1 {
@@ -641,6 +643,9 @@
     .intro-image {
       margin-top: 20px;
     }
+    .intro-content {
+      margin-left: 0; /* Reset margin for smaller screens */
+    }
   }
   
   @media (max-width: 480px) {
@@ -662,7 +667,6 @@
       opacity: 1;
     }
   }
-  
   
   .courses {
     padding: 40px 20px;
