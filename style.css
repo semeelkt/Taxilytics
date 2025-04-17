@@ -522,12 +522,10 @@
   body {
     background-color: #ffffff;
   }
-  
   .intro {
     background-color: whitesmoke;
     color: #333;
     padding: 60px 20px;
-    text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -535,11 +533,11 @@
     overflow: hidden;
   }
   
-  
   .intro-content {
     max-width: 700px;
     animation: fadeIn 1.2s ease-out forwards;
     opacity: 0;
+    flex: 1; /* Ensures the content section takes available space */
   }
   
   .intro h1 {
@@ -553,16 +551,15 @@
   .intro h1 span {
     color: #6c5ce7;
   }
+  
   .animated-text {
     font-size: 1.5rem;
     line-height: 1.6;
     color: #555;
     margin-bottom: 24px;
     padding: 0 24px;
-    display: block; /* Standard block-level behavior */
-    text-align: left; /* Ensures the text starts from the left */
+    text-align: left;
   }
-  
   
   .animated-text span {
     display: inline-block;
@@ -571,28 +568,10 @@
     transition: opacity 0.4s ease-out, transform 0.4s ease-out;
   }
   
-  /* When the word becomes visible */
   .animated-text span.reveal {
     opacity: 1;
     transform: translateY(0);
   }
-  
-  /* Responsive */
-  @media (max-width: 768px) {
-    .animated-text {
-      font-size: 0.95rem;
-      padding: 0 16px;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .animated-text {
-      font-size: 0.9rem;
-      padding: 0 12px;
-    }
-  }
-  
-
   
   .intro-buttons {
     display: flex;
@@ -635,6 +614,41 @@
     background-color: #f1f1f1;
   }
   
+  /* Flexbox for image and content */
+  .intro {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .intro-image {
+    flex: 1;
+    max-width: 500px;
+  }
+  
+  .intro-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .intro {
+      flex-direction: column;
+      text-align: center;
+    }
+    .intro-image {
+      margin-top: 20px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .animated-text {
+      font-size: 0.9rem;
+      padding: 0 12px;
+    }
+  }
   
   @keyframes fadeIn {
     to {
@@ -648,14 +662,6 @@
       opacity: 1;
     }
   }
-  
-  @keyframes slideInBottom {
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-  
   
   
   .courses {
