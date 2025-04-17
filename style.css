@@ -547,8 +547,13 @@
     color: #555;
     margin-bottom: 24px;
     padding: 0 24px;
-    flex-wrap: wrap;
+    display: flex;
+    flex-direction: column; /* Aligns text vertically */
+    align-items: flex-start; /* Ensures text aligns from the same starting point */
+    justify-content: flex-start; /* Keeps the content starting from the top */
+    text-align: left; /* Ensures text aligns from the left */
   }
+  
   
   .animated-text span {
     display: inline-block;
