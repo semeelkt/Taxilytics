@@ -457,16 +457,12 @@
     border-radius: 30px;
     cursor: pointer;
     transition: all 0.3s ease;
-    text-decoration: none;
-    display: inline-block;
-    text-align: center;
   }
   
   .details-btn:hover {
     background-color: #2980b9;
     color: white;
   }
-  
  
   
   
