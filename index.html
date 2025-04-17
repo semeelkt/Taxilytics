@@ -64,7 +64,7 @@
   <section class="intro">
     <div class="intro-content">
       <h1>Get Tax Smart with <span>Taxilytics</span></h1>
-      <p>At Taxilytics, we specialize in providing reliable and personalized tax consultancy and bookkeeping services for individuals, small businesses, and startups. Based in Kerala, our mission is to simplify complex financial processes and ensure our clients remain compliant and financially confident.
+      <p class="fade-on-scroll">At Taxilytics, we specialize in providing reliable and personalized tax consultancy and bookkeeping services for individuals, small businesses, and startups. Based in Kerala, our mission is to simplify complex financial processes and ensure our clients remain compliant and financially confident.
          Founded by a team of dedicated professionals with strong academic and practical backgrounds, we offer a wide range of services including income tax filing, GST compliance, accounting, and business advisory. We believe in building long-term relationships through trust, transparency, and tailored financial solutions.
          Whether you're a business owner looking for streamlined bookkeeping or an individual in need of expert tax advice, Taxilytics is here to help you every step of the way.
       </p>
@@ -436,6 +436,26 @@
 
     observer.observe(para);
   });
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    const fadeEl = document.querySelector('.fade-on-scroll');
+
+    function handleScroll() {
+      const elementTop = fadeEl.getBoundingClientRect().top;
+      const windowHeight = window.innerHeight;
+
+      if (elementTop < windowHeight * 0.4) {
+        fadeEl.classList.add('hide');
+      } else {
+        fadeEl.classList.remove('hide');
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Trigger once on load
+  });
+
+
 
   // ❓ Toggle FAQ answers
   function toggleFAQ(button) {
