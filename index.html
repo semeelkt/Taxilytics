@@ -93,7 +93,7 @@
         <h3>Tax consultancy</h3>
         <p>Learn HTML, CSS, and JS from scratch.</p>
         <div class="card-buttons">
-          <button class="details-btn" data-course="Web Development">View Details</button>
+          <button class="details-btn" id="call-btn">📞 Call Us Now</button>
           <button class="join-btn" data-course="Web Development"><a class="btn-link" href="https://wa.me/9061707348"
               target="_blank">Chat with Us Now</a></button>
         </div>
@@ -486,6 +486,10 @@
       document.querySelectorAll('.faq-content').forEach(div => {
         div.style.display = 'none';
       });
+      document.getElementById("call-btn").addEventListener("click", function () {
+  window.location.href = "tel:+919061707348";
+});
+
 
       content.style.display = isVisible ? 'none' : 'block';
     }
