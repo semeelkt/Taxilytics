@@ -779,6 +779,18 @@
     color: #333;
     margin-bottom: 5px;
   }
+  .client-position {
+    font-size: 0.95rem;
+    color: #888;
+    font-style: italic;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: center; /* Centers the icon and text */
+    align-items: center;
+    gap: 6px;
+    letter-spacing: 0.3px;
+  }
+  
   
   .client-rating {
     font-size: 1.4rem;
