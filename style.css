@@ -873,6 +873,13 @@
     background: none; 
     z-index: 1;
   }
+  .taxilytics-logo {
+    display: block;
+    margin: 20px auto;  /* Centers the logo horizontally */
+    max-width: 150px;   /* Adjust the size of the logo */
+    height: auto;       /* Maintains the aspect ratio */
+  }
+  
   
   .about-content {
     position: relative;
