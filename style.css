@@ -542,57 +542,46 @@
     color: #6c5ce7;
   }
   
-  .intro p.fade-on-scroll {
-    font-size: 1rem;
-    margin-bottom: 24px;
-    line-height: 1.6;
-    color: #555;
-  
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+ /* Base style for the animated paragraph */
+.animated-text {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 24px;
+  padding: 0 24px;
+}
+
+/* Style each word span */
+.animated-text span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* When visible, trigger animation */
+.animated-text.visible span {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .animated-text {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    padding: 0 16px;
   }
-  
-  /* When scrolled past, this class will be added */
-  .fade-on-scroll.hide {
-    opacity: 0;
-    transform: translateY(-20px);
+}
+
+@media (max-width: 480px) {
+  .animated-text {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    padding: 0 12px;
   }
-  
-  /* Keyframes for the initial entrance */
-  @keyframes slideInBottom {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  /* --------------------------------------------------
-     4. Scroll‑Fade Effect
-     -------------------------------------------------- */
-  /* when scrolled past, fade & lift up */
-  .intro p.hidden {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  
-  /* --------------------------------------------------
-     5. Utility & Responsive Tweaks
-     -------------------------------------------------- */
-  @media (max-width: 600px) {
-    .intro h1 {
-      font-size: 2rem;
-    }
-  
-    .intro p {
-      font-size: 0.9rem;
-    }
-  }
-  
+}
+
   
   .intro-buttons {
     display: flex;

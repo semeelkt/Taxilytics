@@ -64,7 +64,7 @@
   <section class="intro">
     <div class="intro-content">
       <h1>Get Tax Smart with <span>Taxilytics</span></h1>
-      <p class="fade-on-scroll">At Taxilytics, we specialize in providing reliable and personalized tax consultancy and bookkeeping services for individuals, small businesses, and startups. Based in Kerala, our mission is to simplify complex financial processes and ensure our clients remain compliant and financially confident.
+      <p class="animated-text">At Taxilytics, we specialize in providing reliable and personalized tax consultancy and bookkeeping services for individuals, small businesses, and startups. Based in Kerala, our mission is to simplify complex financial processes and ensure our clients remain compliant and financially confident.
          Founded by a team of dedicated professionals with strong academic and practical backgrounds, we offer a wide range of services including income tax filing, GST compliance, accounting, and business advisory. We believe in building long-term relationships through trust, transparency, and tailored financial solutions.
          Whether you're a business owner looking for streamlined bookkeeping or an individual in need of expert tax advice, Taxilytics is here to help you every step of the way.
       </p>
@@ -398,61 +398,32 @@
     }, 500);
   });
 
-  document.addEventListener('DOMContentLoaded', function() {
-    const para = document.querySelector('.intro p');
-    const triggerOffset = para.offsetTop + 150; 
-    // 150px below the paragraph’s top
+  document.addEventListener('DOMContentLoaded', () => {
+    const paragraph = document.querySelector('.animated-text');
+    const words = paragraph.textContent.trim().split(' ');
+    const baseDelay = window.innerWidth < 480 ? 30 : 60;
 
-    function onScroll() {
-      if (window.scrollY > triggerOffset) {
-        para.classList.add('hidden');
-      } else {
-        para.classList.remove('hidden');
+    // Clear original text
+    paragraph.innerHTML = '';
+
+    // Create span for each word
+    words.forEach((word, i) => {
+      const span = document.createElement('span');
+      span.textContent = word + ' ';
+      span.style.transitionDelay = `${i * baseDelay}ms`;
+      paragraph.appendChild(span);
+    });
+
+    // Add class when paragraph is in viewport
+    function animateText() {
+      const rect = paragraph.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.8) {
+        paragraph.classList.add('visible');
       }
     }
 
-    window.addEventListener('scroll', onScroll);
-    // run once in case the page loads scrolled-down
-    onScroll();
-  });
-  document.addEventListener('DOMContentLoaded', () => {
-    const para = document.querySelector('.intro p');
-
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          // entry.isIntersecting = paragraph is in the viewport
-          if (entry.isIntersecting) {
-            para.classList.remove('hidden');
-          } else {
-            para.classList.add('hidden');
-          }
-        });
-      },
-      {
-        threshold: 0.1  // fire when 10% of the <p> is visible
-      }
-    );
-
-    observer.observe(para);
-  });
-  
-  document.addEventListener('DOMContentLoaded', () => {
-    const fadeEl = document.querySelector('.fade-on-scroll');
-
-    function handleScroll() {
-      const elementTop = fadeEl.getBoundingClientRect().top;
-      const windowHeight = window.innerHeight;
-
-      if (elementTop < windowHeight * 0.4) {
-        fadeEl.classList.add('hide');
-      } else {
-        fadeEl.classList.remove('hide');
-      }
-    }
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Trigger once on load
+    window.addEventListener('scroll', animateText);
+    animateText(); // Trigger on page load too
   });
 
 
