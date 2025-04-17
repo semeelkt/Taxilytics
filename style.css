@@ -491,7 +491,7 @@
   
   
   
-  .join-btn {
+.join-btn {
     flex: 1;
     padding: 10px 20px;
     background: linear-gradient(135deg, #3498db, #2980b9);
@@ -503,8 +503,8 @@
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  .btn-link{
+}
+.btn-link{
     color: white;
     text-decoration: none;
     font-weight: 600;
@@ -512,13 +512,13 @@
     display: inline-block;
     transition: color 0.3s ease;
   
-  }
+ }
   
   .join-btn:hover {
     background: linear-gradient(135deg, #5dade2, #3498db);
     transform: translateY(-2px);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-  }
+}
   
   
   
