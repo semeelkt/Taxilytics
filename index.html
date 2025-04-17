@@ -398,6 +398,24 @@
     }, 500);
   });
 
+  document.addEventListener('DOMContentLoaded', function() {
+    const para = document.querySelector('.intro p');
+    const triggerOffset = para.offsetTop + 150; 
+    // 150px below the paragraph’s top
+
+    function onScroll() {
+      if (window.scrollY > triggerOffset) {
+        para.classList.add('hidden');
+      } else {
+        para.classList.remove('hidden');
+      }
+    }
+
+    window.addEventListener('scroll', onScroll);
+    // run once in case the page loads scrolled-down
+    onScroll();
+  });
+
   // ❓ Toggle FAQ answers
   function toggleFAQ(button) {
     const content = button.nextElementSibling;
