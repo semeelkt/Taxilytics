@@ -398,34 +398,32 @@
     }, 500);
   });
 
+
   document.addEventListener('DOMContentLoaded', () => {
     const paragraph = document.querySelector('.animated-text');
     const words = paragraph.textContent.trim().split(' ');
-    const baseDelay = window.innerWidth < 480 ? 30 : 60;
-
-    // Clear original text
     paragraph.innerHTML = '';
 
-    // Create span for each word
-    words.forEach((word, i) => {
+    words.forEach((word) => {
       const span = document.createElement('span');
       span.textContent = word + ' ';
-      span.style.transitionDelay = `${i * baseDelay}ms`;
       paragraph.appendChild(span);
     });
 
-    // Add class when paragraph is in viewport
-    function animateText() {
-      const rect = paragraph.getBoundingClientRect();
-      if (rect.top < window.innerHeight * 0.8) {
-        paragraph.classList.add('visible');
-      }
+    const wordSpans = document.querySelectorAll('.animated-text span');
+
+    function handleScroll() {
+      wordSpans.forEach((span) => {
+        const rect = span.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 50) {
+          span.classList.add('reveal');
+        }
+      });
     }
 
-    window.addEventListener('scroll', animateText);
-    animateText(); // Trigger on page load too
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // initial call
   });
-
 
 
   // ❓ Toggle FAQ answers
