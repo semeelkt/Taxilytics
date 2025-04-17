@@ -415,6 +415,27 @@
     // run once in case the page loads scrolled-down
     onScroll();
   });
+  document.addEventListener('DOMContentLoaded', () => {
+    const para = document.querySelector('.intro p');
+
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          // entry.isIntersecting = paragraph is in the viewport
+          if (entry.isIntersecting) {
+            para.classList.remove('hidden');
+          } else {
+            para.classList.add('hidden');
+          }
+        });
+      },
+      {
+        threshold: 0.1  // fire when 10% of the <p> is visible
+      }
+    );
+
+    observer.observe(para);
+  });
 
   // ❓ Toggle FAQ answers
   function toggleFAQ(button) {
