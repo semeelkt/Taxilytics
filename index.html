@@ -399,21 +399,15 @@
   });
 
 
- 
   document.addEventListener('DOMContentLoaded', () => {
     const paragraph = document.querySelector('.animated-text');
     const words = paragraph.textContent.trim().split(' ');
     paragraph.innerHTML = '';
 
-    words.forEach((word, index) => {
+    words.forEach((word) => {
       const span = document.createElement('span');
-      span.textContent = word;
-
-      // Add a space after each word except the last one
+      span.textContent = word + ' ';
       paragraph.appendChild(span);
-      if (index !== words.length - 1) {
-        paragraph.appendChild(document.createTextNode(' '));
-      }
     });
 
     const wordSpans = document.querySelectorAll('.animated-text span');
@@ -430,7 +424,6 @@
     window.addEventListener('scroll', handleScroll);
     handleScroll(); // initial call
   });
-
 
 
   // ❓ Toggle FAQ answers
