@@ -399,15 +399,21 @@
   });
 
 
+ 
   document.addEventListener('DOMContentLoaded', () => {
     const paragraph = document.querySelector('.animated-text');
     const words = paragraph.textContent.trim().split(' ');
     paragraph.innerHTML = '';
 
-    words.forEach((word) => {
+    words.forEach((word, index) => {
       const span = document.createElement('span');
-      span.textContent = word + ' ';
+      span.textContent = word;
+
+      // Add a space after each word except the last one
       paragraph.appendChild(span);
+      if (index !== words.length - 1) {
+        paragraph.appendChild(document.createTextNode(' '));
+      }
     });
 
     const wordSpans = document.querySelectorAll('.animated-text span');
