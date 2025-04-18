@@ -493,7 +493,7 @@
    
     document.getElementById("search-btn").addEventListener("click", function () {
   const query = document.getElementById("search-input").value.trim().toLowerCase();
-  const navLinks = document.querySelectorAll(".nav-links a");
+  const elements = document.querySelectorAll("body *"); // Search through all elements in the body
   let found = false;
 
   if (query === "") {
@@ -501,15 +501,17 @@
     return;
   }
 
-  navLinks.forEach(link => {
-    const text = link.textContent.trim().toLowerCase(); // Ensure no leading/trailing spaces
-    // Check if the query is part of the text content (ignoring punctuation or special characters)
-    if (text.includes(query)) {
-      link.style.color = "#00ff00"; // highlight found link
-      link.scrollIntoView({ behavior: "smooth", block: "center" }); // center scroll
-      found = true;
-    } else {
-      link.style.color = ""; // reset others
+  elements.forEach(element => {
+    // Only check text content of elements that are likely to contain text (e.g., paragraphs, divs, spans)
+    if (element.children.length === 0 && element.textContent.trim().length > 0) {
+      const text = element.textContent.trim().toLowerCase(); // Clean up the text
+      if (text.includes(query)) {
+        // Highlight the element if the search term is found
+        element.style.backgroundColor = "#ffff00"; // Highlight with a yellow background
+        found = true;
+      } else {
+        element.style.backgroundColor = ""; // Reset if no match
+      }
     }
   });
 
