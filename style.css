@@ -277,74 +277,65 @@
 
   
   
-  /* Hamburger Menu Styling */
+  /* Default Hamburger Menu Styling */
+.hamburger {
+  display: none; /* Hide by default */
+  font-size: 30px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+}
+
+/* Style for bars inside the hamburger icon (optional) */
+.hamburger .bar {
+  width: 30px;
+  height: 3px;
+  background-color: white;
+  margin: 5px 0;
+  transition: 0.3s ease;
+}
+
+/* Media query for responsive behavior (max-width 768px) */
+@media screen and (max-width: 768px) {
+  .navbar {
+    flex-wrap: wrap;
+    justify-content: center; /* Center the content */
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    text-align: center;
+  }
+
+  /* Hide nav links by default on small screens */
+  .nav-links {
+    display: none; /* Hide nav links */
+    flex-direction: column; /* Stack links vertically */
+    gap: 15px;
+    width: 100%;
+    align-items: center;
+  }
+
+  /* Show nav links when active class is added */
+  .nav-links.active {
+    display: flex; /* Show the links */
+  }
+
+  .logo {
+    font-size: 22px;
+    margin-bottom: 5px;
+  }
+
+  .nav-links a {
+    font-size: 16px;
+  }
+
+  /* Show hamburger on small screens */
   .hamburger {
-    display: none; /* Hide by default */
-    font-size: 30px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: white;
+    display: block;
   }
-  
-  .hamburger .bar {
-    width: 30px;
-    height: 3px;
-    background-color: white;
-    margin: 5px 0;
-    transition: 0.3s ease;
-  }
-  
-  /* Media query for responsive behavior */
-  @media screen and (max-width: 768px) {
-    .navbar {
-      flex-wrap: wrap;
-      justify-content: center; /* Center the content */
-      align-items: center;
-      gap: 10px;
-      padding: 10px 0;
-      text-align: center;
-    }
-  
-    .nav-links {
-      display: none; /* Hide nav links by default */
-      flex-direction: column; /* Stack links vertically */
-      gap: 15px;
-      width: 100%;
-      align-items: center;
-    }
-  
-    .nav-links.active {
-      display: flex; /* Show links when active */
-    }
-  
-    .search-bar {
-      display: none; /* Hide search bar on smaller screens */
-    }
-  
-    .logo {
-      font-size: 22px;
-      margin-bottom: 5px; /* Reduced bottom margin to minimize space */
-    }
-  
-    .navbar h1 {
-      font-size: 24px;
-      margin: 0;
-      text-align: center;
-      flex-grow: 1;
-    }
-  
-    .nav-links a {
-      font-size: 16px;
-    }
-  
-    /* Show hamburger icon */
-    .hamburger {
-      display: block; /* Show hamburger on small screens */
-    }
-  }
-  
-  
+}
+
   
   
   /* Hero Section Styles */
