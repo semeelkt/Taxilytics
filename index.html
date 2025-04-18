@@ -491,27 +491,33 @@
       handleScroll(); // initial call
     });
    
-    
-  document.getElementById("search-btn").addEventListener("click", function () {
-    const query = document.getElementById("search-input").value.toLowerCase();
-    const navLinks = document.querySelectorAll(".nav-links a");
-    let found = false;
+    document.getElementById("search-btn").addEventListener("click", function () {
+  const query = document.getElementById("search-input").value.trim().toLowerCase();
+  const navLinks = document.querySelectorAll(".nav-links a");
+  let found = false;
 
-    navLinks.forEach(link => {
-      const text = link.textContent.toLowerCase();
-      if (text.includes(query)) {
-        link.style.color = "#00ff00"; // highlight found link
-        link.scrollIntoView({ behavior: "smooth" });
-        found = true;
-      } else {
-        link.style.color = ""; // reset others
-      }
-    });
+  if (query === "") {
+    alert("Please enter a search term.");
+    return;
+  }
 
-    if (!found) {
-      alert("No matching result found.");
+  navLinks.forEach(link => {
+    const text = link.textContent.trim().toLowerCase(); // Ensure no leading/trailing spaces
+    if (text.includes(query)) {
+      link.style.color = "#00ff00"; // highlight found link
+      link.scrollIntoView({ behavior: "smooth", block: "center" }); // center scroll
+      found = true;
+    } else {
+      link.style.color = ""; // reset others
     }
   });
+
+  if (!found) {
+    alert("No matching result found.");
+  }
+});
+
+
 
 
   // Toggle nav for mobile

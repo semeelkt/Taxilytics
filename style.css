@@ -268,7 +268,12 @@
     color: #237bb6;
     padding-left: 8px;
   }
-  
+  @media (max-width: 768px) {
+    .search-container {
+      display: none;
+    }
+  }
+    
 
   
   
