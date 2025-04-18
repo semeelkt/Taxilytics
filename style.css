@@ -276,25 +276,33 @@
     
 
   
-  
-  /* Hamburger Menu Styling */
+  /* Show hamburger and hide nav links on small screens */
+@media (max-width: 768px) {
   .hamburger {
-    display: none; /* Hide by default */
-    font-size: 30px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: white;
+    display: block;
   }
-  
-  .hamburger .bar {
-    width: 30px;
-    height: 3px;
-    background-color: white;
-    margin: 5px 0;
-    transition: 0.3s ease;
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background-color: #333;
+    position: absolute;
+    top: 70px; /* adjust based on navbar height */
+    right: 0;
+    width: 100%;
+    z-index: 1000;
   }
-  
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links li {
+    text-align: center;
+    padding: 15px 0;
+  }
+}
+
   /* Media query for responsive behavior */
   @media screen and (max-width: 768px) {
     .navbar {
