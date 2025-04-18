@@ -503,6 +503,7 @@
 
   navLinks.forEach(link => {
     const text = link.textContent.trim().toLowerCase(); // Ensure no leading/trailing spaces
+    // Check if the query is part of the text content (ignoring punctuation or special characters)
     if (text.includes(query)) {
       link.style.color = "#00ff00"; // highlight found link
       link.scrollIntoView({ behavior: "smooth", block: "center" }); // center scroll
@@ -516,6 +517,7 @@
     alert("No matching result found.");
   }
 });
+
 
 
 
