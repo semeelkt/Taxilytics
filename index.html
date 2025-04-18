@@ -20,13 +20,20 @@
       <img src="img/488624978_1742166546711298_5193890747112766118_n-removebg-preview (1).png" alt="Logo" class="logo">
       <span class="website-name">TAXILYTICS</span>
     </div>
+  
     <ul class="nav-links" id="nav-links">
       <li><a href="#home">Home</a></li>
       <li><a href="#courses">Courses</a></li>
       <li><a href="#about-us">About Us</a></li>
       <li><a href="#contact-us">Contact</a></li>
     </ul>
-    <button class="hamburger" id="hamburger-btn">&#9776;</button> <!-- Hamburger Icon -->
+  
+    <div class="search-container">
+      <input type="text" id="search-input" placeholder="Search..." />
+      <button id="search-btn" aria-label="Search">🔍</button>
+    </div>
+  
+    <button class="hamburger" id="hamburger-btn">&#9776;</button>
   </nav>
   
   <!-- Advertisement Banner -->
@@ -483,6 +490,22 @@
       window.addEventListener('scroll', handleScroll);
       handleScroll(); // initial call
     });
+   
+  document.getElementById('search-btn').addEventListener('click', () => {
+    const query = document.getElementById('search-input').value.trim();
+    if (query) {
+      alert(`Searching for: ${query}`);
+      // You can replace this with real search logic or redirection
+    } else {
+      alert('Please enter a search term.');
+    }
+  });
+
+  // Toggle nav for mobile
+  document.getElementById('hamburger-btn').addEventListener('click', () => {
+    document.getElementById('nav-links').classList.toggle('active');
+  });
+
 
 
     // ❓ Toggle FAQ answers
