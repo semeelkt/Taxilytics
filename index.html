@@ -418,20 +418,21 @@
 
 
   <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-  <script>
-    // 🟣 Initialize EmailJS with your public key
-    (function () {
-      emailjs.init("Prc1e6i30CEEhNdiJ"); // ⬅️ Replace with your actual public key
-    })();
 
-    // 🟣 Handle contact form submission
+  <script>
+    // Initialize EmailJS with your public key
+    (function () {
+      emailjs.init("Prc1e6i30CEEhNdiJ"); // Replace with your actual public key
+    })();
+  
+    // Handle contact form submission
     document.querySelector(".contact-form").addEventListener("submit", function (e) {
       e.preventDefault();
-
+  
       const statusMsg = document.getElementById("formStatus");
       statusMsg.style.color = "blue";
       statusMsg.textContent = "Sending...";
-
+  
       emailjs.sendForm("service_cx4fkws", "template_m2uto45", this)
         .then(function () {
           statusMsg.style.color = "green";
@@ -443,88 +444,80 @@
           statusMsg.textContent = "Oops! Something went wrong. Try again.";
         });
     });
-   // 🍔 Toggle the menu on and off
-   document.getElementById("hamburger-btn").addEventListener("click", function () {
-    const navLinks = document.getElementById("nav-links");
-    navLinks.classList.toggle("active");
-   });
   
-   document.getElementById("search-btn").addEventListener("click", performSearch);
-     document.getElementById("search-input").addEventListener("keypress", function (event) {
-     if (event.key === "Enter") {
-      performSearch();
-    }
-   });
-
+    // Handle search functionality
+    document.getElementById("search-btn").addEventListener("click", performSearch);
+    document.getElementById("search-input").addEventListener("keypress", function (event) {
+      if (event.key === "Enter") {
+        performSearch();
+      }
+    });
+  
     function performSearch() {
-   const query = document.getElementById("search-input").value.trim().toLowerCase();
-   const elements = document.querySelectorAll("body *"); // Search through all elements in the body
-   let found = false;
-   let firstMatch = null;
-
-   if (query === "") {
-    alert("Please enter a search term.");
-    return;
-   }
-
-   elements.forEach(element => {
-    // Only check text content of elements that are likely to contain text (e.g., paragraphs, divs, spans)
-    if (element.children.length === 0 && element.textContent.trim().length > 0) {
-      const text = element.textContent.trim().toLowerCase(); // Clean up the text
-      if (text.includes(query)) {
-        // Highlight the element if the search term is found
-        element.style.backgroundColor = "#ffff00"; // Highlight with a yellow background
-        found = true;
-
-        // Store the first match to scroll to it
-        if (!firstMatch) {
-          firstMatch = element;
+      const query = document.getElementById("search-input").value.trim().toLowerCase();
+      const elements = document.querySelectorAll("body *"); // Search through all elements in the body
+      let found = false;
+      let firstMatch = null;
+  
+      if (query === "") {
+        alert("Please enter a search term.");
+        return;
+      }
+  
+      elements.forEach(element => {
+        // Only check text content of elements that are likely to contain text (e.g., paragraphs, divs, spans)
+        if (element.children.length === 0 && element.textContent.trim().length > 0) {
+          const text = element.textContent.trim().toLowerCase(); // Clean up the text
+          if (text.includes(query)) {
+            // Highlight the element if the search term is found
+            element.style.backgroundColor = "#ffff00"; // Highlight with a yellow background
+            found = true;
+  
+            // Store the first match to scroll to it
+            if (!firstMatch) {
+              firstMatch = element;
+            }
+          } else {
+            element.style.backgroundColor = ""; // Reset if no match
+          }
         }
+      });
+  
+      if (found) {
+        // Scroll to the first matching result
+        firstMatch.scrollIntoView({ behavior: "smooth", block: "center" });
       } else {
-        element.style.backgroundColor = ""; // Reset if no match
+        alert("No matching result found.");
       }
     }
-   });
- 
-   if (found) {
-    // Scroll to the first matching result
-    firstMatch.scrollIntoView({ behavior: "smooth", block: "center" });
-   } else {
-    alert("No matching result found.");
-   }
-   }
-
-
-
-
-    // ❌ Close the advertisement banner
+  
+    // Close the advertisement banner
     document.getElementById("close-ad-btn").addEventListener("click", function () {
       document.getElementById("advertisement-banner").classList.add("fadeout");
       setTimeout(function () {
         document.getElementById("advertisement-banner").style.display = "none";
       }, 500);
     });
-
-
-
+  
+    // Animated text reveal
     document.addEventListener('DOMContentLoaded', () => {
       const paragraph = document.querySelector('.animated-text');
       const words = paragraph.textContent.trim().split(' ');
       paragraph.innerHTML = '';
-
+  
       words.forEach((word, index) => {
         const span = document.createElement('span');
         span.textContent = word;
-
+  
         // Add a space after each word except the last one
         paragraph.appendChild(span);
         if (index !== words.length - 1) {
           paragraph.appendChild(document.createTextNode(' '));
         }
       });
-
+  
       const wordSpans = document.querySelectorAll('.animated-text span');
-
+  
       function handleScroll() {
         wordSpans.forEach((span) => {
           const rect = span.getBoundingClientRect();
@@ -533,31 +526,27 @@
           }
         });
       }
-
+  
       window.addEventListener('scroll', handleScroll);
       handleScroll(); // initial call
     });
-   
-
-   // Toggle nav for mobile
-   document.getElementById('hamburger-btn').addEventListener('click', () => {
-    document.getElementById('nav-links').classList.toggle('active');
-   });
-
-
-
-    // ❓ Toggle FAQ answers
+  
+    // Toggle the menu on and off for mobile
+    document.getElementById("hamburger-btn").addEventListener("click", function () {
+      const navLinks = document.getElementById("nav-links");
+      navLinks.classList.toggle("active");
+    });
+  
+    // Toggle FAQ answers
     function toggleFAQ(button) {
-    const content = button.nextElementSibling;
-    const isVisible = content.style.display === 'block';
-
-    // Toggle the visibility: if it's open, close it; if it's closed, open it.
-    content.style.display = isVisible ? 'none' : 'block';
-   }
-
-
+      const content = button.nextElementSibling;
+      const isVisible = content.style.display === 'block';
+  
+      // Toggle the visibility: if it's open, close it; if it's closed, open it.
+      content.style.display = isVisible ? 'none' : 'block';
+    }
   </script>
-
+  
 
 </body>
 
