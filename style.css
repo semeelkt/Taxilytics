@@ -278,6 +278,7 @@
   
   
 /* Default Hamburger Menu Styling */
+
 .hamburger {
   display: none; /* Hide by default */
   font-size: 30px;
@@ -307,8 +308,8 @@
     position: absolute; /* Position it absolutely */
     top: 60px; /* Adjust top to appear below the navbar */
     right: 0; /* Align to the right side */
-    background-color: #333; /* Background color of the dropdown */
     padding: 10px; /* Add some padding for aesthetics */
+    background: linear-gradient(135deg, #a6ceeb, #237bb6); /* Gradient background */
   }
 
   /* Show nav links when active class is added */
@@ -332,6 +333,7 @@
     display: block;
   }
 }
+
 
   
   
