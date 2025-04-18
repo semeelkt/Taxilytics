@@ -502,6 +502,7 @@ function performSearch() {
   const query = document.getElementById("search-input").value.trim().toLowerCase();
   const elements = document.querySelectorAll("body *"); // Search through all elements in the body
   let found = false;
+  let firstMatch = null;
 
   if (query === "") {
     alert("Please enter a search term.");
@@ -516,19 +517,24 @@ function performSearch() {
         // Highlight the element if the search term is found
         element.style.backgroundColor = "#ffff00"; // Highlight with a yellow background
         found = true;
+
+        // Store the first match to scroll to it
+        if (!firstMatch) {
+          firstMatch = element;
+        }
       } else {
         element.style.backgroundColor = ""; // Reset if no match
       }
     }
   });
 
-  if (!found) {
+  if (found) {
+    // Scroll to the first matching result
+    firstMatch.scrollIntoView({ behavior: "smooth", block: "center" });
+  } else {
     alert("No matching result found.");
   }
 }
-
-
-
 
 
 
