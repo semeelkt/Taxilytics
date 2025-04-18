@@ -491,64 +491,50 @@
       handleScroll(); // initial call
     });
    
-    
-  let searchResults = []; // stores all matching elements
-  let currentIndex = -1;  // keeps track of which result we’re on
+    document.getElementById("search-btn").addEventListener("click", performSearch);
+document.getElementById("search-input").addEventListener("keypress", function (event) {
+  if (event.key === "Enter") {
+    performSearch();
+  }
+});
 
-  document.getElementById("search-btn").addEventListener("click", () => {
-    startSearch();
-  });
+function performSearch() {
+  const query = document.getElementById("search-input").value.trim().toLowerCase();
+  const elements = document.querySelectorAll("body *"); // Search through all elements in the body
+  let found = false;
+  let firstMatch = null;
 
-  document.getElementById("search-input").addEventListener("keypress", function (event) {
-    if (event.key === "Enter") {
-      if (searchResults.length > 0) {
-        goToNextMatch();
-      } else {
-        startSearch();
-      }
-    }
-  });
+  if (query === "") {
+    alert("Please enter a search term.");
+    return;
+  }
 
-  function startSearch() {
-    const query = document.getElementById("search-input").value.trim().toLowerCase();
-    const elements = document.querySelectorAll("body *");
-    searchResults = [];
-    currentIndex = -1;
+  elements.forEach(element => {
+    // Only check text content of elements that are likely to contain text (e.g., paragraphs, divs, spans)
+    if (element.children.length === 0 && element.textContent.trim().length > 0) {
+      const text = element.textContent.trim().toLowerCase(); // Clean up the text
+      if (text.includes(query)) {
+        // Highlight the element if the search term is found
+        element.style.backgroundColor = "#ffff00"; // Highlight with a yellow background
+        found = true;
 
-    if (query === "") {
-      alert("Please enter a search term.");
-      return;
-    }
-
-    elements.forEach(element => {
-      if (element.children.length === 0 && element.textContent.trim().length > 0) {
-        const text = element.textContent.trim().toLowerCase();
-        if (text.includes(query)) {
-          element.style.backgroundColor = "#ffff00"; // highlight
-          searchResults.push(element);
-        } else {
-          element.style.backgroundColor = "";
+        // Store the first match to scroll to it
+        if (!firstMatch) {
+          firstMatch = element;
         }
+      } else {
+        element.style.backgroundColor = ""; // Reset if no match
       }
-    });
-
-    if (searchResults.length > 0) {
-      currentIndex = 0;
-      scrollToMatch(searchResults[currentIndex]);
-    } else {
-      alert("No matching result found.");
     }
-  }
+  });
 
-  function goToNextMatch() {
-    currentIndex = (currentIndex + 1) % searchResults.length;
-    scrollToMatch(searchResults[currentIndex]);
+  if (found) {
+    // Scroll to the first matching result
+    firstMatch.scrollIntoView({ behavior: "smooth", block: "center" });
+  } else {
+    alert("No matching result found.");
   }
-
-  function scrollToMatch(element) {
-    element.scrollIntoView({ behavior: "smooth", block: "center" });
-  }
-
+}
 
 
 
