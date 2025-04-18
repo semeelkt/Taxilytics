@@ -444,30 +444,30 @@
         });
     });
    // 🍔 Toggle the menu on and off
-  document.getElementById("hamburger-btn").addEventListener("click", function () {
+   document.getElementById("hamburger-btn").addEventListener("click", function () {
     const navLinks = document.getElementById("nav-links");
     navLinks.classList.toggle("active");
-  });
+   });
   
-  document.getElementById("search-btn").addEventListener("click", performSearch);
-  document.getElementById("search-input").addEventListener("keypress", function (event) {
-   if (event.key === "Enter") {
-     performSearch();
-   }
- });
+   document.getElementById("search-btn").addEventListener("click", performSearch);
+     document.getElementById("search-input").addEventListener("keypress", function (event) {
+     if (event.key === "Enter") {
+      performSearch();
+    }
+   });
 
-function performSearch() {
-  const query = document.getElementById("search-input").value.trim().toLowerCase();
-  const elements = document.querySelectorAll("body *"); // Search through all elements in the body
-  let found = false;
-  let firstMatch = null;
+    function performSearch() {
+   const query = document.getElementById("search-input").value.trim().toLowerCase();
+   const elements = document.querySelectorAll("body *"); // Search through all elements in the body
+   let found = false;
+   let firstMatch = null;
 
-  if (query === "") {
+   if (query === "") {
     alert("Please enter a search term.");
     return;
-  }
+   }
 
-  elements.forEach(element => {
+   elements.forEach(element => {
     // Only check text content of elements that are likely to contain text (e.g., paragraphs, divs, spans)
     if (element.children.length === 0 && element.textContent.trim().length > 0) {
       const text = element.textContent.trim().toLowerCase(); // Clean up the text
@@ -484,15 +484,15 @@ function performSearch() {
         element.style.backgroundColor = ""; // Reset if no match
       }
     }
-  });
-
-  if (found) {
+   });
+ 
+   if (found) {
     // Scroll to the first matching result
     firstMatch.scrollIntoView({ behavior: "smooth", block: "center" });
-  } else {
+   } else {
     alert("No matching result found.");
-  }
-}
+   }
+   }
 
 
 
@@ -539,10 +539,10 @@ function performSearch() {
     });
    
 
-  // Toggle nav for mobile
-  document.getElementById('hamburger-btn').addEventListener('click', () => {
+   // Toggle nav for mobile
+   document.getElementById('hamburger-btn').addEventListener('click', () => {
     document.getElementById('nav-links').classList.toggle('active');
-  });
+   });
 
 
 
@@ -553,7 +553,7 @@ function performSearch() {
 
     // Toggle the visibility: if it's open, close it; if it's closed, open it.
     content.style.display = isVisible ? 'none' : 'block';
-}
+   }
 
 
   </script>
