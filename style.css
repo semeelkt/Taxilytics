@@ -467,7 +467,6 @@
     font-size: 1rem;
   }
 }
-
 /* Container for the banner */
 .banner-modal {
   display: flex;
@@ -495,32 +494,13 @@
   display: block;
 }
 
-
-
 /* Responsive styles */
 @media (max-width: 768px) {
   .banner-content {
     width: 90%;
     height: 200px;
   }
-  .banner-content img {
-    width: 100%;
-    height: 100%;
-    margin-right: 100px;
-    object-fit: cover;
-    display: block;
-  }
-
-  .banner-text h2 {
-    font-size: 22px;
-  }
-
-  .cta-button {
-    padding: 8px 16px;
-    font-size: 14px;
-  }
 }
-
 
 
 
