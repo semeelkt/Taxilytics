@@ -479,8 +479,8 @@
 
 .banner-content {
   position: relative;
-  width: 1500px;   /* Adjust based on your design */
-  height: 200px;
+  width: 1400px;   /* Adjust based on your design */
+  height: 300px;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
