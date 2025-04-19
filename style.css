@@ -467,18 +467,16 @@
     font-size: 1rem;
   }
 }
-/* Container for the banner */
 .banner-modal {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 40px 0;
   background-color: #f9f9f9;
-  overflow: hidden; /* hides any image spill */
+  overflow: hidden; /* Prevent scroll */
 }
 
 .banner-content {
-  position: relative;
   width: 1400px;
   height: 300px;
   border-radius: 10px;
@@ -486,20 +484,26 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Image stays the same size */
 .banner-content img {
   width: 1400px;
   height: 300px;
   object-fit: cover;
   display: block;
+  transition: transform 0.3s ease;
 }
 
-@media (max-width: 1400px) {
-  .banner-modal {
-    justify-content: center;
+/* 👇 Responsive behavior: shift image to show right side */
+@media (max-width: 1200px) {
+  .banner-content img {
+    transform: translateX(-200px); /* Adjust this value as needed */
   }
 }
 
+@media (max-width: 768px) {
+  .banner-content img {
+    transform: translateX(-400px); /* Shift more on smaller screens */
+  }
+}
 
 
 
