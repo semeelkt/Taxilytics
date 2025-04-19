@@ -495,7 +495,7 @@
 /* 👇 Responsive behavior: shift image to show right side */
 @media (max-width: 1200px) {
   .banner-content img {
-    transform: translateX(-200px); /* Adjust this value as needed */
+    transform: translateX(-400px); /* Adjust this value as needed */
   }
 }
 
