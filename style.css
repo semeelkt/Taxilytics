@@ -468,7 +468,7 @@
   }
 }
 
-
+/* Container for the banner */
 .banner-modal {
   display: flex;
   justify-content: center;
@@ -477,21 +477,77 @@
   background-color: #f9f9f9;
 }
 
+/* Banner content box */
 .banner-content {
   position: relative;
-  width: 1400px;   /* Adjust based on your design */
+  width: 1400px;
   height: 300px;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
+/* Banner image styling */
 .banner-content img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
+
+/* Optional: Overlay text container */
+.banner-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
+}
+
+/* Optional: Heading inside banner */
+.banner-text h2 {
+  font-size: 32px;
+  margin: 0 0 10px;
+  font-weight: bold;
+}
+
+/* Optional: CTA button inside banner */
+.cta-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #ff6b00;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #e65c00;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .banner-content {
+    width: 90%;
+    height: 200px;
+  }
+
+  .banner-text h2 {
+    font-size: 22px;
+  }
+
+  .cta-button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}
+
 
 
 
