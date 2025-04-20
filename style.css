@@ -473,35 +473,36 @@
   align-items: center;
   padding: 40px 0;
   background-color: #f9f9f9;
-  overflow: hidden; /* Prevent scroll */
+  overflow: hidden;
 }
 
 .banner-content {
-  width: 1400px;
-  height: 300px;
+  width: 100%;
+  max-width: 1400px;
+  height: auto;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .banner-content img {
-  width: 1400px;
-  height: 300px;
+  width: 100%;
+  height: auto;
   object-fit: cover;
   display: block;
-  transition: transform 0.3s ease;
 }
+
 
 /* 👇 Responsive behavior: shift image to show right side */
 @media (max-width: 1200px) {
   .banner-content img {
-    transform: translateX(-700px); /* Adjust this value as needed */
+    transform: translateX(-700px);
   }
 }
 
 @media (max-width: 768px) {
   .banner-content img {
-    transform: translateX(-400px); /* Shift more on smaller screens */
+    transform: translateX(-400px);
   }
 }
 
