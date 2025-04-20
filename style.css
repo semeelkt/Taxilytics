@@ -471,7 +471,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 40px 0;
+  padding: 20px 0;
   background-color: #f9f9f9;
   overflow: hidden;
 }
@@ -494,17 +494,16 @@
 
 
 /* 👇 Responsive behavior: shift image to show right side */
-@media (max-width: 1200px) {
+@media (max-width: 768px) {
+  .banner-content {
+    height: auto;
+  }
+
   .banner-content img {
-    transform: translateX(-700px);
+    object-fit: contain;
   }
 }
 
-@media (max-width: 768px) {
-  .banner-content img {
-    transform: translateX(-400px);
-  }
-}
 
 
 
