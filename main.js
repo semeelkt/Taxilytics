@@ -1,8 +1,23 @@
+// Enable delete-on-click for all cards (event delegation)
+document.addEventListener('DOMContentLoaded', function() {
+  const grid = document.getElementById('course-grid');
+  if (grid) {
+    grid.addEventListener('click', function(e) {
+      let card = e.target.closest('.card');
+      if (!card || !grid.contains(card)) return;
+      // Only trigger if not clicking a button or link
+      if (e.target.tagName === 'BUTTON' || e.target.tagName === 'A') return;
+      if (confirm('Delete this card?')) {
+        card.remove();
+      }
+    });
+  }
+});
 // main.js
 // Handles login and dynamic service card addition
 
-const ADMIN_PASSWORD = "admin123";
-const CLIENT_PASSWORDS = ["client1", "client2"];
+const ADMIN_EMAIL = "mrflux3602@gmail.com";
+const ADMIN_PASSWORD = "3602mskt";
 
 function setSession(type) {
   localStorage.setItem('taxilytics_session', type);
@@ -21,21 +36,21 @@ function login() {
   const password = document.getElementById('password').value;
   const loginMsg = document.getElementById('login-message');
 
-  if (password === ADMIN_PASSWORD) {
+  if (username === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
     setSession('admin');
-    loginMsg.textContent = "Logged in as Admin.";
-    document.getElementById('login-section').style.display = 'none';
-    document.getElementById('main-content').style.display = '';
-    document.getElementById('add-card-admin').style.display = '';
-  } else if (CLIENT_PASSWORDS.includes(password)) {
+    window.location.href = 'admin.html';
+    return;
+  }
+  // Allow any username except admin to log in as client with any password (even empty)
+  if (username !== ADMIN_EMAIL) {
     setSession('client');
     loginMsg.textContent = "Logged in as Client.";
     document.getElementById('login-section').style.display = 'none';
     document.getElementById('main-content').style.display = '';
     document.getElementById('add-card-admin').style.display = 'none';
-  } else {
-    loginMsg.textContent = "Invalid password.";
+    return;
   }
+  loginMsg.textContent = "Invalid username or password.";
 }
 
 function logout() {
@@ -82,6 +97,13 @@ function addServiceCard() {
         <button class="join-btn"><a class="btn-link" href="https://wa.me/9061707348" target="_blank">Chat with Us Now</a></button>
       </div>
     `;
+    cardDiv.addEventListener('click', function(e) {
+      // Only trigger if not clicking a button or link
+      if (e.target.tagName === 'BUTTON' || e.target.tagName === 'A') return;
+      if (confirm('Delete this card?')) {
+        cardDiv.remove();
+      }
+    });
     document.getElementById('course-grid').appendChild(cardDiv);
     document.getElementById('card-title').value = '';
     document.getElementById('card-desc').value = '';
@@ -91,6 +113,8 @@ function addServiceCard() {
 }
 
 // Ensure JS runs after DOM is ready
+
+
 document.addEventListener('DOMContentLoaded', function() {
   window.login = login;
   window.logout = logout;
@@ -111,21 +135,51 @@ function addServiceCard() {
   const desc = document.getElementById('card-desc').value;
   const img = document.getElementById('card-img').value || 'img/taxation.jpg';
   if (title && desc) {
-    const cardDiv = document.createElement('div');
-    cardDiv.className = 'card';
-    cardDiv.innerHTML = `
-      <img src="${img}" alt="Service">
-      <h3>${title}</h3>
-      <p>${desc}</p>
-      <div class="card-buttons">
-        <button class="details-btn"><a class="btn-link2" href="tel:+91 9061707348" target="_blank">📞 Call Us Now</a></button>
-        <button class="join-btn"><a class="btn-link" href="https://wa.me/9061707348" target="_blank">Chat with Us Now</a></button>
-      </div>
-    `;
-    document.getElementById('course-grid').appendChild(cardDiv);
+    addDoc(collection(db, 'serviceCards'), {
+      title,
+      desc,
+      img
+    });
     document.getElementById('card-title').value = '';
     document.getElementById('card-desc').value = '';
     document.getElementById('card-img').value = '';
     hideAddCardForm();
   }
+function showCards(cards) {
+  const grid = document.getElementById('course-grid');
+  grid.innerHTML = '';
+  cards.forEach(card => {
+    const cardDiv = document.createElement('div');
+    cardDiv.className = 'card';
+    cardDiv.innerHTML = `
+      <img src="${card.img}" alt="Service">
+      <h3>${card.title}</h3>
+      <p>${card.desc}</p>
+      <div class="card-buttons">
+        <button class="details-btn"><a class="btn-link2" href="tel:+91 9061707348" target="_blank">📞 Call Us Now</a></button>
+        <button class="join-btn"><a class="btn-link" href="https://wa.me/9061707348" target="_blank">Chat with Us Now</a></button>
+        <button class="delete-btn" data-id="${card.id}">Delete</button>
+      </div>
+    `;
+    grid.appendChild(cardDiv);
+  });
+}
+
+// Delete from Firestore when delete button is clicked
+document.addEventListener('click', async function(e) {
+  if (e.target.classList.contains('delete-btn')) {
+    const id = e.target.getAttribute('data-id');
+    if (confirm('Delete this card?')) {
+      await deleteDoc(doc(db, 'serviceCards', id));
+    }
+  }
+});
+// Real-time sync with Firestore
+onSnapshot(collection(db, 'serviceCards'), (snapshot) => {
+  const cards = [];
+  snapshot.forEach(docSnap => {
+    cards.push({ id: docSnap.id, ...docSnap.data() });
+  });
+  showCards(cards);
+});
 }

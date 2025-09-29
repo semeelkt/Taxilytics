@@ -648,61 +648,6 @@
   </script>
 
 
-<script>
-// Simple login logic
-const ADMIN_PASSWORD = "admin123"; // Change as needed
-const CLIENT_PASSWORDS = ["client1", "client2"]; // Add more client passwords as needed
-
-function login() {
-  const username = document.getElementById('username').value;
-  const password = document.getElementById('password').value;
-  const loginMsg = document.getElementById('login-message');
-
-  if (password === ADMIN_PASSWORD) {
-    loginMsg.textContent = "Logged in as Admin.";
-    document.getElementById('login-section').style.display = 'none';
-    document.getElementById('main-content').style.display = '';
-    document.getElementById('add-card-admin').style.display = '';
-  } else if (CLIENT_PASSWORDS.includes(password)) {
-    loginMsg.textContent = "Logged in as Client.";
-    document.getElementById('login-section').style.display = 'none';
-    document.getElementById('main-content').style.display = '';
-    document.getElementById('add-card-admin').style.display = 'none';
-  } else {
-    loginMsg.textContent = "Invalid password.";
-  }
-}
-
-function showAddCardForm() {
-  document.getElementById('add-card-form').style.display = '';
-}
-function hideAddCardForm() {
-  document.getElementById('add-card-form').style.display = 'none';
-}
-function addServiceCard() {
-  const title = document.getElementById('card-title').value;
-  const desc = document.getElementById('card-desc').value;
-  const img = document.getElementById('card-img').value || 'img/taxation.jpg'; // Default image
-  if (title && desc) {
-    const cardDiv = document.createElement('div');
-    cardDiv.className = 'card';
-    cardDiv.innerHTML = `
-      <img src="${img}" alt="Service">
-      <h3>${title}</h3>
-      <p>${desc}</p>
-      <div class="card-buttons">
-        <button class="details-btn"><a class="btn-link2" href="tel:+91 9061707348" target="_blank">📞 Call Us Now</a></button>
-        <button class="join-btn"><a class="btn-link" href="https://wa.me/9061707348" target="_blank">Chat with Us Now</a></button>
-      </div>
-    `;
-    document.getElementById('course-grid').appendChild(cardDiv);
-    document.getElementById('card-title').value = '';
-    document.getElementById('card-desc').value = '';
-    document.getElementById('card-img').value = '';
-    hideAddCardForm();
-  }
-}
-</script>
 <script src="main.js"></script>
 </body>
 
