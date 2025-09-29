@@ -6,6 +6,79 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TAXILYTICS | Online services</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    #login-section {
+      max-width: 350px;
+      margin: 40px auto;
+      padding: 30px 25px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    #login-section h2 {
+      margin-bottom: 18px;
+      font-size: 1.6rem;
+      color: #1a237e;
+      font-weight: 700;
+    }
+    #login-section input[type="text"],
+    #login-section input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 14px;
+      border: 1px solid #bdbdbd;
+      border-radius: 6px;
+      font-size: 1rem;
+      background: #f5f5f5;
+      transition: border 0.2s;
+    }
+    #login-section input:focus {
+      border-color: #1976d2;
+      outline: none;
+    }
+    #login-section button {
+      width: 100%;
+      padding: 10px;
+      background: #1976d2;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: 10px;
+      transition: background 0.2s;
+    }
+    #login-section button:hover {
+      background: #1565c0;
+    }
+    #login-message {
+      margin-top: 8px;
+      font-size: 1rem;
+      color: #d32f2f;
+      text-align: center;
+    }
+    #logout-btn {
+      width: 120px;
+      margin: 20px auto 0 auto;
+      display: block;
+      padding: 8px 0;
+      background: #d32f2f;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    #logout-btn:hover {
+      background: #b71c1c;
+    }
+  </style>
   <link rel="icon" type="image/png"
     href="img/488624978_1742166546711298_5193890747112766118_n-removebg-preview (1).png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -15,6 +88,17 @@
 <body>
 
 
+  <!-- Login Section -->
+  <div id="login-section" style="margin: 20px;">
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Username" />
+    <input type="password" id="password" placeholder="Password" />
+    <button onclick="login()">Log In</button>
+    <p id="login-message" style="color: red;"></p>
+  </div>
+
+  <div id="main-content" style="display:none;">
+  <button id="logout-btn" onclick="logout()">Logout</button>
   <nav class="navbar">
     <div class="logo-container">
       <img src="img/488624978_1742166546711298_5193890747112766118_n-removebg-preview (1).png" alt="Logo" class="logo">
@@ -55,9 +139,10 @@
     </div>
   </div>
 
-  <header>
+    <!-- Removed duplicate Service Cards Section (old add form) -->
+    <header>
     <div class="banner-modal">
-      <div class="banner-content">
+  <div class="banner-content">
         <img src="img/Screenshot 2025-04-23 143232.png" alt="Promotional banner">
 
       </div>
@@ -91,7 +176,18 @@
 
   <section id="courses" class="courses">
     <h2>CUSTOMER SERVICES</h2>
-    <div class="course-grid">
+    <!-- Add Card Button & Form (admin only, shown after admin login) -->
+    <div id="add-card-admin" style="display:none; margin-bottom:20px;">
+      <button id="add-card-btn" onclick="showAddCardForm()">Add Service Card</button>
+      <div id="add-card-form" style="display:none; margin-top:10px;">
+        <input type="text" id="card-title" placeholder="Service Title" />
+        <input type="text" id="card-desc" placeholder="Service Description" />
+        <input type="text" id="card-img" placeholder="Image URL (optional)" />
+        <button onclick="addServiceCard()">Add</button>
+        <button onclick="hideAddCardForm()">Cancel</button>
+      </div>
+    </div>
+    <div class="course-grid" id="course-grid">
       <div class="card">
         <img src="img/taxation.jpg" alt="Course 1">
         <h3>Tax consultancy</h3>
@@ -552,6 +648,62 @@
   </script>
 
 
+<script>
+// Simple login logic
+const ADMIN_PASSWORD = "admin123"; // Change as needed
+const CLIENT_PASSWORDS = ["client1", "client2"]; // Add more client passwords as needed
+
+function login() {
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+  const loginMsg = document.getElementById('login-message');
+
+  if (password === ADMIN_PASSWORD) {
+    loginMsg.textContent = "Logged in as Admin.";
+    document.getElementById('login-section').style.display = 'none';
+    document.getElementById('main-content').style.display = '';
+    document.getElementById('add-card-admin').style.display = '';
+  } else if (CLIENT_PASSWORDS.includes(password)) {
+    loginMsg.textContent = "Logged in as Client.";
+    document.getElementById('login-section').style.display = 'none';
+    document.getElementById('main-content').style.display = '';
+    document.getElementById('add-card-admin').style.display = 'none';
+  } else {
+    loginMsg.textContent = "Invalid password.";
+  }
+}
+
+function showAddCardForm() {
+  document.getElementById('add-card-form').style.display = '';
+}
+function hideAddCardForm() {
+  document.getElementById('add-card-form').style.display = 'none';
+}
+function addServiceCard() {
+  const title = document.getElementById('card-title').value;
+  const desc = document.getElementById('card-desc').value;
+  const img = document.getElementById('card-img').value || 'img/taxation.jpg'; // Default image
+  if (title && desc) {
+    const cardDiv = document.createElement('div');
+    cardDiv.className = 'card';
+    cardDiv.innerHTML = `
+      <img src="${img}" alt="Service">
+      <h3>${title}</h3>
+      <p>${desc}</p>
+      <div class="card-buttons">
+        <button class="details-btn"><a class="btn-link2" href="tel:+91 9061707348" target="_blank">📞 Call Us Now</a></button>
+        <button class="join-btn"><a class="btn-link" href="https://wa.me/9061707348" target="_blank">Chat with Us Now</a></button>
+      </div>
+    `;
+    document.getElementById('course-grid').appendChild(cardDiv);
+    document.getElementById('card-title').value = '';
+    document.getElementById('card-desc').value = '';
+    document.getElementById('card-img').value = '';
+    hideAddCardForm();
+  }
+}
+</script>
+<script src="main.js"></script>
 </body>
 
 </html>
