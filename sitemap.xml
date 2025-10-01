@@ -2,25 +2,25 @@
 <urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
-    <loc>https://taxilytics.com/</loc>
+    <loc>https://taxilytics.vercel.app/</loc>
     <lastmod>2025-10-01</lastmod>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://taxilytics.com/about.html</loc>
+    <loc>https://taxilytics.vercel.app/about.html</loc>
     <lastmod>2025-10-01</lastmod>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://taxilytics.com/services.html</loc>
+    <loc>https://taxilytics.vercel.app/services.html</loc>
     <lastmod>2025-10-01</lastmod>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://taxilytics.com/contact.html</loc>
+    <loc>https://taxilytics.vercel.app/contact.html</loc>
     <lastmod>2025-10-01</lastmod>
     <priority>0.7</priority>
   </url>
