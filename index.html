@@ -608,6 +608,16 @@
       const wordSpans = document.querySelectorAll('.animated-text span');
 
       function handleScroll() {
+
+      // Function to clear all search highlights
+      function clearSearchHighlights() {
+        const elements = document.querySelectorAll("body *");
+        elements.forEach(element => {
+          if (element.style && element.style.backgroundColor === "rgb(255, 255, 0)" || element.style.backgroundColor === "#ffff00") {
+            element.style.backgroundColor = "";
+          }
+        });
+      }
         wordSpans.forEach((span) => {
           const rect = span.getBoundingClientRect();
           if (rect.top < window.innerHeight - 50) {
