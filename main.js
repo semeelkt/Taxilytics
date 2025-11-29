@@ -14,66 +14,6 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 // main.js
-// Handles login and dynamic service card addition
-
-const ADMIN_EMAIL = "mrflux3602@gmail.com";
-const ADMIN_PASSWORD = "3602mskt";
-
-function setSession(type) {
-  localStorage.setItem('taxilytics_session', type);
-}
-
-function clearSession() {
-  localStorage.removeItem('taxilytics_session');
-}
-
-function getSession() {
-  return localStorage.getItem('taxilytics_session');
-}
-
-function login() {
-  const username = document.getElementById('username').value;
-  const password = document.getElementById('password').value;
-  const loginMsg = document.getElementById('login-message');
-
-  if (username === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
-    setSession('admin');
-    window.location.href = 'admin.html';
-    return;
-  }
-  // Allow any username except admin to log in as client with any password (even empty)
-  if (username !== ADMIN_EMAIL) {
-    setSession('client');
-    loginMsg.textContent = "Logged in as Client.";
-    document.getElementById('login-section').style.display = 'none';
-    document.getElementById('main-content').style.display = '';
-    document.getElementById('add-card-admin').style.display = 'none';
-    return;
-  }
-  loginMsg.textContent = "Invalid username or password.";
-}
-
-function logout() {
-  clearSession();
-  document.getElementById('main-content').style.display = 'none';
-  document.getElementById('login-section').style.display = '';
-  document.getElementById('username').value = '';
-  document.getElementById('password').value = '';
-  document.getElementById('login-message').textContent = '';
-}
-
-function autoLogin() {
-  const session = getSession();
-  if (session === 'admin') {
-    document.getElementById('login-section').style.display = 'none';
-    document.getElementById('main-content').style.display = '';
-    document.getElementById('add-card-admin').style.display = '';
-  } else if (session === 'client') {
-    document.getElementById('login-section').style.display = 'none';
-    document.getElementById('main-content').style.display = '';
-    document.getElementById('add-card-admin').style.display = 'none';
-  }
-}
 
 function showAddCardForm() {
   document.getElementById('add-card-form').style.display = '';
@@ -116,12 +56,9 @@ function addServiceCard() {
 
 
 document.addEventListener('DOMContentLoaded', function() {
-  window.login = login;
-  window.logout = logout;
   window.showAddCardForm = showAddCardForm;
   window.hideAddCardForm = hideAddCardForm;
   window.addServiceCard = addServiceCard;
-  autoLogin();
 });
 
 // Debugging: add alerts to show function calls

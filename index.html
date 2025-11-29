@@ -98,17 +98,7 @@
 </head>
 
 <body>
-  <!-- Login Section -->
-  <div id="login-section" style="margin: 20px;">
-    <h2>Login</h2>
-    <input type="text" id="username" placeholder="Username" />
-    <input type="password" id="password" placeholder="Password" />
-    <button onclick="login()">Log In</button>
-    <p id="login-message" style="color: red;"></p>
-  </div>
-
-  <div id="main-content" style="display:none;">
-    <button id="logout-btn" onclick="logout()">Logout</button>
+  <div id="main-content" style="display:block;">
     <nav class="navbar">
       <div class="logo-container">
         <img src="img/488624978_1742166546711298_5193890747112766118_n-removebg-preview (1).png" alt="Logo" class="logo">
@@ -185,8 +175,8 @@
 
   <section id="courses" class="courses">
     <h2>CUSTOMER SERVICES</h2>
-    <!-- Add Card Button & Form (admin only, shown after admin login) -->
-    <div id="add-card-admin" style="display:none; margin-bottom:20px;">
+    <!-- Add Card Button & Form (always visible) -->
+    <div id="add-card-admin" style="margin-bottom:20px;">
       <button id="add-card-btn" onclick="showAddCardForm()">Add Service Card</button>
       <div id="add-card-form" style="display:none; margin-top:10px;">
         <input type="text" id="card-title" placeholder="Service Title" />
