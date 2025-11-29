@@ -8,53 +8,58 @@
   --primary-light: #3b82f6;
   --primary-lighter: #dbeafe;
   --secondary: #f59e0b;
-  --accent: #10b981;
-  --dark: #0f172a;
-  --text: #1f2937;
-  --text-light: #6b7280;
-  --bg: #f9fafb;
-  --surface: #ffffff;
-  --border: #e5e7eb;
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
-  --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
-  --shadow-lg: 0 10px 30px rgba(0,0,0,0.15);
-  --shadow-xl: 0 20px 40px rgba(0,0,0,0.2);
-  --radius: 12px;
-  --radius-lg: 16px;
-  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+  .details-btn, .join-btn {
+    flex: 1;
+    min-width: 140px;
+    padding: 12px 18px;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 2px 8px rgba(30,58,138,0.08);
+    margin: 0 2px;
+  }
 
-html, body {
-  height: 100%;
-  scroll-behavior: smooth;
-}
+  .details-btn {
+    background: linear-gradient(90deg, #f59e0b 0%, #fbbf24 100%);
+    color: #fff;
+    border: none;
+    letter-spacing: 0.5px;
+  }
+  .details-btn:hover {
+    background: linear-gradient(90deg, #fbbf24 0%, #f59e0b 100%);
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(245,158,11,0.15);
+    transform: translateY(-2px) scale(1.04);
+  }
 
-body {
-  font-family: 'Segoe UI', Trebuchet MS, sans-serif;
-  background-color: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
-  font-weight: 400;
-  letter-spacing: 0.3px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
-}
+  .join-btn {
+    background: linear-gradient(90deg, #3b82f6 0%, #10b981 100%);
+    color: #fff;
+    border: none;
+    letter-spacing: 0.5px;
+  }
+  .join-btn:hover {
+    background: linear-gradient(90deg, #10b981 0%, #3b82f6 100%);
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(59,130,246,0.15);
+    transform: translateY(-2px) scale(1.04);
+  }
 
-/* =============================================
-   NAVBAR - Premium Header
-   ============================================= */
-
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  .btn-link, .btn-link2 {
+    text-decoration: none;
+    color: inherit;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 0;
+  }
   padding: 16px 40px;
   background: var(--surface);
   border-bottom: 1px solid var(--border);
