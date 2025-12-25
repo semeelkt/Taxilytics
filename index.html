@@ -100,42 +100,36 @@
 <body>
   <div id="main-content" style="display:block;">
     <nav class="navbar">
-      <div class="logo-container">
-        <img src="img/488624978_1742166546711298_5193890747112766118_n-removebg-preview (1).png" alt="Logo" class="logo">
-        <span class="website-name">TAXILYTICS</span>
+      <div class="nav-container">
+        <div class="logo-container">
+          <img src="img/488624978_1742166546711298_5193890747112766118_n-removebg-preview (1).png" alt="Logo" class="logo">
+          <span class="website-name">TAXILYTICS</span>
+        </div>
+
+        <button class="hamburger" id="hamburger-btn">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#courses">Services</a></li>
+          <li><a href="#about-us">About Us</a></li>
+          <li><a href="#contact us">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search..." class="search-input"/>
+            <button id="search-btn" aria-label="Search" class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+          </div>
+          <a href="#contact us" class="nav-cta">Get Started</a>
+        </div>
       </div>
-
-      <ul class="nav-links" id="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#courses">Courses</a></li>
-        <li><a href="#about-us">About Us</a></li>
-        <li><a href="#contact us">Contact</a></li>
-      </ul>
-
-      <div class="search-container">
-        <input type="text" id="search-input" placeholder="Search..." />
-        <button id="search-btn" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
-      </div>
-
-      <button class="hamburger" id="hamburger-btn">&#9776;</button>
     </nav>
 
-    <!-- Advertisement Banner -->
-    <div id="advertisement-banner" class="advertisement-banner">
-      <div class="advertisement-content">
-        <img src="img/ad.jpg" alt="Taxilyctis Advertisement" class="advertisement-image">
-        <div class="advertisement-text">
-          <h2>Simplify Your Taxes with Taxilytics!</h2>
-          <p>At Taxilytics, we offer expert tax services tailored to your needs. From Income Tax Return (ITR) filing
-            and GST registration to TDS, TCS, and e-invoice solutions, we've got you covered. Our team of experienced
-            professionals ensures compliance with all tax laws while saving you time and effort. Whether you're a small
-            business or an individual, trust Taxilytics for all your tax consultancy and bookkeeping needs. Let us simplify your
-            taxes, so you can focus on what matters most – growing your business and securing your financial future!
-          </p>
-        </div>
-        <button id="close-ad-btn" class="close-ad-btn"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-    </div>
+
 
 
     <!-- Removed duplicate Service Cards Section (old add form) -->
@@ -175,17 +169,6 @@
 
   <section id="courses" class="courses">
     <h2>CUSTOMER SERVICES</h2>
-    <!-- Add Card Button & Form (always visible) -->
-    <div id="add-card-admin" style="margin-bottom:20px;">
-      <button id="add-card-btn" onclick="showAddCardForm()">Add Service Card</button>
-      <div id="add-card-form" style="display:none; margin-top:10px;">
-        <input type="text" id="card-title" placeholder="Service Title" />
-        <input type="text" id="card-desc" placeholder="Service Description" />
-        <input type="text" id="card-img" placeholder="Image URL (optional)" />
-        <button onclick="addServiceCard()">Add</button>
-        <button onclick="hideAddCardForm()">Cancel</button>
-      </div>
-    </div>
     <div class="course-grid" id="course-grid">
       <div class="card">
         <img src="img/taxation.jpg" alt="Course 1">
@@ -524,15 +507,8 @@
       }
     }
 
-    // Close the advertisement banner
-    document.getElementById("close-ad-btn").addEventListener("click", function () {
-      document.getElementById("advertisement-banner").classList.add("fadeout");
-      setTimeout(function () {
-        document.getElementById("advertisement-banner").style.display = "none";
-      }, 500);
-    });
-
-    // Animated text reveal
+    // Handle search functionality
+    document.getElementById("search-btn").addEventListener("click", performSearch);
     document.addEventListener('DOMContentLoaded', () => {
       const paragraph = document.querySelector('.animated-text');
       const words = paragraph.textContent.trim().split(' ');
@@ -577,7 +553,11 @@
     // Toggle the menu on and off for mobile
     document.getElementById("hamburger-btn").addEventListener("click", function () {
       const navLinks = document.getElementById("nav-links");
+      const navActions = document.querySelector(".nav-actions");
+      const hamburger = document.getElementById("hamburger-btn");
       navLinks.classList.toggle("active");
+      navActions.classList.toggle("active");
+      hamburger.classList.toggle("active");
     });
 
     // Toggle FAQ answers
