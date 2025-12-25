@@ -65,10 +65,10 @@ body {
 
 .details-btn, .join-btn {
   flex: 1;
-  min-width: 140px;
-  padding: 12px 18px;
+  min-width: 0;
+  padding: 10px 12px;
   border-radius: 999px;
-  font-size: 1rem;
+  font-size: 0.85rem;
   font-weight: 700;
   text-align: center;
   display: inline-flex;
@@ -83,6 +83,9 @@ body {
   color: #fff;
   letter-spacing: 0.5px;
   text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .details-btn:hover, .join-btn:hover {
