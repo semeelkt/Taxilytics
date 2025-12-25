@@ -1,18 +1,4 @@
-// Enable delete-on-click for all cards (event delegation)
-document.addEventListener('DOMContentLoaded', function() {
-  const grid = document.getElementById('course-grid');
-  if (grid) {
-    grid.addEventListener('click', function(e) {
-      let card = e.target.closest('.card');
-      if (!card || !grid.contains(card)) return;
-      // Only trigger if not clicking a button or link
-      if (e.target.tagName === 'BUTTON' || e.target.tagName === 'A') return;
-      if (confirm('Delete this card?')) {
-        card.remove();
-      }
-    });
-  }
-});
+
 // main.js
 
 function showAddCardForm() {
@@ -37,13 +23,7 @@ function addServiceCard() {
         <button class="join-btn"><a class="btn-link" href="https://wa.me/9061707348" target="_blank">Chat with Us Now</a></button>
       </div>
     `;
-    cardDiv.addEventListener('click', function(e) {
-      // Only trigger if not clicking a button or link
-      if (e.target.tagName === 'BUTTON' || e.target.tagName === 'A') return;
-      if (confirm('Delete this card?')) {
-        cardDiv.remove();
-      }
-    });
+
     document.getElementById('course-grid').appendChild(cardDiv);
     document.getElementById('card-title').value = '';
     document.getElementById('card-desc').value = '';
@@ -95,22 +75,14 @@ function showCards(cards) {
       <div class="card-buttons">
         <button class="details-btn"><a class="btn-link2" href="tel:+91 9061707348" target="_blank">📞 Call Us Now</a></button>
         <button class="join-btn"><a class="btn-link" href="https://wa.me/9061707348" target="_blank">Chat with Us Now</a></button>
-        <button class="delete-btn" data-id="${card.id}">Delete</button>
+
       </div>
     `;
     grid.appendChild(cardDiv);
   });
 }
 
-// Delete from Firestore when delete button is clicked
-document.addEventListener('click', async function(e) {
-  if (e.target.classList.contains('delete-btn')) {
-    const id = e.target.getAttribute('data-id');
-    if (confirm('Delete this card?')) {
-      await deleteDoc(doc(db, 'serviceCards', id));
-    }
-  }
-});
+
 // Real-time sync with Firestore
 onSnapshot(collection(db, 'serviceCards'), (snapshot) => {
   const cards = [];
