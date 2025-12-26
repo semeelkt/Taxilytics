@@ -15,7 +15,7 @@ function addServiceCard() {
     const cardDiv = document.createElement('div');
     cardDiv.className = 'card';
     cardDiv.innerHTML = `
-      <img src="${img}" alt="Service">
+      <img src="${img}" alt="Service" loading="lazy">
       <h3>${title}</h3>
       <p>${desc}</p>
       <div class="card-buttons">
@@ -69,7 +69,7 @@ function showCards(cards) {
     const cardDiv = document.createElement('div');
     cardDiv.className = 'card';
     cardDiv.innerHTML = `
-      <img src="${card.img}" alt="Service">
+      <img src="${card.img}" alt="Service" loading="lazy">
       <h3>${card.title}</h3>
       <p>${card.desc}</p>
       <div class="card-buttons">
