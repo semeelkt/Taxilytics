@@ -30,19 +30,62 @@
   {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
+    "@id": "https://finregindia.vercel.app/#business",
     "name": "Finreg",
+    "alternateName": "Finreg India",
     "description": "Expert tax consultancy, GST registration, ITR filing, bookkeeping, and financial services for small businesses and individuals in India.",
     "url": "https://finregindia.vercel.app",
     "telephone": "+919061707348",
     "email": "contact@finreg.in",
+    "logo": "https://finregindia.vercel.app/img/1000473289.png",
+    "image": "https://finregindia.vercel.app/img/1000473289.png",
+    "priceRange": "₹₹",
     "address": {
       "@type": "PostalAddress",
+      "addressLocality": "India",
       "addressCountry": "IN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "20.5937",
+      "longitude": "78.9629"
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "opens": "09:00",
+      "closes": "18:00"
     },
     "sameAs": [
       "https://wa.me/919061707348"
     ],
-    "serviceType": ["Tax Consultancy", "GST Registration", "ITR Filing", "Bookkeeping", "TDS Services"]
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Tax & Financial Services",
+      "itemListElement": [
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "GST Registration"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Income Tax Return Filing"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "TDS Filing"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Bookkeeping"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Tax Consultancy"}}
+      ]
+    }
+  }
+  </script>
+
+  <!-- Website Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Finreg",
+    "alternateName": "Finreg India Tax Services",
+    "url": "https://finregindia.vercel.app",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://finregindia.vercel.app/?search={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
   }
   </script>
   
