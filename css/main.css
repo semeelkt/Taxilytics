@@ -639,6 +639,30 @@ p {
   box-shadow: var(--shadow-lg);
 }
 
+/* Service Detail Cards (services page) */
+.service-detail-card {
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  gap: var(--spacing-lg);
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .service-detail-card {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .service-detail-card .service-icon {
+    margin: 0 auto var(--spacing-md);
+  }
+  
+  .service-detail-card .btn {
+    margin-top: var(--spacing-md);
+    width: 100%;
+  }
+}
+
 .service-icon {
   width: 64px;
   height: 64px;
