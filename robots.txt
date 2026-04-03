@@ -3,4 +3,4 @@ Allow: /
 Disallow: /pages/dashboard.html
 Disallow: /pages/admin.html
 
-Sitemap: https://finreg.vercel.app/sitemap.xml
+Sitemap: https://finregindia.vercel.app/sitemap.xml
