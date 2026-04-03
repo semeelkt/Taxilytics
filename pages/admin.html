@@ -167,6 +167,7 @@
                   <th>User</th>
                   <th>Service</th>
                   <th>Phone</th>
+                  <th>Doc</th>
                   <th>Status</th>
                   <th>Actions</th>
                 </tr>
@@ -253,7 +254,7 @@
       // Table
       const tbody = document.getElementById('requestsTableBody');
       if (filtered.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="6" class="text-center text-muted">No requests found</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="7" class="text-center text-muted">No requests found</td></tr>';
       } else {
         tbody.innerHTML = filtered.map(req => `
           <tr>
@@ -264,6 +265,9 @@
             </td>
             <td>${req.serviceType}</td>
             <td><a href="tel:${req.phone}">${req.phone}</a></td>
+            <td>
+              ${req.document ? `<a href="${req.document.url}" target="_blank" class="btn btn-ghost btn-sm" title="${req.document.fileName}"><i class="fas fa-file-download"></i></a>` : '<span class="text-muted">-</span>'}
+            </td>
             <td>
               <select class="status-select" data-id="${req.id}" onchange="window.updateStatus(this)">
                 <option value="Pending" ${req.status === 'Pending' ? 'selected' : ''}>Pending</option>

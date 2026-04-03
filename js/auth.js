@@ -76,9 +76,25 @@ export async function signIn(email, password, rememberMe = false) {
     
     // Sign in
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+    
+    // Ensure user exists in Firestore (for users created before Finreg)
+    const userDocRef = doc(db, 'users', user.uid);
+    const userDoc = await getDoc(userDocRef);
+    
+    if (!userDoc.exists()) {
+      // Create user document for existing Firebase Auth user
+      await setDoc(userDocRef, {
+        uid: user.uid,
+        name: user.displayName || email.split('@')[0],
+        email: user.email,
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp()
+      });
+    }
     
     showSuccess('Welcome back!');
-    return { success: true, user: userCredential.user };
+    return { success: true, user };
   } catch (error) {
     console.error('Sign in error:', error);
     const message = getAuthErrorMessage(error.code);

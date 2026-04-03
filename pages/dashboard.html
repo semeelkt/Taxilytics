@@ -10,6 +10,42 @@
   <link rel="stylesheet" href="../css/main.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
+  <style>
+    .file-upload-area {
+      border: 2px dashed var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--spacing-lg);
+      text-align: center;
+      cursor: pointer;
+      transition: all var(--transition-base);
+      position: relative;
+    }
+    .file-upload-area:hover, .file-upload-area.dragover {
+      border-color: var(--color-accent);
+      background: rgba(67, 97, 238, 0.05);
+    }
+    .file-input-hidden {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+    }
+    .file-preview {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-sm);
+      background: var(--color-bg-input);
+      border-radius: var(--radius-sm);
+    }
+    .file-preview i { color: var(--color-accent); }
+    .file-preview span { flex: 1; }
+    .hidden { display: none !important; }
+  </style>
 </head>
 <body>
   <div class="dashboard-layout">
@@ -31,13 +67,13 @@
           <i class="fas fa-file-invoice"></i>
           <span>My Requests</span>
         </a>
-        <a href="#accountbook" class="sidebar-link" data-tab="accountbook">
-          <i class="fas fa-calculator"></i>
-          <span>Account Book</span>
-        </a>
         <a href="#gst-calc" class="sidebar-link" data-tab="gst-calc">
           <i class="fas fa-percent"></i>
           <span>GST Calculator</span>
+        </a>
+        <a href="/pages/admin.html" class="sidebar-link" id="adminLink" style="display: none;">
+          <i class="fas fa-shield-alt"></i>
+          <span>Admin Panel</span>
         </a>
       </nav>
       
@@ -79,27 +115,6 @@
           </div>
         </div>
 
-        <!-- Quick Stats - Account Summary -->
-        <div class="card mb-xl">
-          <div class="card-header">
-            <h3 class="card-title">Financial Summary</h3>
-          </div>
-          <div class="dashboard-stats">
-            <div class="stat-card" style="background: rgba(16, 185, 129, 0.1);">
-              <div class="stat-label">Total Income</div>
-              <div class="stat-value positive" id="totalIncome">₹0</div>
-            </div>
-            <div class="stat-card" style="background: rgba(239, 68, 68, 0.1);">
-              <div class="stat-label">Total Expense</div>
-              <div class="stat-value negative" id="totalExpense">₹0</div>
-            </div>
-            <div class="stat-card" style="background: rgba(67, 97, 238, 0.1);">
-              <div class="stat-label">Net Profit</div>
-              <div class="stat-value" id="netProfit">₹0</div>
-            </div>
-          </div>
-        </div>
-
         <!-- Recent Requests -->
         <div class="card">
           <div class="card-header flex-between">
@@ -133,82 +148,6 @@
       </div>
 
       <!-- Account Book Tab -->
-      <div class="tab-content" id="accountbook-content">
-        <div class="dashboard-stats mb-xl">
-          <div class="stat-card" style="background: rgba(16, 185, 129, 0.1);">
-            <div class="stat-label">Total Income</div>
-            <div class="stat-value positive" id="abTotalIncome">₹0</div>
-          </div>
-          <div class="stat-card" style="background: rgba(239, 68, 68, 0.1);">
-            <div class="stat-label">Total Expense</div>
-            <div class="stat-value negative" id="abTotalExpense">₹0</div>
-          </div>
-          <div class="stat-card" style="background: rgba(67, 97, 238, 0.1);">
-            <div class="stat-label">Profit/Loss</div>
-            <div class="stat-value" id="abNetProfit">₹0</div>
-          </div>
-        </div>
-
-        <div class="card mb-xl">
-          <div class="card-header">
-            <h3 class="card-title">Add Transaction</h3>
-          </div>
-          <form id="transactionForm" class="grid grid-2" style="gap: var(--spacing-md);">
-            <div class="form-group mb-0">
-              <label class="form-label">Title</label>
-              <input type="text" name="title" class="form-input" placeholder="e.g., Office Rent" required>
-            </div>
-            <div class="form-group mb-0">
-              <label class="form-label">Amount (₹)</label>
-              <input type="number" name="amount" class="form-input" placeholder="0.00" min="0" step="0.01" required>
-            </div>
-            <div class="form-group mb-0">
-              <label class="form-label">Type</label>
-              <select name="type" class="form-select" required>
-                <option value="income">Income</option>
-                <option value="expense">Expense</option>
-              </select>
-            </div>
-            <div class="form-group mb-0">
-              <label class="form-label">Date</label>
-              <input type="date" name="date" class="form-input" required>
-            </div>
-            <div class="form-group mb-0" style="grid-column: span 2;">
-              <button type="submit" class="btn btn-primary">
-                <i class="fas fa-plus"></i>
-                Add Transaction
-              </button>
-            </div>
-          </form>
-        </div>
-
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">Transactions</h3>
-          </div>
-          <div class="table-container">
-            <table class="table" id="transactionsTable">
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Title</th>
-                  <th>Type</th>
-                  <th>Amount</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody id="transactionsBody">
-                <tr>
-                  <td colspan="5" class="text-center text-muted" style="padding: var(--spacing-xl);">
-                    No transactions yet
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
       <!-- GST Calculator Tab -->
       <div class="tab-content" id="gst-calc-content">
         <div class="flex-center">
@@ -287,6 +226,25 @@
             <label class="form-label">Description</label>
             <textarea name="description" class="form-textarea" placeholder="Tell us more..."></textarea>
           </div>
+          <div class="form-group">
+            <label class="form-label">Attach Document (Optional)</label>
+            <div class="file-upload-area" id="fileUploadArea">
+              <input type="file" name="document" id="documentInput" class="file-input-hidden" accept=".pdf,.jpg,.jpeg,.png,.gif,.doc,.docx,.xls,.xlsx">
+              <div class="file-upload-content" id="fileUploadContent">
+                <i class="fas fa-cloud-upload-alt" style="font-size: 32px; color: var(--color-accent); margin-bottom: var(--spacing-sm);"></i>
+                <p>Click to upload or drag & drop</p>
+                <p class="text-muted" style="font-size: var(--font-size-xs);">PDF, Images, Word, Excel (Max 10MB)</p>
+              </div>
+              <div class="file-preview hidden" id="filePreview">
+                <i class="fas fa-file"></i>
+                <span id="fileName"></span>
+                <span id="fileSize" class="text-muted"></span>
+                <button type="button" class="btn btn-ghost btn-sm" id="removeFile">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+          </div>
           <button type="submit" class="btn btn-primary btn-block" id="submitRequestBtn">
             Submit Request
           </button>
@@ -298,22 +256,26 @@
   <script type="module">
     import { requireAuth, logOut, getCurrentUser, onAuthChange } from '../js/auth.js';
     import { createServiceRequest, subscribeToUserRequests, getStatusBadgeClass, deleteServiceRequest } from '../js/services.js';
-    import { addTransaction, subscribeToUserTransactions, deleteTransaction, calculateTotals, formatCurrency, formatDate, TRANSACTION_TYPES } from '../js/accountbook.js';
     import { initCalculator } from '../js/calculator.js';
-    import { showError } from '../js/notifications.js';
+    import { showError, showSuccess } from '../js/notifications.js';
+    import { uploadToCloudinary, validateFile, formatFileSize } from '../js/cloudinary.js';
 
     // Require authentication
     requireAuth('/pages/login.html');
 
     let currentUser = null;
     let requestsUnsubscribe = null;
-    let transactionsUnsubscribe = null;
 
     // Wait for auth state
     onAuthChange((user) => {
       if (user) {
         currentUser = user;
         initDashboard();
+        
+        // Show admin link for admin user
+        if (user.email === 'mradminlogged@gmail.com') {
+          document.getElementById('adminLink').style.display = 'flex';
+        }
       }
     });
 
@@ -326,13 +288,9 @@
 
       // Initialize subscriptions
       initRequestsSubscription();
-      initTransactionsSubscription();
 
       // Initialize GST calculator
       initCalculator('dashGstForm', 'dashCalcResult');
-
-      // Set default date for transactions
-      document.querySelector('#transactionForm input[name="date"]').valueAsDate = new Date();
     }
 
     // Tab navigation
@@ -365,7 +323,6 @@
       e.preventDefault();
       // Cleanup subscriptions
       requestsUnsubscribe?.();
-      transactionsUnsubscribe?.();
       await logOut();
       window.location.href = '/';
     });
@@ -442,84 +399,57 @@
       document.getElementById('completedCount').textContent = completed;
     }
 
-    // Transactions
-    function initTransactionsSubscription() {
-      transactionsUnsubscribe = subscribeToUserTransactions((transactions) => {
-        updateTransactionsUI(transactions);
-      });
-    }
-
-    function updateTransactionsUI(transactions) {
-      const totals = calculateTotals(transactions);
-      
-      // Update stats
-      document.getElementById('totalIncome').textContent = formatCurrency(totals.totalIncome);
-      document.getElementById('totalExpense').textContent = formatCurrency(totals.totalExpense);
-      document.getElementById('netProfit').textContent = formatCurrency(totals.profit);
-      document.getElementById('netProfit').className = `stat-value ${totals.profit >= 0 ? 'positive' : 'negative'}`;
-      
-      document.getElementById('abTotalIncome').textContent = formatCurrency(totals.totalIncome);
-      document.getElementById('abTotalExpense').textContent = formatCurrency(totals.totalExpense);
-      document.getElementById('abNetProfit').textContent = formatCurrency(totals.profit);
-      document.getElementById('abNetProfit').className = `stat-value ${totals.profit >= 0 ? 'positive' : 'negative'}`;
-
-      const tbody = document.getElementById('transactionsBody');
-      
-      if (transactions.length === 0) {
-        tbody.innerHTML = `
-          <tr>
-            <td colspan="5" class="text-center text-muted" style="padding: var(--spacing-xl);">
-              No transactions yet
-            </td>
-          </tr>
-        `;
-        return;
-      }
-
-      tbody.innerHTML = transactions.map(t => `
-        <tr>
-          <td>${formatDate(t.date)}</td>
-          <td>${t.title}</td>
-          <td><span class="badge ${t.type === 'income' ? 'badge-completed' : 'badge-pending'}">${t.type}</span></td>
-          <td class="${t.type === 'income' ? 'text-success' : 'text-error'}">${t.type === 'income' ? '+' : '-'}${formatCurrency(t.amount)}</td>
-          <td>
-            <button class="btn btn-ghost btn-sm delete-transaction" data-id="${t.id}">
-              <i class="fas fa-trash"></i>
-            </button>
-          </td>
-        </tr>
-      `).join('');
-
-      // Delete handlers
-      tbody.querySelectorAll('.delete-transaction').forEach(btn => {
-        btn.addEventListener('click', async () => {
-          if (confirm('Delete this transaction?')) {
-            await deleteTransaction(btn.dataset.id);
-          }
-        });
-      });
-    }
-
-    // Transaction form
-    document.getElementById('transactionForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const form = e.target;
-      
-      await addTransaction({
-        title: form.title.value.trim(),
-        amount: form.amount.value,
-        type: form.type.value,
-        date: form.date.value
-      });
-      
-      form.title.value = '';
-      form.amount.value = '';
-      form.type.value = 'income';
-    });
-
     // Service request modal
     const requestModal = document.getElementById('requestModal');
     const requestForm = document.getElementById('serviceRequestForm');
+    let selectedFile = null;
+
+    // File upload handling
+    const fileInput = document.getElementById('documentInput');
+    const fileUploadArea = document.getElementById('fileUploadArea');
+    const fileUploadContent = document.getElementById('fileUploadContent');
+    const filePreview = document.getElementById('filePreview');
+
+    fileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) handleFileSelect(file);
+    });
+
+    // Drag and drop
+    fileUploadArea.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      fileUploadArea.classList.add('dragover');
+    });
+    fileUploadArea.addEventListener('dragleave', () => {
+      fileUploadArea.classList.remove('dragover');
+    });
+    fileUploadArea.addEventListener('drop', (e) => {
+      e.preventDefault();
+      fileUploadArea.classList.remove('dragover');
+      const file = e.dataTransfer.files[0];
+      if (file) handleFileSelect(file);
+    });
+
+    function handleFileSelect(file) {
+      const validation = validateFile(file);
+      if (!validation.valid) {
+        showError(validation.error);
+        return;
+      }
+      selectedFile = file;
+      document.getElementById('fileName').textContent = file.name;
+      document.getElementById('fileSize').textContent = formatFileSize(file.size);
+      fileUploadContent.classList.add('hidden');
+      filePreview.classList.remove('hidden');
+    }
+
+    document.getElementById('removeFile').addEventListener('click', (e) => {
+      e.stopPropagation();
+      selectedFile = null;
+      fileInput.value = '';
+      fileUploadContent.classList.remove('hidden');
+      filePreview.classList.add('hidden');
+    });
 
     document.getElementById('newRequestBtn').addEventListener('click', () => requestModal.classList.add('active'));
     document.getElementById('newRequestBtn2').addEventListener('click', () => requestModal.classList.add('active'));
@@ -534,19 +464,50 @@
       btn.classList.add('btn-loading');
       btn.disabled = true;
 
+      let documentData = null;
+
+      // Upload file if selected
+      if (selectedFile) {
+        btn.textContent = 'Uploading file...';
+        const uploadResult = await uploadToCloudinary(selectedFile);
+        if (uploadResult.success) {
+          documentData = {
+            url: uploadResult.url,
+            fileName: uploadResult.fileName,
+            fileType: uploadResult.fileType,
+            fileSize: uploadResult.fileSize
+          };
+        } else {
+          showError('File upload failed: ' + uploadResult.error);
+          btn.classList.remove('btn-loading');
+          btn.disabled = false;
+          btn.textContent = 'Submit Request';
+          return;
+        }
+      }
+
+      btn.textContent = 'Submitting...';
+
       await createServiceRequest({
         fullName: requestForm.fullName.value.trim(),
         email: requestForm.email.value.trim(),
         phone: requestForm.phone.value.trim(),
         serviceType: requestForm.serviceType.value,
-        description: requestForm.description.value.trim()
+        description: requestForm.description.value.trim(),
+        document: documentData
       });
 
+      // Reset form
       requestModal.classList.remove('active');
       requestForm.serviceType.value = '';
       requestForm.description.value = '';
+      selectedFile = null;
+      fileInput.value = '';
+      fileUploadContent.classList.remove('hidden');
+      filePreview.classList.add('hidden');
       btn.classList.remove('btn-loading');
       btn.disabled = false;
+      btn.textContent = 'Submit Request';
     });
 
     // Helpers

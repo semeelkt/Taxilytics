@@ -68,6 +68,11 @@ export async function createServiceRequest(data) {
       updatedAt: serverTimestamp()
     };
     
+    // Add document if provided
+    if (data.document) {
+      requestData.document = data.document;
+    }
+    
     const docRef = await addDoc(collection(db, COLLECTION_NAME), requestData);
     
     showSuccess('Service request submitted successfully!');
