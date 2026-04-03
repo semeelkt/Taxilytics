@@ -13,13 +13,17 @@ const UPLOAD_PRESET = 'finreg_docs';
  */
 export async function uploadToCloudinary(file) {
   try {
+    // Determine resource type based on file type
+    const isImage = file.type.startsWith('image/');
+    const resourceType = isImage ? 'image' : 'raw';
+    
     const formData = new FormData();
     formData.append('file', file);
     formData.append('upload_preset', UPLOAD_PRESET);
     formData.append('folder', 'finreg');
 
     const response = await fetch(
-      `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/auto/upload`,
+      `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/${resourceType}/upload`,
       {
         method: 'POST',
         body: formData
@@ -27,7 +31,8 @@ export async function uploadToCloudinary(file) {
     );
 
     if (!response.ok) {
-      throw new Error('Upload failed');
+      const errorData = await response.json();
+      throw new Error(errorData.error?.message || 'Upload failed');
     }
 
     const data = await response.json();
