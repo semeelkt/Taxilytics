@@ -12,6 +12,50 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   
   <style>
+    /* Mobile sidebar toggle button */
+    .sidebar-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      background: var(--color-bg-input);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      color: var(--color-text-primary);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+    .sidebar-toggle:hover {
+      background: var(--color-accent-light);
+      border-color: var(--color-accent);
+      color: var(--color-accent);
+    }
+    .sidebar-toggle i {
+      font-size: 18px;
+    }
+    @media (max-width: 1024px) {
+      .sidebar-toggle {
+        display: flex;
+      }
+    }
+    
+    /* Overlay for mobile sidebar */
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+    }
+    .sidebar-overlay.active {
+      display: block;
+    }
+    
     .file-upload-area {
       border: 2px dashed var(--color-border);
       border-radius: var(--radius-md);
@@ -48,6 +92,7 @@
   </style>
 </head>
 <body>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
   <div class="dashboard-layout">
     <!-- Sidebar -->
     <aside class="dashboard-sidebar" id="sidebar">
@@ -88,9 +133,14 @@
     <!-- Main Content -->
     <main class="dashboard-main">
       <div class="dashboard-header">
-        <div>
-          <h1 class="dashboard-title">Welcome, <span id="userName">User</span></h1>
-          <p class="text-muted" id="userEmail">user@example.com</p>
+        <div style="display: flex; align-items: center; gap: var(--spacing-md);">
+          <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle Menu">
+            <i class="fas fa-bars"></i>
+          </button>
+          <div>
+            <h1 class="dashboard-title">Welcome, <span id="userName">User</span></h1>
+            <p class="text-muted" id="userEmail">user@example.com</p>
+          </div>
         </div>
         <button class="btn btn-primary" id="newRequestBtn">
           <i class="fas fa-plus"></i>
@@ -265,6 +315,29 @@
 
     let currentUser = null;
     let requestsUnsubscribe = null;
+
+    // Sidebar toggle for mobile
+    const sidebar = document.getElementById('sidebar');
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+    function toggleSidebar() {
+      sidebar.classList.toggle('active');
+      sidebarOverlay.classList.toggle('active');
+    }
+
+    sidebarToggle.addEventListener('click', toggleSidebar);
+    sidebarOverlay.addEventListener('click', toggleSidebar);
+
+    // Close sidebar when clicking a link on mobile
+    document.querySelectorAll('.sidebar-link').forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 1024) {
+          sidebar.classList.remove('active');
+          sidebarOverlay.classList.remove('active');
+        }
+      });
+    });
 
     // Wait for auth state
     onAuthChange((user) => {
