@@ -31,10 +31,6 @@
           <i class="fas fa-file-invoice"></i>
           <span>My Requests</span>
         </a>
-        <a href="#documents" class="sidebar-link" data-tab="documents">
-          <i class="fas fa-folder"></i>
-          <span>Documents</span>
-        </a>
         <a href="#accountbook" class="sidebar-link" data-tab="accountbook">
           <i class="fas fa-calculator"></i>
           <span>Account Book</span>
@@ -80,10 +76,6 @@
           <div class="stat-card">
             <div class="stat-label">Completed</div>
             <div class="stat-value positive" id="completedCount">0</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-label">Documents</div>
-            <div class="stat-value" id="documentsCount">0</div>
           </div>
         </div>
 
@@ -133,28 +125,6 @@
             </button>
           </div>
           <div id="requestsList">
-            <div class="loading">
-              <div class="spinner"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Documents Tab -->
-      <div class="tab-content" id="documents-content">
-        <div class="card">
-          <div class="card-header flex-between">
-            <h3 class="card-title">My Documents</h3>
-          </div>
-          
-          <div class="file-upload" id="fileUploadArea">
-            <div class="file-upload-icon">📁</div>
-            <p class="file-upload-text">Drag and drop files here or click to browse</p>
-            <p class="file-upload-hint">Supports PDF and images (max 5MB)</p>
-            <input type="file" id="fileInput" accept=".pdf,image/*" multiple style="display: none;">
-          </div>
-          
-          <div class="file-list" id="documentsList">
             <div class="loading">
               <div class="spinner"></div>
             </div>
@@ -328,7 +298,6 @@
   <script type="module">
     import { requireAuth, logOut, getCurrentUser, onAuthChange } from '../js/auth.js';
     import { createServiceRequest, subscribeToUserRequests, getStatusBadgeClass, deleteServiceRequest } from '../js/services.js';
-    import { uploadDocument, subscribeToUserDocuments, deleteDocument, formatFileSize, getFileIcon } from '../js/documents.js';
     import { addTransaction, subscribeToUserTransactions, deleteTransaction, calculateTotals, formatCurrency, formatDate, TRANSACTION_TYPES } from '../js/accountbook.js';
     import { initCalculator } from '../js/calculator.js';
     import { showError } from '../js/notifications.js';
@@ -338,7 +307,6 @@
 
     let currentUser = null;
     let requestsUnsubscribe = null;
-    let documentsUnsubscribe = null;
     let transactionsUnsubscribe = null;
 
     // Wait for auth state
@@ -358,7 +326,6 @@
 
       // Initialize subscriptions
       initRequestsSubscription();
-      initDocumentsSubscription();
       initTransactionsSubscription();
 
       // Initialize GST calculator
@@ -398,7 +365,6 @@
       e.preventDefault();
       // Cleanup subscriptions
       requestsUnsubscribe?.();
-      documentsUnsubscribe?.();
       transactionsUnsubscribe?.();
       await logOut();
       window.location.href = '/';
@@ -475,83 +441,6 @@
       document.getElementById('progressCount').textContent = progress;
       document.getElementById('completedCount').textContent = completed;
     }
-
-    // Documents
-    function initDocumentsSubscription() {
-      documentsUnsubscribe = subscribeToUserDocuments((docs) => {
-        document.getElementById('documentsCount').textContent = docs.length;
-        updateDocumentsUI(docs);
-      });
-    }
-
-    function updateDocumentsUI(docs) {
-      const listEl = document.getElementById('documentsList');
-      
-      if (docs.length === 0) {
-        listEl.innerHTML = `
-          <div class="empty-state" style="padding: var(--spacing-xl);">
-            <p class="text-muted">No documents uploaded yet</p>
-          </div>
-        `;
-        return;
-      }
-
-      listEl.innerHTML = docs.map(doc => `
-        <div class="file-item">
-          <div class="file-item-icon">${getFileIcon(doc.fileType)}</div>
-          <div class="file-item-info">
-            <div class="file-item-name">${doc.fileName}</div>
-            <div class="file-item-size">${formatFileSize(doc.fileSize)} • ${formatTimestamp(doc.uploadedAt)}</div>
-          </div>
-          <a href="${doc.downloadURL}" target="_blank" class="btn btn-ghost btn-sm" title="Download">
-            <i class="fas fa-download"></i>
-          </a>
-          <button class="btn btn-ghost btn-sm delete-doc" data-id="${doc.id}" data-path="${doc.storagePath}" title="Delete">
-            <i class="fas fa-trash"></i>
-          </button>
-        </div>
-      `).join('');
-
-      // Delete handlers
-      listEl.querySelectorAll('.delete-doc').forEach(btn => {
-        btn.addEventListener('click', async () => {
-          if (confirm('Delete this document?')) {
-            await deleteDocument(btn.dataset.id, btn.dataset.path);
-          }
-        });
-      });
-    }
-
-    // File upload
-    const fileUploadArea = document.getElementById('fileUploadArea');
-    const fileInput = document.getElementById('fileInput');
-
-    fileUploadArea.addEventListener('click', () => fileInput.click());
-    
-    fileUploadArea.addEventListener('dragover', (e) => {
-      e.preventDefault();
-      fileUploadArea.classList.add('dragover');
-    });
-    
-    fileUploadArea.addEventListener('dragleave', () => {
-      fileUploadArea.classList.remove('dragover');
-    });
-    
-    fileUploadArea.addEventListener('drop', async (e) => {
-      e.preventDefault();
-      fileUploadArea.classList.remove('dragover');
-      const files = e.dataTransfer.files;
-      for (const file of files) {
-        await uploadDocument(file);
-      }
-    });
-
-    fileInput.addEventListener('change', async () => {
-      for (const file of fileInput.files) {
-        await uploadDocument(file);
-      }
-      fileInput.value = '';
-    });
 
     // Transactions
     function initTransactionsSubscription() {

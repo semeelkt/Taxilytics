@@ -79,10 +79,6 @@
           <i class="fas fa-file-invoice"></i>
           <span>All Requests</span>
         </a>
-        <a href="#documents" class="sidebar-link" data-tab="documents">
-          <i class="fas fa-folder"></i>
-          <span>All Documents</span>
-        </a>
         <a href="#users" class="sidebar-link" data-tab="users">
           <i class="fas fa-users"></i>
           <span>Users</span>
@@ -124,10 +120,6 @@
           <div class="stat-card">
             <div class="stat-label">Pending Requests</div>
             <div class="stat-value" style="color: var(--color-warning);" id="pendingRequests">0</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-label">Total Documents</div>
-            <div class="stat-value" id="totalDocuments">0</div>
           </div>
         </div>
 
@@ -187,18 +179,6 @@
         </div>
       </div>
 
-      <!-- Documents Tab -->
-      <div class="tab-content" id="documents-content">
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">All Client Documents</h3>
-          </div>
-          <div class="grid grid-3" id="documentsGrid" style="gap: var(--spacing-md);">
-            <div class="loading"><div class="spinner"></div></div>
-          </div>
-        </div>
-      </div>
-
       <!-- Users Tab -->
       <div class="tab-content" id="users-content">
         <div class="card">
@@ -219,16 +199,13 @@
       ADMIN_EMAIL, 
       isAdmin, 
       subscribeToAllRequests, 
-      subscribeToAllDocuments, 
       subscribeToAllUsers,
       updateRequestStatus 
     } from '../js/admin.js';
     import { getStatusBadgeClass } from '../js/services.js';
-    import { formatFileSize, getFileIcon } from '../js/documents.js';
     import { showError } from '../js/notifications.js';
 
     let requestsData = [];
-    let documentsData = [];
     let usersData = [];
 
     // Check auth and admin status
@@ -256,12 +233,6 @@
         updateStats();
       });
 
-      subscribeToAllDocuments((docs) => {
-        documentsData = docs;
-        updateDocumentsUI(docs);
-        updateStats();
-      });
-
       subscribeToAllUsers((users) => {
         usersData = users;
         updateUsersUI(users);
@@ -273,7 +244,6 @@
       document.getElementById('totalUsers').textContent = usersData.length;
       document.getElementById('totalRequests').textContent = requestsData.length;
       document.getElementById('pendingRequests').textContent = requestsData.filter(r => r.status === 'Pending').length;
-      document.getElementById('totalDocuments').textContent = documentsData.length;
     }
 
     function updateRequestsUI(requests) {
@@ -322,43 +292,6 @@
           <span class="badge ${getStatusBadgeClass(req.status)}">${req.status}</span>
         </div>
       `).join('') || '<p class="text-muted text-center">No requests yet</p>';
-    }
-
-    function updateDocumentsUI(docs) {
-      const grid = document.getElementById('documentsGrid');
-      
-      if (docs.length === 0) {
-        grid.innerHTML = '<p class="text-muted">No documents uploaded yet</p>';
-        return;
-      }
-
-      grid.innerHTML = docs.map(doc => {
-        const isImage = doc.fileType?.startsWith('image/');
-        return `
-          <div class="card" style="padding: var(--spacing-md);">
-            <div class="flex gap-md" style="align-items: flex-start;">
-              ${isImage 
-                ? `<img src="${doc.downloadURL}" alt="${doc.fileName}" class="doc-preview">`
-                : `<div class="doc-preview flex-center" style="font-size: 24px;">${getFileIcon(doc.fileType)}</div>`
-              }
-              <div style="flex: 1; min-width: 0;">
-                <div style="font-weight: 500; word-break: break-word;">${doc.fileName}</div>
-                <div class="text-muted" style="font-size: var(--font-size-xs);">
-                  ${formatFileSize(doc.fileSize)} • ${formatTimestamp(doc.uploadedAt)}
-                </div>
-                <div class="text-muted" style="font-size: var(--font-size-xs);">
-                  User: ${doc.userId?.substring(0, 8)}...
-                </div>
-              </div>
-            </div>
-            <div class="mt-md">
-              <a href="${doc.downloadURL}" target="_blank" class="btn btn-primary btn-sm btn-block">
-                <i class="fas fa-download"></i> Download
-              </a>
-            </div>
-          </div>
-        `;
-      }).join('');
     }
 
     function updateUsersUI(users) {

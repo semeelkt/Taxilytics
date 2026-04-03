@@ -10,7 +10,6 @@ import {
   getDocs,
   updateDoc,
   query,
-  orderBy,
   onSnapshot,
   serverTimestamp
 } from './firebase-config.js';
@@ -47,16 +46,20 @@ export function requireAdmin(redirectTo = '/') {
  */
 export async function getAllServiceRequests() {
   try {
-    const q = query(
-      collection(db, 'service_requests'),
-      orderBy('createdAt', 'desc')
-    );
+    const q = query(collection(db, 'service_requests'));
     
     const querySnapshot = await getDocs(q);
     const requests = [];
     
     querySnapshot.forEach((doc) => {
       requests.push({ id: doc.id, ...doc.data() });
+    });
+    
+    // Sort client-side
+    requests.sort((a, b) => {
+      const dateA = a.createdAt?.toDate?.() || new Date(0);
+      const dateB = b.createdAt?.toDate?.() || new Date(0);
+      return dateB - dateA;
     });
     
     return { success: true, data: requests };
@@ -70,19 +73,26 @@ export async function getAllServiceRequests() {
  * Subscribe to all service requests (real-time)
  */
 export function subscribeToAllRequests(callback) {
-  const q = query(
-    collection(db, 'service_requests'),
-    orderBy('createdAt', 'desc')
-  );
+  console.log('Admin: Subscribing to ALL service requests');
+  const q = query(collection(db, 'service_requests'));
   
   return onSnapshot(q, (snapshot) => {
     const requests = [];
     snapshot.forEach((doc) => {
       requests.push({ id: doc.id, ...doc.data() });
     });
+    console.log('Admin: Received', requests.length, 'requests');
+    // Sort client-side
+    requests.sort((a, b) => {
+      const dateA = a.createdAt?.toDate?.() || new Date(0);
+      const dateB = b.createdAt?.toDate?.() || new Date(0);
+      return dateB - dateA;
+    });
     callback(requests);
   }, (error) => {
-    console.error('Subscription error:', error);
+    console.error('Admin subscription error:', error);
+    showError('Failed to load requests: ' + error.message);
+    callback([]);
   });
 }
 
@@ -111,16 +121,20 @@ export async function updateRequestStatus(requestId, newStatus) {
  */
 export async function getAllDocuments() {
   try {
-    const q = query(
-      collection(db, 'documents'),
-      orderBy('uploadedAt', 'desc')
-    );
+    const q = query(collection(db, 'documents'));
     
     const querySnapshot = await getDocs(q);
     const documents = [];
     
     querySnapshot.forEach((doc) => {
       documents.push({ id: doc.id, ...doc.data() });
+    });
+    
+    // Sort client-side
+    documents.sort((a, b) => {
+      const dateA = a.uploadedAt?.toDate?.() || new Date(0);
+      const dateB = b.uploadedAt?.toDate?.() || new Date(0);
+      return dateB - dateA;
     });
     
     return { success: true, data: documents };
@@ -134,19 +148,23 @@ export async function getAllDocuments() {
  * Subscribe to all documents (real-time)
  */
 export function subscribeToAllDocuments(callback) {
-  const q = query(
-    collection(db, 'documents'),
-    orderBy('uploadedAt', 'desc')
-  );
+  const q = query(collection(db, 'documents'));
   
   return onSnapshot(q, (snapshot) => {
     const documents = [];
     snapshot.forEach((doc) => {
       documents.push({ id: doc.id, ...doc.data() });
     });
+    // Sort client-side
+    documents.sort((a, b) => {
+      const dateA = a.uploadedAt?.toDate?.() || new Date(0);
+      const dateB = b.uploadedAt?.toDate?.() || new Date(0);
+      return dateB - dateA;
+    });
     callback(documents);
   }, (error) => {
     console.error('Subscription error:', error);
+    callback([]);
   });
 }
 
@@ -155,16 +173,20 @@ export function subscribeToAllDocuments(callback) {
  */
 export async function getAllUsers() {
   try {
-    const q = query(
-      collection(db, 'users'),
-      orderBy('createdAt', 'desc')
-    );
+    const q = query(collection(db, 'users'));
     
     const querySnapshot = await getDocs(q);
     const users = [];
     
     querySnapshot.forEach((doc) => {
       users.push({ id: doc.id, ...doc.data() });
+    });
+    
+    // Sort client-side
+    users.sort((a, b) => {
+      const dateA = a.createdAt?.toDate?.() || new Date(0);
+      const dateB = b.createdAt?.toDate?.() || new Date(0);
+      return dateB - dateA;
     });
     
     return { success: true, data: users };
@@ -178,19 +200,23 @@ export async function getAllUsers() {
  * Subscribe to all users (real-time)
  */
 export function subscribeToAllUsers(callback) {
-  const q = query(
-    collection(db, 'users'),
-    orderBy('createdAt', 'desc')
-  );
+  const q = query(collection(db, 'users'));
   
   return onSnapshot(q, (snapshot) => {
     const users = [];
     snapshot.forEach((doc) => {
       users.push({ id: doc.id, ...doc.data() });
     });
+    // Sort client-side
+    users.sort((a, b) => {
+      const dateA = a.createdAt?.toDate?.() || new Date(0);
+      const dateB = b.createdAt?.toDate?.() || new Date(0);
+      return dateB - dateA;
+    });
     callback(users);
   }, (error) => {
     console.error('Subscription error:', error);
+    callback([]);
   });
 }
 
@@ -199,10 +225,7 @@ export function subscribeToAllUsers(callback) {
  */
 export async function getAllTransactions() {
   try {
-    const q = query(
-      collection(db, 'transactions'),
-      orderBy('date', 'desc')
-    );
+    const q = query(collection(db, 'transactions'));
     
     const querySnapshot = await getDocs(q);
     const transactions = [];
@@ -210,6 +233,9 @@ export async function getAllTransactions() {
     querySnapshot.forEach((doc) => {
       transactions.push({ id: doc.id, ...doc.data() });
     });
+    
+    // Sort client-side
+    transactions.sort((a, b) => new Date(b.date) - new Date(a.date));
     
     return { success: true, data: transactions };
   } catch (error) {

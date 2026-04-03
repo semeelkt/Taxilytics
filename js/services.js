@@ -13,7 +13,6 @@ import {
   deleteDoc,
   query,
   where,
-  orderBy,
   onSnapshot,
   serverTimestamp
 } from './firebase-config.js';
@@ -90,10 +89,10 @@ export async function getUserRequests() {
       return { success: false, error: 'Not authenticated' };
     }
     
+    // Simple query without orderBy to avoid index requirement
     const q = query(
       collection(db, COLLECTION_NAME),
-      where('userId', '==', user.uid),
-      orderBy('createdAt', 'desc')
+      where('userId', '==', user.uid)
     );
     
     const querySnapshot = await getDocs(q);
@@ -101,6 +100,13 @@ export async function getUserRequests() {
     
     querySnapshot.forEach((doc) => {
       requests.push({ id: doc.id, ...doc.data() });
+    });
+    
+    // Sort client-side
+    requests.sort((a, b) => {
+      const dateA = a.createdAt?.toDate?.() || new Date(0);
+      const dateB = b.createdAt?.toDate?.() || new Date(0);
+      return dateB - dateA;
     });
     
     return { success: true, data: requests };
@@ -116,12 +122,15 @@ export async function getUserRequests() {
  */
 export function subscribeToUserRequests(callback) {
   const user = getCurrentUser();
-  if (!user) return null;
+  if (!user) {
+    callback([]);
+    return null;
+  }
   
+  // Simple query without orderBy to avoid index requirement
   const q = query(
     collection(db, COLLECTION_NAME),
-    where('userId', '==', user.uid),
-    orderBy('createdAt', 'desc')
+    where('userId', '==', user.uid)
   );
   
   return onSnapshot(q, (snapshot) => {
@@ -129,9 +138,16 @@ export function subscribeToUserRequests(callback) {
     snapshot.forEach((doc) => {
       requests.push({ id: doc.id, ...doc.data() });
     });
+    // Sort client-side
+    requests.sort((a, b) => {
+      const dateA = a.createdAt?.toDate?.() || new Date(0);
+      const dateB = b.createdAt?.toDate?.() || new Date(0);
+      return dateB - dateA;
+    });
     callback(requests);
   }, (error) => {
     console.error('Subscription error:', error);
+    callback([]);
   });
 }
 

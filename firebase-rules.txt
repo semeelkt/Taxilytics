@@ -1,0 +1,58 @@
+// ==============================================
+// FIREBASE FIRESTORE SECURITY RULES FOR FINREG
+// ==============================================
+// Copy these rules to your Firebase Console:
+// 1. Go to https://console.firebase.google.com
+// 2. Select your project (taxilytics-38004)
+// 3. Go to Firestore Database → Rules
+// 4. Replace the existing rules with the content below
+// 5. Click "Publish"
+// ==============================================
+
+// --- SIMPLE RULES (RECOMMENDED) ---
+// Use these if the advanced rules cause permission issues:
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}
+
+// --- END SIMPLE RULES ---
+
+/*
+// --- ADVANCED RULES (OPTIONAL) ---
+// More fine-grained control over collections:
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Users collection
+    match /users/{userId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Service requests
+    match /service_requests/{requestId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Transactions (account book)
+    match /transactions/{transactionId} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}
+
+// --- END ADVANCED RULES ---
+*/
+
+// ==============================================
+// NOTE: Firebase Storage is NOT used in this app
+// Document upload requires Blaze (paid) plan
+// ==============================================

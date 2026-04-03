@@ -13,7 +13,6 @@ import {
   deleteDoc,
   query,
   where,
-  orderBy,
   onSnapshot,
   serverTimestamp
 } from './firebase-config.js';
@@ -74,10 +73,10 @@ export async function getUserTransactions() {
       return { success: false, error: 'Not authenticated' };
     }
     
+    // Simple query without orderBy to avoid index requirement
     const q = query(
       collection(db, COLLECTION_NAME),
-      where('userId', '==', user.uid),
-      orderBy('date', 'desc')
+      where('userId', '==', user.uid)
     );
     
     const querySnapshot = await getDocs(q);
@@ -86,6 +85,9 @@ export async function getUserTransactions() {
     querySnapshot.forEach((doc) => {
       transactions.push({ id: doc.id, ...doc.data() });
     });
+    
+    // Sort client-side by date
+    transactions.sort((a, b) => new Date(b.date) - new Date(a.date));
     
     return { success: true, data: transactions };
   } catch (error) {
@@ -100,12 +102,15 @@ export async function getUserTransactions() {
  */
 export function subscribeToUserTransactions(callback) {
   const user = getCurrentUser();
-  if (!user) return null;
+  if (!user) {
+    callback([]);
+    return null;
+  }
   
+  // Simple query without orderBy to avoid index requirement
   const q = query(
     collection(db, COLLECTION_NAME),
-    where('userId', '==', user.uid),
-    orderBy('date', 'desc')
+    where('userId', '==', user.uid)
   );
   
   return onSnapshot(q, (snapshot) => {
@@ -113,9 +118,12 @@ export function subscribeToUserTransactions(callback) {
     snapshot.forEach((doc) => {
       transactions.push({ id: doc.id, ...doc.data() });
     });
+    // Sort client-side
+    transactions.sort((a, b) => new Date(b.date) - new Date(a.date));
     callback(transactions);
   }, (error) => {
     console.error('Subscription error:', error);
+    callback([]);
   });
 }
 
