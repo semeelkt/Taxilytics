@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Services — Finreg</title>
+  <meta name="description" content="Explore Finreg's tax and financial services: GST Registration, TDS Filing, ITR Filing, Bookkeeping, and Tax Consultancy.">
+  
+  <link rel="icon" type="image/png" href="../img/favicon.png">
+  <link rel="stylesheet" href="../css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">
+        <img src="../img/logo.png" alt="Finreg Logo">
+        <span>Finreg</span>
+      </a>
+      
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/">Home</a></li>
+        <li><a href="/pages/services.html" class="active">Services</a></li>
+        <li><a href="/#calculator">GST Calculator</a></li>
+        <li><a href="/pages/contact.html">Contact</a></li>
+      </ul>
+      
+      <div class="nav-actions">
+        <a href="/pages/login.html" class="btn btn-secondary btn-sm" id="loginBtn">Login</a>
+        <a href="/pages/signup.html" class="btn btn-primary btn-sm" id="signupBtn">Get Started</a>
+        <a href="/pages/dashboard.html" class="btn btn-primary btn-sm hidden" id="dashboardBtn">Dashboard</a>
+      </div>
+      
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="hero" style="padding: var(--spacing-2xl) 0;">
+    <div class="container">
+      <div class="text-center">
+        <h1 class="hero-title">Our <span>Services</span></h1>
+        <p class="hero-description" style="max-width: 600px; margin: 0 auto;">
+          Comprehensive tax compliance and financial management solutions for businesses and individuals.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services List -->
+  <section class="section">
+    <div class="container">
+      <div class="grid" style="gap: var(--spacing-xl);">
+        
+        <!-- GST Registration -->
+        <div class="card" id="gst-registration" style="display: grid; grid-template-columns: 80px 1fr auto; gap: var(--spacing-lg); align-items: center;">
+          <div class="service-icon" style="margin: 0;">📋</div>
+          <div>
+            <h3 class="card-title">GST Registration</h3>
+            <p style="margin-bottom: var(--spacing-sm);">Get your business GST registered quickly and hassle-free. We handle the complete registration process including document verification and GSTIN issuance.</p>
+            <ul style="color: var(--color-text-muted); font-size: var(--font-size-sm);">
+              <li>• New GST Registration</li>
+              <li>• GST Return Filing (GSTR-1, GSTR-3B)</li>
+              <li>• GST Compliance Support</li>
+            </ul>
+          </div>
+          <button class="btn btn-primary request-service-btn" data-service="GST Registration">
+            Request Service
+          </button>
+        </div>
+
+        <!-- TDS Filing -->
+        <div class="card" id="tds-filing" style="display: grid; grid-template-columns: 80px 1fr auto; gap: var(--spacing-lg); align-items: center;">
+          <div class="service-icon" style="margin: 0;">📊</div>
+          <div>
+            <h3 class="card-title">TDS Filing</h3>
+            <p style="margin-bottom: var(--spacing-sm);">Ensure timely TDS deduction and filing to avoid penalties. We manage your complete TDS compliance including calculations, deductions, and quarterly filings.</p>
+            <ul style="color: var(--color-text-muted); font-size: var(--font-size-sm);">
+              <li>• TDS Return Filing (24Q, 26Q, 27Q)</li>
+              <li>• TDS Calculation & Deduction</li>
+              <li>• Form 16/16A Generation</li>
+            </ul>
+          </div>
+          <button class="btn btn-primary request-service-btn" data-service="TDS Filing">
+            Request Service
+          </button>
+        </div>
+
+        <!-- ITR Filing -->
+        <div class="card" id="itr-filing" style="display: grid; grid-template-columns: 80px 1fr auto; gap: var(--spacing-lg); align-items: center;">
+          <div class="service-icon" style="margin: 0;">📁</div>
+          <div>
+            <h3 class="card-title">Income Tax Return (ITR)</h3>
+            <p style="margin-bottom: var(--spacing-sm);">Professional ITR filing services with maximum tax savings. We analyze your income sources and investments to optimize your tax liability.</p>
+            <ul style="color: var(--color-text-muted); font-size: var(--font-size-sm);">
+              <li>• ITR-1 to ITR-7 Filing</li>
+              <li>• Tax Planning & Optimization</li>
+              <li>• Refund Processing Support</li>
+            </ul>
+          </div>
+          <button class="btn btn-primary request-service-btn" data-service="Income Tax Return (ITR)">
+            Request Service
+          </button>
+        </div>
+
+        <!-- Bookkeeping -->
+        <div class="card" id="bookkeeping" style="display: grid; grid-template-columns: 80px 1fr auto; gap: var(--spacing-lg); align-items: center;">
+          <div class="service-icon" style="margin: 0;">📚</div>
+          <div>
+            <h3 class="card-title">Bookkeeping</h3>
+            <p style="margin-bottom: var(--spacing-sm);">Maintain accurate financial records with our professional bookkeeping services. We help you track income, expenses, and cash flow efficiently.</p>
+            <ul style="color: var(--color-text-muted); font-size: var(--font-size-sm);">
+              <li>• Daily Transaction Recording</li>
+              <li>• Bank Reconciliation</li>
+              <li>• Financial Statements</li>
+            </ul>
+          </div>
+          <button class="btn btn-primary request-service-btn" data-service="Bookkeeping">
+            Request Service
+          </button>
+        </div>
+
+        <!-- Tax Consultancy -->
+        <div class="card" id="tax-consultancy" style="display: grid; grid-template-columns: 80px 1fr auto; gap: var(--spacing-lg); align-items: center;">
+          <div class="service-icon" style="margin: 0;">💼</div>
+          <div>
+            <h3 class="card-title">Tax Consultancy</h3>
+            <p style="margin-bottom: var(--spacing-sm);">Expert tax planning and advisory services to minimize tax burden legally. We provide strategic guidance for both businesses and individuals.</p>
+            <ul style="color: var(--color-text-muted); font-size: var(--font-size-sm);">
+              <li>• Tax Planning Strategies</li>
+              <li>• Business Structure Advice</li>
+              <li>• Compliance Reviews</li>
+            </ul>
+          </div>
+          <button class="btn btn-primary request-service-btn" data-service="Tax Consultancy">
+            Request Service
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Request Modal -->
+  <div class="modal-overlay" id="serviceModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title">Request Service</h3>
+        <button class="modal-close" id="closeModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="serviceRequestForm">
+          <div class="form-group">
+            <label class="form-label" for="fullName">Full Name *</label>
+            <input type="text" id="fullName" name="fullName" class="form-input" required>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="requestEmail">Email Address *</label>
+            <input type="email" id="requestEmail" name="email" class="form-input" required>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="phone">Phone Number *</label>
+            <input type="tel" id="phone" name="phone" class="form-input" placeholder="+91 XXXXX XXXXX" required>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="serviceType">Service Type *</label>
+            <select id="serviceType" name="serviceType" class="form-select" required>
+              <option value="">Select a service</option>
+              <option value="GST Registration">GST Registration</option>
+              <option value="TDS Filing">TDS Filing</option>
+              <option value="Income Tax Return (ITR)">Income Tax Return (ITR)</option>
+              <option value="Bookkeeping">Bookkeeping</option>
+              <option value="Tax Consultancy">Tax Consultancy</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label" for="description">Description (Optional)</label>
+            <textarea id="description" name="description" class="form-textarea" placeholder="Tell us more about your requirements..."></textarea>
+          </div>
+          
+          <button type="submit" class="btn btn-primary btn-block" id="submitRequestBtn">
+            <i class="fas fa-paper-plane"></i>
+            Submit Request
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2025 Finreg. All rights reserved. | <a href="/">Back to Home</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Float Button -->
+  <a href="https://wa.me/919061707348" target="_blank" class="whatsapp-btn" aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <script type="module">
+    import { createServiceRequest } from '../js/services.js';
+    import { onAuthChange, getCurrentUser } from '../js/auth.js';
+    import { showWarning } from '../js/notifications.js';
+    
+    const modal = document.getElementById('serviceModal');
+    const closeModalBtn = document.getElementById('closeModal');
+    const form = document.getElementById('serviceRequestForm');
+    const serviceTypeSelect = document.getElementById('serviceType');
+    const submitBtn = document.getElementById('submitRequestBtn');
+    
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
+    
+    mobileMenuBtn?.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+    
+    // Open modal with selected service
+    document.querySelectorAll('.request-service-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const service = btn.dataset.service;
+        serviceTypeSelect.value = service;
+        modal.classList.add('active');
+        
+        // Pre-fill user data if logged in
+        const user = getCurrentUser();
+        if (user) {
+          document.getElementById('fullName').value = user.displayName || '';
+          document.getElementById('requestEmail').value = user.email || '';
+        }
+      });
+    });
+    
+    // Close modal
+    closeModalBtn.addEventListener('click', () => {
+      modal.classList.remove('active');
+    });
+    
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+      }
+    });
+    
+    // Submit form
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const user = getCurrentUser();
+      if (!user) {
+        showWarning('Please login to submit a service request');
+        window.location.href = '/pages/login.html';
+        return;
+      }
+      
+      submitBtn.classList.add('btn-loading');
+      submitBtn.disabled = true;
+      
+      const data = {
+        fullName: form.fullName.value.trim(),
+        email: form.email.value.trim(),
+        phone: form.phone.value.trim(),
+        serviceType: form.serviceType.value,
+        description: form.description.value.trim()
+      };
+      
+      const result = await createServiceRequest(data);
+      
+      if (result.success) {
+        modal.classList.remove('active');
+        form.reset();
+      }
+      
+      submitBtn.classList.remove('btn-loading');
+      submitBtn.disabled = false;
+    });
+    
+    // Update nav based on auth state
+    onAuthChange((user) => {
+      const loginBtn = document.getElementById('loginBtn');
+      const signupBtn = document.getElementById('signupBtn');
+      const dashboardBtn = document.getElementById('dashboardBtn');
+      
+      if (user) {
+        loginBtn?.classList.add('hidden');
+        signupBtn?.classList.add('hidden');
+        dashboardBtn?.classList.remove('hidden');
+      } else {
+        loginBtn?.classList.remove('hidden');
+        signupBtn?.classList.remove('hidden');
+        dashboardBtn?.classList.add('hidden');
+      }
+    });
+    
+    // Check URL params for pre-selected service
+    const urlParams = new URLSearchParams(window.location.search);
+    const preSelectedService = urlParams.get('service');
+    if (preSelectedService) {
+      const serviceMap = {
+        'gst-registration': 'GST Registration',
+        'tds-filing': 'TDS Filing',
+        'itr-filing': 'Income Tax Return (ITR)',
+        'bookkeeping': 'Bookkeeping',
+        'tax-consultancy': 'Tax Consultancy'
+      };
+      
+      if (serviceMap[preSelectedService]) {
+        serviceTypeSelect.value = serviceMap[preSelectedService];
+        modal.classList.add('active');
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,611 +1,307 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- SEO Meta Tags -->
-  <title>Taxilytics — Tax & Accounting Services | GST, ITR, TDS</title>
-  <meta name="description" content="Taxilytics provides expert tax consultancy, GST & ITR filing, bookkeeping, and accounting services to help businesses and individuals stay compliant and profitable.">
-  <meta name="keywords" content="Taxilytics, tax consultancy, GST filing, income tax, bookkeeping, TDS services, TCS services">
-  <meta name="author" content="Taxilytics">
-  <meta name="google-site-verification" content="5LJYFxEwhElMT5CSKCUCfqK7842-wR5hnIuxAG6yGDs" />
-  <link rel="canonical" href="https://taxilytics.vercel.app/">
-  <meta property="og:title" content="Taxilytics — Tax & Accounting Services">
-  <meta property="og:description" content="Taxilytics provides expert tax consultancy, GST & ITR filing, bookkeeping, and accounting solutions for businesses and individuals.">
+  <title>Finreg — Your Trusted Tax & Financial Partner</title>
+  <meta name="description" content="Finreg provides expert tax consultancy, GST registration, ITR filing, bookkeeping, and financial services for small businesses and individuals in India.">
+  <meta name="keywords" content="Finreg, tax consultancy, GST registration, income tax, ITR filing, bookkeeping, TDS services, tax services India">
+  <meta name="author" content="Finreg">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Finreg — Your Trusted Tax & Financial Partner">
+  <meta property="og:description" content="Expert tax consultancy, GST registration, ITR filing, and financial services for businesses and individuals.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://taxilytics.vercel.app/">
-  <meta property="og:image" content="https://taxilytics.vercel.app/img/og-image.svg">
+  <meta property="og:url" content="https://finreg.vercel.app/">
+  
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Taxilytics — Tax & Accounting Services">
-  <meta name="twitter:description" content="Taxilytics provides expert tax consultancy, GST & ITR filing, bookkeeping, and accounting solutions for businesses and individuals.">
-  <meta name="twitter:image" content="https://taxilytics.vercel.app/img/og-image.svg">
-
+  <meta name="twitter:title" content="Finreg — Your Trusted Tax & Financial Partner">
+  <meta name="twitter:description" content="Expert tax consultancy, GST registration, ITR filing, and financial services.">
+  
   <!-- Favicon -->
-  <link rel="icon" type="image/png"
-    href="img/488624978_1742166546711298_5193890747112766118_n-removebg-preview (1).png">
-
+  <link rel="icon" type="image/png" href="img/favicon.png">
+  
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-
-  <!-- Inline Login Section Styles -->
-  <style>
-    #login-section {
-      max-width: 350px;
-      margin: 40px auto;
-      padding: 30px 25px;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.08);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    #login-section h2 {
-      margin-bottom: 18px;
-      font-size: 1.6rem;
-      color: #1a237e;
-      font-weight: 700;
-    }
-    #login-section input[type="text"],
-    #login-section input[type="password"] {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 14px;
-      border: 1px solid #bdbdbd;
-      border-radius: 6px;
-      font-size: 1rem;
-      background: #f5f5f5;
-      transition: border 0.2s;
-    }
-    #login-section input:focus {
-      border-color: #1976d2;
-      outline: none;
-    }
-    #login-section button {
-      width: 100%;
-      padding: 10px;
-      background: #1976d2;
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      margin-bottom: 10px;
-      transition: background 0.2s;
-    }
-    #login-section button:hover {
-      background: #1565c0;
-    }
-    #login-message {
-      margin-top: 8px;
-      font-size: 1rem;
-      color: #d32f2f;
-      text-align: center;
-    }
-    #logout-btn {
-      width: 120px;
-      margin: 20px auto 0 auto;
-      display: block;
-      padding: 8px 0;
-      background: #d32f2f;
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    #logout-btn:hover {
-      background: #b71c1c;
-    }
-  </style>
-
-  <!-- Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Taxilytics",
-    "url": "https://taxilytics.vercel.app/",
-    "logo": "https://taxilytics.vercel.app/img/488624978_1742166546711298_5193890747112766118_n-removebg-preview (1).png",
-    "sameAs": [
-      "https://www.linkedin.com/company/taxilytics",
-      "https://twitter.com/taxilytics",
-      "https://www.instagram.com/taxilytics",
-      "https://www.youtube.com/@taxilytics"
-    ]
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "url": "https://taxilytics.vercel.app/",
-    "name": "Taxilytics",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://taxilytics.in/?s={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
-  }
-  </script>
-
+  <link rel="stylesheet" href="css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
-
 <body>
-  <div id="main-content" style="display:block;">
-    <nav class="navbar">
-      <div class="nav-container">
-        <div class="logo-container">
-          <img src="img/488624978_1742166546711298_5193890747112766118_n-removebg-preview (1).png" alt="Taxilytics logo" class="logo">
-          <span class="website-name">TAXILYTICS</span>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">
+        <img src="img/logo.png" alt="Finreg Logo">
+        <span>Finreg</span>
+      </a>
+      
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/" class="active">Home</a></li>
+        <li><a href="/pages/services.html">Services</a></li>
+        <li><a href="#calculator">GST Calculator</a></li>
+        <li><a href="/pages/contact.html">Contact</a></li>
+      </ul>
+      
+      <div class="nav-actions">
+        <a href="/pages/login.html" class="btn btn-secondary btn-sm" id="loginBtn">Login</a>
+        <a href="/pages/signup.html" class="btn btn-primary btn-sm" id="signupBtn">Get Started</a>
+        <a href="/pages/dashboard.html" class="btn btn-primary btn-sm hidden" id="dashboardBtn">Dashboard</a>
+      </div>
+      
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <span class="hero-badge">
+          <i class="fas fa-shield-alt"></i>
+          Trusted by 1000+ Businesses
+        </span>
+        <h1 class="hero-title">
+          Your Trusted <span>Tax & Financial</span> Partner
+        </h1>
+        <p class="hero-description">
+          Simplify your tax compliance with Finreg. We provide expert GST registration, ITR filing, bookkeeping, and financial consultancy services for small businesses and individuals across India.
+        </p>
+        <div class="hero-actions">
+          <a href="/pages/services.html" class="btn btn-primary btn-lg">
+            <i class="fas fa-rocket"></i>
+            Explore Services
+          </a>
+          <a href="#calculator" class="btn btn-secondary btn-lg">
+            <i class="fas fa-calculator"></i>
+            GST Calculator
+          </a>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <button class="hamburger" id="hamburger-btn">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+  <!-- Services Section -->
+  <section class="section" id="services">
+    <div class="container">
+      <div class="text-center mb-xl">
+        <h2>Our Services</h2>
+        <p>Comprehensive tax and financial solutions tailored for your needs</p>
+      </div>
+      
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">📋</div>
+          <h3 class="service-title">GST Registration</h3>
+          <p class="service-description">Complete GST registration and filing services to keep your business compliant with Indian tax laws.</p>
+          <a href="/pages/services.html?service=gst-registration" class="btn btn-secondary">Learn More</a>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">📊</div>
+          <h3 class="service-title">TDS Filing</h3>
+          <p class="service-description">Accurate TDS calculation, deduction, and timely filing to avoid penalties and ensure compliance.</p>
+          <a href="/pages/services.html?service=tds-filing" class="btn btn-secondary">Learn More</a>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">📁</div>
+          <h3 class="service-title">Income Tax Return</h3>
+          <p class="service-description">Professional ITR filing services for individuals and businesses with maximum tax savings.</p>
+          <a href="/pages/services.html?service=itr-filing" class="btn btn-secondary">Learn More</a>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">📚</div>
+          <h3 class="service-title">Bookkeeping</h3>
+          <p class="service-description">Maintain accurate financial records with our professional bookkeeping and accounting services.</p>
+          <a href="/pages/services.html?service=bookkeeping" class="btn btn-secondary">Learn More</a>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">💼</div>
+          <h3 class="service-title">Tax Consultancy</h3>
+          <p class="service-description">Expert tax planning and consultancy to optimize your tax liability and ensure compliance.</p>
+          <a href="/pages/services.html?service=tax-consultancy" class="btn btn-secondary">Learn More</a>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">🔐</div>
+          <h3 class="service-title">Document Management</h3>
+          <p class="service-description">Secure digital storage for all your tax documents with easy access and organization.</p>
+          <a href="/pages/signup.html" class="btn btn-secondary">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <ul class="nav-links" id="nav-links">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#courses">Services</a></li>
-          <li><a href="#about-us">About Us</a></li>
-          <li><a href="#contact us">Contact</a></li>
-        </ul>
+  <!-- GST Calculator Section -->
+  <section class="section" id="calculator" style="background: var(--color-bg-secondary);">
+    <div class="container">
+      <div class="text-center mb-xl">
+        <h2>GST Calculator</h2>
+        <p>Quickly calculate GST for any amount with Indian tax rates</p>
+      </div>
+      
+      <div class="flex-center">
+        <div class="calculator-card">
+          <form id="gstCalculatorForm">
+            <div class="form-group">
+              <label class="form-label">Amount (₹)</label>
+              <input type="number" name="amount" class="form-input" placeholder="Enter amount" min="0" step="0.01" required>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">GST Rate</label>
+              <select name="gst-rate" class="form-select" required>
+                <option value="5">5%</option>
+                <option value="12">12%</option>
+                <option value="18" selected>18%</option>
+                <option value="28">28%</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">Calculation Type</label>
+              <select name="calc-type" class="form-select">
+                <option value="exclusive">Add GST to Amount</option>
+                <option value="inclusive">Extract GST from Amount</option>
+              </select>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-block">
+              <i class="fas fa-calculator"></i>
+              Calculate GST
+            </button>
+          </form>
+          
+          <div id="calculatorResult" class="hidden"></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <div class="nav-actions">
-          <div class="search-container">
-            <input type="text" id="search-input" placeholder="Search..." class="search-input"/>
-            <button id="search-btn" aria-label="Search" class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+  <!-- CTA Section -->
+  <section class="section">
+    <div class="container">
+      <div class="card" style="text-align: center; padding: var(--spacing-3xl);">
+        <h2 class="mb-md">Ready to Simplify Your Finances?</h2>
+        <p class="mb-xl">Join thousands of businesses and individuals who trust Finreg for their tax and financial needs.</p>
+        <div class="flex-center gap-md">
+          <a href="/pages/signup.html" class="btn btn-primary btn-lg">
+            <i class="fas fa-user-plus"></i>
+            Create Free Account
+          </a>
+          <a href="https://wa.me/919061707348" target="_blank" class="btn btn-success btn-lg">
+            <i class="fab fa-whatsapp"></i>
+            Chat on WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="nav-logo">
+            <img src="img/logo.png" alt="Finreg Logo" style="height: 40px;">
+            <span style="color: var(--color-text-primary); font-size: var(--font-size-xl); font-weight: 700;">Finreg</span>
+          </a>
+          <p>Your trusted partner for tax compliance and financial services. Simplifying finances for small businesses and individuals across India.</p>
+        </div>
+        
+        <div>
+          <h4 class="footer-title">Quick Links</h4>
+          <div class="footer-links">
+            <a href="/">Home</a>
+            <a href="/pages/services.html">Services</a>
+            <a href="#calculator">GST Calculator</a>
+            <a href="/pages/contact.html">Contact</a>
           </div>
-          <a href="#contact us" class="nav-cta">Get Started</a>
         </div>
-      </div>
-    </nav>
-
-
-
-
-
-
-  <section class="intro">
-    <div class="intro-content">
-      <h1>Taxilytics — Tax & Accounting Services</h1>
-      <p class="animated-text">
-        At Taxilytics, we specialize in providing reliable and personalized tax consultancy and bookkeeping services for
-        individuals, small businesses, and startups. Based in Kerala, our mission is to simplify complex financial
-        processes and ensure our clients remain compliant and financially confident.<br>
-        Founded by a team of dedicated professionals with strong academic and practical backgrounds, we offer a wide
-        range of services including income tax filing, GST compliance, accounting, and business advisory. We believe in
-        building long-term relationships through trust, transparency, and tailored financial solutions. Whether you're a
-        business owner looking for streamlined bookkeeping or an individual in need of expert tax advice, Taxilytics is
-        here to help you every step of the way.
-      </p>
-      <div class="intro-buttons">
-        <a href="#courses" class="btn primary">Explore Services</a>
-        <a href="#" class="btn secondary">Become an Instructor</a>
-      </div>
-    </div>
-
-  </section>
-
-
-
-  <section id="courses" class="courses">
-    <h2>CUSTOMER SERVICES</h2>
-    <div class="course-grid" id="course-grid">
-      <div class="card">
-        <img src="img/taxation.jpg" alt="Tax consultancy service" loading="lazy">
-        <h3>Tax consultancy</h3>
-        <p>Professional guidance for tax compliance.</p>
-        <div class="card-buttons">
-          <a class="details-btn" href="tel:+91 9061707348" target="_blank" aria-label="Call us">📞 Call Us Now</a>
-          <a class="join-btn" href="https://wa.me/9061707348" target="_blank" aria-label="Chat on WhatsApp">Chat with Us Now</a>
-        </div>
-      </div>
-      <div class="card">
-        <img src="img/bookkeeping-service-uae.jpg" alt="Bookkeeping service" loading="lazy">
-        <h3>Bookkeeping</h3>
-        <p>Accurate financial record keeping solutions.</p>
-        <div class="card-buttons">
-          <a class="details-btn" href="tel:+91 9061707348" target="_blank" aria-label="Call us">📞 Call Us Now</a>
-          <a class="join-btn" href="https://wa.me/9061707348" target="_blank" aria-label="Chat on WhatsApp">Chat with Us Now</a>
-        </div>
-      </div>
-      <div class="card">
-        <img src="img/gstregistration.jpg" alt="GST registration service" loading="lazy">
-        <h3>GST registration</h3>
-        <p>Assisting with GST registration process.</p>
-        <div class="card-buttons">
-          <a class="details-btn" href="tel:+91 9061707348" target="_blank" aria-label="Call us">📞 Call Us Now</a>
-          <a class="join-btn" href="https://wa.me/9061707348" target="_blank" aria-label="Chat on WhatsApp">Chat with Us Now</a>
-        </div>
-      </div>
-      <div class="card">
-        <img src="img/GSTreturnfiling (2).jpg" alt="GST return filing service" loading="lazy">
-        <h3>GST Return filing</h3>
-        <p>Timely submission of GST returns.</p>
-        <div class="card-buttons">
-          <a class="details-btn" href="tel:+91 9061707348" target="_blank" aria-label="Call us">📞 Call Us Now</a>
-          <a class="join-btn" href="https://wa.me/9061707348" target="_blank" aria-label="Chat on WhatsApp">Chat with Us Now</a>
-        </div>
-      </div>
-      <div class="card">
-        <img src="img/ITRserviece.webp" alt="Income tax return (ITR) filing service" loading="lazy">
-        <h3>ITR</h3>
-        <p>Filing income tax returns accurately.</p>
-        <div class="card-buttons">
-          <a class="details-btn" href="tel:+91 9061707348" target="_blank" aria-label="Call us">📞 Call Us Now</a>
-          <a class="join-btn" href="https://wa.me/9061707348" target="_blank" aria-label="Chat on WhatsApp">Chat with Us Now</a>
-        </div>
-      </div>
-      <div class="card">
-        <img src="img/tds-on-fd-interest.jpg" alt="TDS compliance service" loading="lazy">
-        <h3>TDS</h3>
-        <p>TDS calculation, compliance, and filing.</p>
-        <div class="card-buttons">
-          <a class="details-btn" href="tel:+91 9061707348" target="_blank" aria-label="Call us">📞 Call Us Now</a>
-          <a class="join-btn" href="https://wa.me/9061707348" target="_blank" aria-label="Chat on WhatsApp">Chat with Us Now</a>
-        </div>
-      </div>
-      <div class="card">
-        <img src="img/tcs_aug20.jpg" alt="TCS management service" loading="lazy">
-        <h3>TCS</h3>
-        <p>Tax collected at source management.</p>
-        <div class="card-buttons">
-          <a class="details-btn" href="tel:+91 9061707348" target="_blank" aria-label="Call us">📞 Call Us Now</a>
-          <a class="join-btn" href="https://wa.me/9061707348" target="_blank" aria-label="Chat on WhatsApp">Chat with Us Now</a>
-        </div>
-      </div>
-      <div class="card">
-        <img src="img/GSTHero_eInvoicing-Visual.png" alt="E-invoicing solution" loading="lazy">
-        <h3>E-invoice</h3>
-        <p>Automated generation and submission of invoices.</p>
-        <div class="card-buttons">
-          <a class="details-btn" href="tel:+91 9061707348" target="_blank" aria-label="Call us">📞 Call Us Now</a>
-          <a class="join-btn" href="https://wa.me/9061707348" target="_blank" aria-label="Chat on WhatsApp">Chat with Us Now</a>
-        </div>
-      </div>
-      <div class="card">
-        <img src="img/other-services.jpg" alt="Other tax and accounting services" loading="lazy">
-        <h3>Other services</h3>
-        <p>Additional tailored solutions for clients.</p>
-        <div class="card-buttons">
-          <a class="details-btn" href="tel:+91 9061707348" target="_blank" aria-label="Call us">📞 Call Us Now</a>
-          <a class="join-btn" href="https://wa.me/9061707348" target="_blank" aria-label="Chat on WhatsApp">Chat with Us Now</a>
-        </div>
-      </div>
-
-  </section>
-
-
-
-
-  <div class="faq-section">
-    <h2>Frequently Asked Questions</h2>
-
-    <div class="faq">
-      <button onclick="toggleFAQ(this)">Can I file my Income Tax Return (ITR) with Taxilytics?</button>
-      <div class="faq-content">Yes, we offer complete ITR filing services with expert guidance.</div>
-    </div>
-
-    <div class="faq">
-      <button onclick="toggleFAQ(this)">What documents are needed for GST registration?</button>
-      <div class="faq-content">You’ll need PAN, Aadhaar, business proof, bank details, and digital signature (if
-        applicable).</div>
-    </div>
-
-    <div class="faq">
-      <button onclick="toggleFAQ(this)">How does Taxilytics help with TDS and TCS compliance?</button>
-      <div class="faq-content">We assist in calculating, filing, and reconciling your TDS/TCS returns with ease.</div>
-    </div>
-
-    <div class="faq">
-      <button onclick="toggleFAQ(this)">What is e-invoicing and do I need it for my business?</button>
-      <div class="faq-content">E-invoicing is mandatory for businesses over a certain turnover. We assist in full
-        integration.</div>
-    </div>
-
-    <div class="faq">
-      <button onclick="toggleFAQ(this)">Can I get help with GST return filing every month?</button>
-      <div class="faq-content">Absolutely! We offer monthly, quarterly, and annual GST filing packages.</div>
-    </div>
-
-    <div class="faq">
-      <button onclick="toggleFAQ(this)">Does Taxilytics offer bookkeeping for small businesses?</button>
-      <div class="faq-content">Yes, our bookkeeping services are tailored for startups and SMEs.</div>
-    </div>
-
-    <div class="faq">
-      <button onclick="toggleFAQ(this)">How much do your tax consultancy services cost?</button>
-      <div class="faq-content">Our consultancy fees depend on your requirements. Contact us for a quote.</div>
-    </div>
-
-    <div class="faq">
-      <button onclick="toggleFAQ(this)">Can I get a consultation before choosing a service?</button>
-      <div class="faq-content">Yes, we offer free initial consultations to understand your needs.</div>
-    </div>
-
-    <div class="faq">
-      <button onclick="toggleFAQ(this)">Is my financial data safe with Taxilytics?</button>
-      <div class="faq-content">Data security is our top priority. We follow strict confidentiality and encryption
-        protocols.</div>
-    </div>
-
-    <div class="faq">
-      <button onclick="toggleFAQ(this)">Do you support businesses from all over India?</button>
-      <div class="faq-content">Yes, our services are available nationwide and online.</div>
-    </div>
-  </div>
-
-
-
-  <section id="about-us" class="about-us">
-    <div class="about-content">
-      <h2>Meet Taxilytics</h2>
-
-      <!-- Add the logo below the heading with a new class -->
-      <img src="img/488624978_1742166546711298_5193890747112766118_n-removebg-preview (1).png" alt="Taxilytics Logo"
-        class="taxilytics-logo" loading="lazy" />
-
-      <p>
-        At Taxilytics, we specialize in delivering comprehensive and reliable tax and financial services tailored to
-        meet the needs of individuals,
-        businesses, and startups. From Income Tax Returns (ITR) and GST registration to TDS, TCS, e-invoicing, and
-        regular GST return filing,
-        our team of experienced professionals is committed to simplifying compliance and helping clients stay ahead of
-        regulatory demands.
-        We also offer expert tax consultancy and accurate bookkeeping services to ensure your financial operations run
-        smoothly. With a focus on accuracy,
-        transparency, and client satisfaction, Taxilytics is your trusted partner for smart tax solutions and financial
-        growth.
-      </p>
-    </div>
-  </section>
-
-
-
-  <section id="contact us" class="contact-section">
-    <div class="contact-wrapper">
-      <div class="contact-form-column">
-        <h2>Send us a message</h2>
-        <form class="contact-form">
-          <div class="row">
-            <input type="text" name="from_name" placeholder="Your Name" required>
-            <input type="email" name="from_email" placeholder="Your Email" required>
+        
+        <div>
+          <h4 class="footer-title">Services</h4>
+          <div class="footer-links">
+            <a href="/pages/services.html">GST Registration</a>
+            <a href="/pages/services.html">TDS Filing</a>
+            <a href="/pages/services.html">ITR Filing</a>
+            <a href="/pages/services.html">Bookkeeping</a>
           </div>
-          <input type="text" name="subject" placeholder="Subject" required>
-          <textarea rows="5" name="message" placeholder="Your Message" required></textarea>
-          <button type="submit">Send Message</button>
-          <p id="formStatus" style="margin-top: 10px;"></p>
-        </form>
+        </div>
+        
+        <div>
+          <h4 class="footer-title">Contact</h4>
+          <div class="footer-links">
+            <a href="tel:+919061707348"><i class="fas fa-phone"></i> +91 90617 07348</a>
+            <a href="mailto:contact@finreg.in"><i class="fas fa-envelope"></i> contact@finreg.in</a>
+          </div>
+          <div class="footer-social mt-lg">
+            <a href="https://wa.me/919061707348" target="_blank" aria-label="WhatsApp">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="#" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" aria-label="LinkedIn">
+              <i class="fab fa-linkedin"></i>
+            </a>
+          </div>
+        </div>
       </div>
-      <div class="contact-info-column">
-        <h2>Contact <span>Info</span></h2>
-        <p>Feel free to reach out to us through any of the methods below.</p>
-        <ul>
-          <li><strong>Email:</strong> info.taxilytics@gmail.com</li>
-          <li><strong>Phone:</strong> +91 9061707348</li>
-          <li><strong>Location:</strong> 456 Education Lane, Smart City</li>
-          <li><strong>Instagram:</strong> <a href="https://instagram.com/taxilytics" target="_blank">@taxilytics</a>
-          </li>
-          <li><strong>YouTube:</strong> <a href="https://youtube.com/@taxilytics"
-              target="_blank">youtube.com/@taxilytics</a></li>
-          <li><strong>WhatsApp:</strong> <a href="https://wa.me/9061707348" target="_blank">Chat with us</a></li>
-        </ul>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2025 Finreg. All rights reserved. | Your Trusted Tax Partner</p>
       </div>
     </div>
-  </section>
-
-
-  <footer class="site-footer">
-    <div class="footer-container">
-      <div class="footer-brand-info">
-        <p>&copy; 2025 <span class="brand-name">TAXILYTICS</span>. All rights reserved.</p>
-      </div>
-
-      <div class="footer-flex-container">
-        <div class="footer-quick-links">
-          <h3>Quick Links</h3>
-          <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about-us">About Us</a></li>
-            <li><a href="#contact us">Contact</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Terms of Use</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-services">
-          <h3>Service Overview</h3>
-          <ul>
-            <li><a href="#courses">ITR Filing</a></li>
-            <li><a href="#courses">TCS Return</a></li>
-            <li><a href="#courses">TDS Return</a></li>
-            <li><a href="#courses">GST Return Filing</a></li>
-            <li><a href="#courses">GST Registration</a></li>
-            <li><a href="#courses">E-Invoicing</a></li>
-            <li><a href="#courses">Bookkeeping</a></li>
-            <li><a href="#courses">Tax Consultancy</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-contact">
-          <h3>Contact Us</h3>
-          <p>Email: <a href="mailto:info.taxilytics@gmail.com">info.taxilytics@gmail.com</a></p>
-          <p>Phone: <a href="tel:+91 9061707348">+91 90617 07348</a></p>
-          <p>Address: taxilytics office, kerala, India</p>
-        </div>
-      </div>
-
-      <div class="footer-social">
-        <h3>Follow Us</h3>
-        <div class="social-icons">
-          <a href="https://www.facebook.com/taxilytics" target="_blank" aria-label="Facebook"><i
-              class="fab fa-facebook-f"></i></a>
-          <a href="https://twitter.com/taxilytics" target="_blank" aria-label="Twitter"><i
-              class="fab fa-twitter"></i></a>
-          <a href="https://www.instagram.com/taxilytics" target="_blank" aria-label="Instagram"><i
-              class="fab fa-instagram"></i></a>
-          <a href="https://www.linkedin.com/company/taxilytics" target="_blank" aria-label="LinkedIn"><i
-you shall
-              class="fab fa-linkedin-in"></i></a>
-          <a href="https://www.youtube.com/@taxilytics" target="_blank" aria-label="YouTube"><i
-              class="fab fa-youtube"></i></a>
-        </div>
-
-      </div>
   </footer>
 
+  <!-- WhatsApp Float Button -->
+  <a href="https://wa.me/919061707348" target="_blank" class="whatsapp-btn" aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
 
-  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-
-  <script>
-    // Initialize EmailJS with your public key
-    (function () {
-      emailjs.init("Prc1e6i30CEEhNdiJ"); // Replace with your actual public key
-    })();
-
-    // Handle contact form submission
-    document.querySelector(".contact-form").addEventListener("submit", function (e) {
-      e.preventDefault();
-
-      const statusMsg = document.getElementById("formStatus");
-      statusMsg.style.color = "blue";
-      statusMsg.textContent = "Sending...";
-
-      emailjs.sendForm("service_cx4fkws", "template_m2uto45", this)
-        .then(function () {
-          statusMsg.style.color = "green";
-          statusMsg.textContent = "Message sent successfully!";
-          e.target.reset();
-        }, function (error) {
-          console.log("FAILED...", error);
-          statusMsg.style.color = "red";
-          statusMsg.textContent = "Oops! Something went wrong. Try again.";
-        });
+  <!-- Scripts -->
+  <script type="module">
+    import { initCalculator } from './js/calculator.js';
+    import { onAuthChange } from './js/auth.js';
+    
+    // Initialize GST Calculator
+    initCalculator('gstCalculatorForm', 'calculatorResult');
+    
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
+    
+    mobileMenuBtn?.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
     });
-
-    // Handle search functionality
-    document.getElementById("search-btn").addEventListener("click", performSearch);
-    document.getElementById("search-input").addEventListener("keypress", function (event) {
-      if (event.key === "Enter") {
-        performSearch();
-      }
-    });
-
-    function performSearch() {
-      const query = document.getElementById("search-input").value.trim().toLowerCase();
-      const elements = document.querySelectorAll("body *"); // Search through all elements in the body
-      let found = false;
-      let firstMatch = null;
-
-      if (query === "") {
-        alert("Please enter a search term.");
-        return;
-      }
-
-      elements.forEach(element => {
-        // Only check text content of elements that are likely to contain text (e.g., paragraphs, divs, spans)
-        if (element.children.length === 0 && element.textContent.trim().length > 0) {
-          const text = element.textContent.trim().toLowerCase(); // Clean up the text
-          if (text.includes(query)) {
-            // Highlight the element if the search term is found
-            element.style.backgroundColor = "#ffff00"; // Highlight with a yellow background
-            found = true;
-
-            // Store the first match to scroll to it
-            if (!firstMatch) {
-              firstMatch = element;
-            }
-          } else {
-            element.style.backgroundColor = ""; // Reset if no match
-          }
-        }
-      });
-
-      if (found) {
-        // Scroll to the first matching result
-        firstMatch.scrollIntoView({ behavior: "smooth", block: "center" });
+    
+    // Update nav based on auth state
+    onAuthChange((user) => {
+      const loginBtn = document.getElementById('loginBtn');
+      const signupBtn = document.getElementById('signupBtn');
+      const dashboardBtn = document.getElementById('dashboardBtn');
+      
+      if (user) {
+        loginBtn?.classList.add('hidden');
+        signupBtn?.classList.add('hidden');
+        dashboardBtn?.classList.remove('hidden');
       } else {
-        alert("No matching result found.");
+        loginBtn?.classList.remove('hidden');
+        signupBtn?.classList.remove('hidden');
+        dashboardBtn?.classList.add('hidden');
       }
-    }
-
-    // Handle search functionality
-    document.getElementById("search-btn").addEventListener("click", performSearch);
-    document.addEventListener('DOMContentLoaded', () => {
-      const paragraph = document.querySelector('.animated-text');
-      const words = paragraph.textContent.trim().split(' ');
-      paragraph.innerHTML = '';
-
-      words.forEach((word, index) => {
-        const span = document.createElement('span');
-        span.textContent = word;
-
-        // Add a space after each word except the last one
-        paragraph.appendChild(span);
-        if (index !== words.length - 1) {
-          paragraph.appendChild(document.createTextNode(' '));
-        }
-      });
-
-      const wordSpans = document.querySelectorAll('.animated-text span');
-
-      function handleScroll() {
-
-      // Function to clear all search highlights
-      function clearSearchHighlights() {
-        const elements = document.querySelectorAll("body *");
-        elements.forEach(element => {
-          if (element.style && element.style.backgroundColor === "rgb(255, 255, 0)" || element.style.backgroundColor === "#ffff00") {
-            element.style.backgroundColor = "";
-          }
-        });
-      }
-        wordSpans.forEach((span) => {
-          const rect = span.getBoundingClientRect();
-          if (rect.top < window.innerHeight - 50) {
-            span.classList.add('reveal');
-          }
-        });
-      }
-
-      window.addEventListener('scroll', handleScroll);
-      handleScroll(); // initial call
     });
-
-    // Toggle the menu on and off for mobile
-    document.getElementById("hamburger-btn").addEventListener("click", function () {
-      const navLinks = document.getElementById("nav-links");
-      const navActions = document.querySelector(".nav-actions");
-      const hamburger = document.getElementById("hamburger-btn");
-      navLinks.classList.toggle("active");
-      navActions.classList.toggle("active");
-      hamburger.classList.toggle("active");
-    });
-
-    // Toggle FAQ answers
-    function toggleFAQ(button) {
-      const content = button.nextElementSibling;
-      const isVisible = content.style.display === 'block';
-
-      // Toggle the visibility: if it's open, close it; if it's closed, open it.
-      content.style.display = isVisible ? 'none' : 'block';
-    }
   </script>
-
-
-<script src="main.js"></script>
 </body>
-
 </html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us — Finreg</title>
+  <meta name="description" content="Get in touch with Finreg for tax consultancy, GST registration, ITR filing, and financial services.">
+  
+  <link rel="icon" type="image/png" href="../img/favicon.png">
+  <link rel="stylesheet" href="../css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">
+        <img src="../img/logo.png" alt="Finreg Logo">
+        <span>Finreg</span>
+      </a>
+      
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/">Home</a></li>
+        <li><a href="/pages/services.html">Services</a></li>
+        <li><a href="/#calculator">GST Calculator</a></li>
+        <li><a href="/pages/contact.html" class="active">Contact</a></li>
+      </ul>
+      
+      <div class="nav-actions">
+        <a href="/pages/login.html" class="btn btn-secondary btn-sm" id="loginBtn">Login</a>
+        <a href="/pages/signup.html" class="btn btn-primary btn-sm" id="signupBtn">Get Started</a>
+        <a href="/pages/dashboard.html" class="btn btn-primary btn-sm hidden" id="dashboardBtn">Dashboard</a>
+      </div>
+      
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="hero" style="padding: var(--spacing-2xl) 0;">
+    <div class="container">
+      <div class="text-center">
+        <h1 class="hero-title">Get in <span>Touch</span></h1>
+        <p class="hero-description" style="max-width: 600px; margin: 0 auto;">
+          Have questions about our services? We're here to help. Reach out to us through any of the following channels.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section">
+    <div class="container">
+      <div class="grid grid-2" style="gap: var(--spacing-2xl);">
+        <!-- Contact Info -->
+        <div>
+          <h2 class="mb-lg">Contact Information</h2>
+          <p class="mb-xl">Feel free to reach out to us for any queries about tax services, GST registration, ITR filing, or financial consultancy.</p>
+          
+          <div class="card mb-lg" style="display: flex; align-items: center; gap: var(--spacing-lg);">
+            <div class="service-icon" style="margin: 0; flex-shrink: 0;">📞</div>
+            <div>
+              <h4 class="mb-xs">Phone</h4>
+              <a href="tel:+919061707348" style="color: var(--color-text-secondary);">+91 90617 07348</a>
+            </div>
+          </div>
+          
+          <div class="card mb-lg" style="display: flex; align-items: center; gap: var(--spacing-lg);">
+            <div class="service-icon" style="margin: 0; flex-shrink: 0;">📧</div>
+            <div>
+              <h4 class="mb-xs">Email</h4>
+              <a href="mailto:contact@finreg.in" style="color: var(--color-text-secondary);">contact@finreg.in</a>
+            </div>
+          </div>
+          
+          <div class="card mb-lg" style="display: flex; align-items: center; gap: var(--spacing-lg);">
+            <div class="service-icon" style="margin: 0; flex-shrink: 0; background: #25d366;">💬</div>
+            <div>
+              <h4 class="mb-xs">WhatsApp</h4>
+              <a href="https://wa.me/919061707348" target="_blank" style="color: var(--color-text-secondary);">Chat with us on WhatsApp</a>
+            </div>
+          </div>
+          
+          <div class="card" style="display: flex; align-items: center; gap: var(--spacing-lg);">
+            <div class="service-icon" style="margin: 0; flex-shrink: 0;">⏰</div>
+            <div>
+              <h4 class="mb-xs">Business Hours</h4>
+              <p style="color: var(--color-text-secondary); margin: 0;">Monday - Saturday: 9:00 AM - 6:00 PM</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="card">
+          <h3 class="card-title mb-lg">Send us a Message</h3>
+          <form id="contactForm">
+            <div class="form-group">
+              <label class="form-label" for="name">Your Name *</label>
+              <input type="text" id="name" name="name" class="form-input" placeholder="John Doe" required>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label" for="email">Email Address *</label>
+              <input type="email" id="email" name="email" class="form-input" placeholder="you@example.com" required>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label" for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" class="form-input" placeholder="+91 XXXXX XXXXX">
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label" for="subject">Subject *</label>
+              <select id="subject" name="subject" class="form-select" required>
+                <option value="">Select a subject</option>
+                <option value="General Inquiry">General Inquiry</option>
+                <option value="GST Services">GST Services</option>
+                <option value="Income Tax">Income Tax</option>
+                <option value="Bookkeeping">Bookkeeping</option>
+                <option value="Tax Consultancy">Tax Consultancy</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label" for="message">Message *</label>
+              <textarea id="message" name="message" class="form-textarea" placeholder="How can we help you?" required></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-block" id="submitBtn">
+              <i class="fas fa-paper-plane"></i>
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Actions -->
+  <section class="section" style="background: var(--color-bg-secondary);">
+    <div class="container">
+      <div class="text-center mb-xl">
+        <h2>Need Quick Help?</h2>
+        <p>Choose the fastest way to reach us</p>
+      </div>
+      
+      <div class="grid grid-3" style="gap: var(--spacing-lg);">
+        <a href="https://wa.me/919061707348" target="_blank" class="card text-center" style="text-decoration: none;">
+          <div class="service-icon" style="background: #25d366; margin: 0 auto var(--spacing-md);">
+            <i class="fab fa-whatsapp" style="color: white;"></i>
+          </div>
+          <h4>WhatsApp</h4>
+          <p style="font-size: var(--font-size-sm);">Instant messaging support</p>
+        </a>
+        
+        <a href="tel:+919061707348" class="card text-center" style="text-decoration: none;">
+          <div class="service-icon" style="margin: 0 auto var(--spacing-md);">
+            <i class="fas fa-phone"></i>
+          </div>
+          <h4>Call Us</h4>
+          <p style="font-size: var(--font-size-sm);">Talk to our experts</p>
+        </a>
+        
+        <a href="/pages/services.html" class="card text-center" style="text-decoration: none;">
+          <div class="service-icon" style="margin: 0 auto var(--spacing-md);">
+            <i class="fas fa-file-invoice"></i>
+          </div>
+          <h4>Request Service</h4>
+          <p style="font-size: var(--font-size-sm);">Submit a service request</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2025 Finreg. All rights reserved. | <a href="/">Back to Home</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Float Button -->
+  <a href="https://wa.me/919061707348" target="_blank" class="whatsapp-btn" aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <script type="module">
+    import { onAuthChange } from '../js/auth.js';
+    import { showSuccess, showError } from '../js/notifications.js';
+    
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
+    
+    mobileMenuBtn?.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+    
+    // Update nav based on auth state
+    onAuthChange((user) => {
+      const loginBtn = document.getElementById('loginBtn');
+      const signupBtn = document.getElementById('signupBtn');
+      const dashboardBtn = document.getElementById('dashboardBtn');
+      
+      if (user) {
+        loginBtn?.classList.add('hidden');
+        signupBtn?.classList.add('hidden');
+        dashboardBtn?.classList.remove('hidden');
+      } else {
+        loginBtn?.classList.remove('hidden');
+        signupBtn?.classList.remove('hidden');
+        dashboardBtn?.classList.add('hidden');
+      }
+    });
+    
+    // Contact form submission
+    const form = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      submitBtn.classList.add('btn-loading');
+      submitBtn.disabled = true;
+      
+      // Prepare mailto link with form data
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const phone = form.phone.value.trim();
+      const subject = form.subject.value;
+      const message = form.message.value.trim();
+      
+      const mailtoBody = `Name: ${name}%0AEmail: ${email}%0APhone: ${phone || 'Not provided'}%0A%0AMessage:%0A${encodeURIComponent(message)}`;
+      const mailtoLink = `mailto:contact@finreg.in?subject=${encodeURIComponent(subject + ' - Finreg Contact')}&body=${mailtoBody}`;
+      
+      // Open email client
+      window.location.href = mailtoLink;
+      
+      // Also show success and offer WhatsApp
+      setTimeout(() => {
+        showSuccess('Opening your email client. You can also reach us on WhatsApp for faster response!');
+        submitBtn.classList.remove('btn-loading');
+        submitBtn.disabled = false;
+      }, 500);
+    });
+  </script>
+</body>
+</html>

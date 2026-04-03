@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard — Finreg</title>
+  <meta name="robots" content="noindex, nofollow">
+  
+  <link rel="icon" type="image/png" href="../img/favicon.png">
+  <link rel="stylesheet" href="../css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
+  <style>
+    .admin-badge {
+      background: var(--color-error);
+      color: white;
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+      font-size: var(--font-size-xs);
+      font-weight: 600;
+      margin-left: var(--spacing-sm);
+    }
+    .user-card {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-md);
+      padding: var(--spacing-md);
+      background: var(--color-bg-input);
+      border-radius: var(--radius-md);
+      margin-bottom: var(--spacing-sm);
+    }
+    .user-avatar {
+      width: 40px;
+      height: 40px;
+      background: var(--color-accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 600;
+    }
+    .status-select {
+      padding: var(--spacing-xs) var(--spacing-sm);
+      background: var(--color-bg-input);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      color: var(--color-text-primary);
+      font-size: var(--font-size-sm);
+    }
+    .doc-preview {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: var(--radius-md);
+      background: var(--color-bg-input);
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-layout">
+    <!-- Sidebar -->
+    <aside class="dashboard-sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <a href="/" class="nav-logo">
+          <img src="../img/logo.png" alt="Finreg Logo" style="height: 32px;">
+          <span>Finreg</span>
+          <span class="admin-badge">Admin</span>
+        </a>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <a href="#overview" class="sidebar-link active" data-tab="overview">
+          <i class="fas fa-chart-line"></i>
+          <span>Overview</span>
+        </a>
+        <a href="#requests" class="sidebar-link" data-tab="requests">
+          <i class="fas fa-file-invoice"></i>
+          <span>All Requests</span>
+        </a>
+        <a href="#documents" class="sidebar-link" data-tab="documents">
+          <i class="fas fa-folder"></i>
+          <span>All Documents</span>
+        </a>
+        <a href="#users" class="sidebar-link" data-tab="users">
+          <i class="fas fa-users"></i>
+          <span>Users</span>
+        </a>
+      </nav>
+      
+      <div style="margin-top: auto; padding-top: var(--spacing-xl);">
+        <a href="/" class="sidebar-link">
+          <i class="fas fa-home"></i>
+          <span>Back to Site</span>
+        </a>
+        <a href="#" class="sidebar-link" id="logoutBtn">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Logout</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+      <div class="dashboard-header">
+        <div>
+          <h1 class="dashboard-title">Admin Dashboard</h1>
+          <p class="text-muted">Manage all users, requests, and documents</p>
+        </div>
+      </div>
+
+      <!-- Overview Tab -->
+      <div class="tab-content active" id="overview-content">
+        <div class="dashboard-stats">
+          <div class="stat-card">
+            <div class="stat-label">Total Users</div>
+            <div class="stat-value" id="totalUsers">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Total Requests</div>
+            <div class="stat-value" id="totalRequests">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Pending Requests</div>
+            <div class="stat-value" style="color: var(--color-warning);" id="pendingRequests">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Total Documents</div>
+            <div class="stat-value" id="totalDocuments">0</div>
+          </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="grid grid-2 mt-xl">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Recent Requests</h3>
+            </div>
+            <div id="recentRequestsList">
+              <div class="loading"><div class="spinner"></div></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Recent Users</h3>
+            </div>
+            <div id="recentUsersList">
+              <div class="loading"><div class="spinner"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Requests Tab -->
+      <div class="tab-content" id="requests-content">
+        <div class="card">
+          <div class="card-header flex-between">
+            <h3 class="card-title">All Service Requests</h3>
+            <div class="flex gap-sm">
+              <select id="statusFilter" class="form-select" style="width: auto;">
+                <option value="all">All Status</option>
+                <option value="Pending">Pending</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Completed">Completed</option>
+              </select>
+            </div>
+          </div>
+          <div class="table-container">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>User</th>
+                  <th>Service</th>
+                  <th>Phone</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="requestsTableBody">
+                <tr><td colspan="6" class="text-center text-muted">Loading...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Documents Tab -->
+      <div class="tab-content" id="documents-content">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">All Client Documents</h3>
+          </div>
+          <div class="grid grid-3" id="documentsGrid" style="gap: var(--spacing-md);">
+            <div class="loading"><div class="spinner"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Users Tab -->
+      <div class="tab-content" id="users-content">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">All Registered Users</h3>
+          </div>
+          <div id="usersList">
+            <div class="loading"><div class="spinner"></div></div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script type="module">
+    import { onAuthChange, logOut, getCurrentUser } from '../js/auth.js';
+    import { 
+      ADMIN_EMAIL, 
+      isAdmin, 
+      subscribeToAllRequests, 
+      subscribeToAllDocuments, 
+      subscribeToAllUsers,
+      updateRequestStatus 
+    } from '../js/admin.js';
+    import { getStatusBadgeClass } from '../js/services.js';
+    import { formatFileSize, getFileIcon } from '../js/documents.js';
+    import { showError } from '../js/notifications.js';
+
+    let requestsData = [];
+    let documentsData = [];
+    let usersData = [];
+
+    // Check auth and admin status
+    onAuthChange((user) => {
+      if (!user) {
+        window.location.href = '/pages/login.html';
+        return;
+      }
+      
+      if (user.email !== ADMIN_EMAIL) {
+        showError('Access denied. Admin only.');
+        window.location.href = '/';
+        return;
+      }
+      
+      // User is admin, initialize dashboard
+      initAdminDashboard();
+    });
+
+    function initAdminDashboard() {
+      // Subscribe to all data
+      subscribeToAllRequests((requests) => {
+        requestsData = requests;
+        updateRequestsUI(requests);
+        updateStats();
+      });
+
+      subscribeToAllDocuments((docs) => {
+        documentsData = docs;
+        updateDocumentsUI(docs);
+        updateStats();
+      });
+
+      subscribeToAllUsers((users) => {
+        usersData = users;
+        updateUsersUI(users);
+        updateStats();
+      });
+    }
+
+    function updateStats() {
+      document.getElementById('totalUsers').textContent = usersData.length;
+      document.getElementById('totalRequests').textContent = requestsData.length;
+      document.getElementById('pendingRequests').textContent = requestsData.filter(r => r.status === 'Pending').length;
+      document.getElementById('totalDocuments').textContent = documentsData.length;
+    }
+
+    function updateRequestsUI(requests) {
+      const filter = document.getElementById('statusFilter').value;
+      const filtered = filter === 'all' ? requests : requests.filter(r => r.status === filter);
+
+      // Table
+      const tbody = document.getElementById('requestsTableBody');
+      if (filtered.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" class="text-center text-muted">No requests found</td></tr>';
+      } else {
+        tbody.innerHTML = filtered.map(req => `
+          <tr>
+            <td>${formatTimestamp(req.createdAt)}</td>
+            <td>
+              <div>${req.fullName}</div>
+              <div class="text-muted" style="font-size: var(--font-size-xs);">${req.email}</div>
+            </td>
+            <td>${req.serviceType}</td>
+            <td><a href="tel:${req.phone}">${req.phone}</a></td>
+            <td>
+              <select class="status-select" data-id="${req.id}" onchange="window.updateStatus(this)">
+                <option value="Pending" ${req.status === 'Pending' ? 'selected' : ''}>Pending</option>
+                <option value="In Progress" ${req.status === 'In Progress' ? 'selected' : ''}>In Progress</option>
+                <option value="Completed" ${req.status === 'Completed' ? 'selected' : ''}>Completed</option>
+              </select>
+            </td>
+            <td>
+              <a href="https://wa.me/${req.phone.replace(/[^0-9]/g, '')}" target="_blank" class="btn btn-ghost btn-sm" title="WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+              </a>
+            </td>
+          </tr>
+        `).join('');
+      }
+
+      // Recent requests (overview)
+      const recentEl = document.getElementById('recentRequestsList');
+      recentEl.innerHTML = requests.slice(0, 5).map(req => `
+        <div class="file-item">
+          <div class="file-item-icon">${getServiceIcon(req.serviceType)}</div>
+          <div class="file-item-info">
+            <div class="file-item-name">${req.fullName} - ${req.serviceType}</div>
+            <div class="file-item-size">${formatTimestamp(req.createdAt)}</div>
+          </div>
+          <span class="badge ${getStatusBadgeClass(req.status)}">${req.status}</span>
+        </div>
+      `).join('') || '<p class="text-muted text-center">No requests yet</p>';
+    }
+
+    function updateDocumentsUI(docs) {
+      const grid = document.getElementById('documentsGrid');
+      
+      if (docs.length === 0) {
+        grid.innerHTML = '<p class="text-muted">No documents uploaded yet</p>';
+        return;
+      }
+
+      grid.innerHTML = docs.map(doc => {
+        const isImage = doc.fileType?.startsWith('image/');
+        return `
+          <div class="card" style="padding: var(--spacing-md);">
+            <div class="flex gap-md" style="align-items: flex-start;">
+              ${isImage 
+                ? `<img src="${doc.downloadURL}" alt="${doc.fileName}" class="doc-preview">`
+                : `<div class="doc-preview flex-center" style="font-size: 24px;">${getFileIcon(doc.fileType)}</div>`
+              }
+              <div style="flex: 1; min-width: 0;">
+                <div style="font-weight: 500; word-break: break-word;">${doc.fileName}</div>
+                <div class="text-muted" style="font-size: var(--font-size-xs);">
+                  ${formatFileSize(doc.fileSize)} • ${formatTimestamp(doc.uploadedAt)}
+                </div>
+                <div class="text-muted" style="font-size: var(--font-size-xs);">
+                  User: ${doc.userId?.substring(0, 8)}...
+                </div>
+              </div>
+            </div>
+            <div class="mt-md">
+              <a href="${doc.downloadURL}" target="_blank" class="btn btn-primary btn-sm btn-block">
+                <i class="fas fa-download"></i> Download
+              </a>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function updateUsersUI(users) {
+      const listEl = document.getElementById('usersList');
+      const recentEl = document.getElementById('recentUsersList');
+
+      if (users.length === 0) {
+        listEl.innerHTML = '<p class="text-muted text-center">No users yet</p>';
+        recentEl.innerHTML = '<p class="text-muted text-center">No users yet</p>';
+        return;
+      }
+
+      const renderUser = (user) => `
+        <div class="user-card">
+          <div class="user-avatar">${(user.name || user.email || 'U')[0].toUpperCase()}</div>
+          <div style="flex: 1;">
+            <div style="font-weight: 500;">${user.name || 'No name'}</div>
+            <div class="text-muted" style="font-size: var(--font-size-xs);">${user.email}</div>
+          </div>
+          <div class="text-muted" style="font-size: var(--font-size-xs);">
+            ${formatTimestamp(user.createdAt)}
+          </div>
+        </div>
+      `;
+
+      listEl.innerHTML = users.map(renderUser).join('');
+      recentEl.innerHTML = users.slice(0, 5).map(renderUser).join('');
+    }
+
+    // Tab navigation
+    document.querySelectorAll('.sidebar-link[data-tab]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const tab = link.dataset.tab;
+        
+        document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+        
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        document.getElementById(`${tab}-content`).classList.add('active');
+      });
+    });
+
+    // Status filter
+    document.getElementById('statusFilter').addEventListener('change', () => {
+      updateRequestsUI(requestsData);
+    });
+
+    // Global function for status update
+    window.updateStatus = async function(select) {
+      const requestId = select.dataset.id;
+      const newStatus = select.value;
+      await updateRequestStatus(requestId, newStatus);
+    };
+
+    // Logout
+    document.getElementById('logoutBtn').addEventListener('click', async (e) => {
+      e.preventDefault();
+      await logOut();
+      window.location.href = '/';
+    });
+
+    // Helpers
+    function getServiceIcon(type) {
+      const icons = {
+        'GST Registration': '📋',
+        'TDS Filing': '📊',
+        'Income Tax Return (ITR)': '📁',
+        'Bookkeeping': '📚',
+        'Tax Consultancy': '💼'
+      };
+      return icons[type] || '📄';
+    }
+
+    function formatTimestamp(timestamp) {
+      if (!timestamp) return 'Just now';
+      const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
+      return date.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+    }
+  </script>
+</body>
+</html>

@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
-Sitemap: https://taxilytics.vercel.app/sitemap.xml
-# Replace the domain above with your canonical domain if different.
+Disallow: /pages/dashboard.html
+Disallow: /pages/admin.html
+
+Sitemap: https://finreg.vercel.app/sitemap.xml
