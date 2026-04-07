@@ -3,7 +3,7 @@
 // ==============================================
 // Copy these rules to your Firebase Console:
 // 1. Go to https://console.firebase.google.com
-// 2. Select your project (taxilytics-38004)
+// 2. Select your project (finreg or taxilytics-38004)
 // 3. Go to Firestore Database → Rules
 // 4. Replace the existing rules with the content below
 // 5. Click "Publish"
