@@ -114,9 +114,7 @@
       </ul>
       
       <div class="nav-actions">
-        <a href="/pages/login.html" class="btn btn-secondary btn-sm" id="loginBtn">Login</a>
-        <a href="/pages/signup.html" class="btn btn-primary btn-sm" id="signupBtn">Get Started</a>
-        <a href="/pages/dashboard.html" class="btn btn-primary btn-sm hidden" id="dashboardBtn">Dashboard</a>
+        <a href="/pages/public-form.html" class="btn btn-primary btn-sm" id="getStartedBtn">Get Started</a>
       </div>
       
       <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
@@ -203,7 +201,7 @@
           <div class="service-icon">🔐</div>
           <h3 class="service-title">Document Management</h3>
           <p class="service-description">Secure digital storage for all your tax documents with easy access and organization.</p>
-          <a href="/pages/signup.html" class="btn btn-secondary">Get Started</a>
+          <a href="/pages/public-form.html" class="btn btn-secondary">Get Started</a>
         </div>
       </div>
     </div>
@@ -262,9 +260,9 @@
         <h2 class="mb-md">Ready to Simplify Your Finances?</h2>
         <p class="mb-xl">Join thousands of businesses and individuals who trust Finreg for their tax and financial needs.</p>
         <div class="flex-center gap-md">
-          <a href="/pages/signup.html" class="btn btn-primary btn-lg">
+          <a href="/pages/public-form.html" class="btn btn-primary btn-lg">
             <i class="fas fa-user-plus"></i>
-            Create Free Account
+            Submit Your Details
           </a>
           <a href="https://wa.me/919061707348" target="_blank" class="btn btn-success btn-lg">
             <i class="fab fa-whatsapp"></i>
@@ -341,34 +339,16 @@
   <!-- Scripts -->
   <script type="module">
     import { initCalculator } from './js/calculator.js';
-    import { onAuthChange } from './js/auth.js';
-    
+
     // Initialize GST Calculator
     initCalculator('gstCalculatorForm', 'calculatorResult');
-    
+
     // Mobile menu toggle
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const navLinks = document.getElementById('navLinks');
-    
+
     mobileMenuBtn?.addEventListener('click', () => {
       navLinks.classList.toggle('active');
-    });
-    
-    // Update nav based on auth state
-    onAuthChange((user) => {
-      const loginBtn = document.getElementById('loginBtn');
-      const signupBtn = document.getElementById('signupBtn');
-      const dashboardBtn = document.getElementById('dashboardBtn');
-      
-      if (user) {
-        loginBtn?.classList.add('hidden');
-        signupBtn?.classList.add('hidden');
-        dashboardBtn?.classList.remove('hidden');
-      } else {
-        loginBtn?.classList.remove('hidden');
-        signupBtn?.classList.remove('hidden');
-        dashboardBtn?.classList.add('hidden');
-      }
     });
   </script>
 </body>

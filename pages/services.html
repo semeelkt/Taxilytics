@@ -44,9 +44,7 @@
       </ul>
       
       <div class="nav-actions">
-        <a href="/pages/login.html" class="btn btn-secondary btn-sm" id="loginBtn">Login</a>
-        <a href="/pages/signup.html" class="btn btn-primary btn-sm" id="signupBtn">Get Started</a>
-        <a href="/pages/dashboard.html" class="btn btn-primary btn-sm hidden" id="dashboardBtn">Dashboard</a>
+        <a href="/pages/public-form.html" class="btn btn-primary btn-sm" id="getStartedBtn">Get Started</a>
       </div>
       
       <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
@@ -86,9 +84,9 @@
               <li>• GST Compliance Support</li>
             </ul>
           </div>
-          <button class="btn btn-primary request-service-btn" data-service="GST Registration">
+          <a href="/pages/public-form.html" class="btn btn-primary">
             Request Service
-          </button>
+          </a>
         </div>
 
         <!-- TDS Filing -->
@@ -103,9 +101,9 @@
               <li>• Form 16/16A Generation</li>
             </ul>
           </div>
-          <button class="btn btn-primary request-service-btn" data-service="TDS Filing">
+          <a href="/pages/public-form.html" class="btn btn-primary">
             Request Service
-          </button>
+          </a>
         </div>
 
         <!-- ITR Filing -->
@@ -120,9 +118,9 @@
               <li>• Refund Processing Support</li>
             </ul>
           </div>
-          <button class="btn btn-primary request-service-btn" data-service="Income Tax Return (ITR)">
+          <a href="/pages/public-form.html" class="btn btn-primary">
             Request Service
-          </button>
+          </a>
         </div>
 
         <!-- Bookkeeping -->
@@ -137,9 +135,9 @@
               <li>• Financial Statements</li>
             </ul>
           </div>
-          <button class="btn btn-primary request-service-btn" data-service="Bookkeeping">
+          <a href="/pages/public-form.html" class="btn btn-primary">
             Request Service
-          </button>
+          </a>
         </div>
 
         <!-- Tax Consultancy -->
@@ -154,64 +152,14 @@
               <li>• Compliance Reviews</li>
             </ul>
           </div>
-          <button class="btn btn-primary request-service-btn" data-service="Tax Consultancy">
+          <a href="/pages/public-form.html" class="btn btn-primary">
             Request Service
-          </button>
+          </a>
         </div>
 
       </div>
     </div>
   </section>
-
-  <!-- Service Request Modal -->
-  <div class="modal-overlay" id="serviceModal">
-    <div class="modal">
-      <div class="modal-header">
-        <h3 class="modal-title">Request Service</h3>
-        <button class="modal-close" id="closeModal">&times;</button>
-      </div>
-      <div class="modal-body">
-        <form id="serviceRequestForm">
-          <div class="form-group">
-            <label class="form-label" for="fullName">Full Name *</label>
-            <input type="text" id="fullName" name="fullName" class="form-input" required>
-          </div>
-          
-          <div class="form-group">
-            <label class="form-label" for="requestEmail">Email Address *</label>
-            <input type="email" id="requestEmail" name="email" class="form-input" required>
-          </div>
-          
-          <div class="form-group">
-            <label class="form-label" for="phone">Phone Number *</label>
-            <input type="tel" id="phone" name="phone" class="form-input" placeholder="+91 XXXXX XXXXX" required>
-          </div>
-          
-          <div class="form-group">
-            <label class="form-label" for="serviceType">Service Type *</label>
-            <select id="serviceType" name="serviceType" class="form-select" required>
-              <option value="">Select a service</option>
-              <option value="GST Registration">GST Registration</option>
-              <option value="TDS Filing">TDS Filing</option>
-              <option value="Income Tax Return (ITR)">Income Tax Return (ITR)</option>
-              <option value="Bookkeeping">Bookkeeping</option>
-              <option value="Tax Consultancy">Tax Consultancy</option>
-            </select>
-          </div>
-          
-          <div class="form-group">
-            <label class="form-label" for="description">Description (Optional)</label>
-            <textarea id="description" name="description" class="form-textarea" placeholder="Tell us more about your requirements..."></textarea>
-          </div>
-          
-          <button type="submit" class="btn btn-primary btn-block" id="submitRequestBtn">
-            <i class="fas fa-paper-plane"></i>
-            Submit Request
-          </button>
-        </form>
-      </div>
-    </div>
-  </div>
 
   <!-- Footer -->
   <footer class="footer">
@@ -228,118 +176,13 @@
   </a>
 
   <script type="module">
-    import { createServiceRequest } from '../js/services.js';
-    import { onAuthChange, getCurrentUser } from '../js/auth.js';
-    import { showWarning } from '../js/notifications.js';
-    
-    const modal = document.getElementById('serviceModal');
-    const closeModalBtn = document.getElementById('closeModal');
-    const form = document.getElementById('serviceRequestForm');
-    const serviceTypeSelect = document.getElementById('serviceType');
-    const submitBtn = document.getElementById('submitRequestBtn');
-    
     // Mobile menu toggle
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const navLinks = document.getElementById('navLinks');
-    
+
     mobileMenuBtn?.addEventListener('click', () => {
       navLinks.classList.toggle('active');
     });
-    
-    // Open modal with selected service
-    document.querySelectorAll('.request-service-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const service = btn.dataset.service;
-        serviceTypeSelect.value = service;
-        modal.classList.add('active');
-        
-        // Pre-fill user data if logged in
-        const user = getCurrentUser();
-        if (user) {
-          document.getElementById('fullName').value = user.displayName || '';
-          document.getElementById('requestEmail').value = user.email || '';
-        }
-      });
-    });
-    
-    // Close modal
-    closeModalBtn.addEventListener('click', () => {
-      modal.classList.remove('active');
-    });
-    
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) {
-        modal.classList.remove('active');
-      }
-    });
-    
-    // Submit form
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      
-      const user = getCurrentUser();
-      if (!user) {
-        showWarning('Please login to submit a service request');
-        window.location.href = '/pages/login.html';
-        return;
-      }
-      
-      submitBtn.classList.add('btn-loading');
-      submitBtn.disabled = true;
-      
-      const data = {
-        fullName: form.fullName.value.trim(),
-        email: form.email.value.trim(),
-        phone: form.phone.value.trim(),
-        serviceType: form.serviceType.value,
-        description: form.description.value.trim()
-      };
-      
-      const result = await createServiceRequest(data);
-      
-      if (result.success) {
-        modal.classList.remove('active');
-        form.reset();
-      }
-      
-      submitBtn.classList.remove('btn-loading');
-      submitBtn.disabled = false;
-    });
-    
-    // Update nav based on auth state
-    onAuthChange((user) => {
-      const loginBtn = document.getElementById('loginBtn');
-      const signupBtn = document.getElementById('signupBtn');
-      const dashboardBtn = document.getElementById('dashboardBtn');
-      
-      if (user) {
-        loginBtn?.classList.add('hidden');
-        signupBtn?.classList.add('hidden');
-        dashboardBtn?.classList.remove('hidden');
-      } else {
-        loginBtn?.classList.remove('hidden');
-        signupBtn?.classList.remove('hidden');
-        dashboardBtn?.classList.add('hidden');
-      }
-    });
-    
-    // Check URL params for pre-selected service
-    const urlParams = new URLSearchParams(window.location.search);
-    const preSelectedService = urlParams.get('service');
-    if (preSelectedService) {
-      const serviceMap = {
-        'gst-registration': 'GST Registration',
-        'tds-filing': 'TDS Filing',
-        'itr-filing': 'Income Tax Return (ITR)',
-        'bookkeeping': 'Bookkeeping',
-        'tax-consultancy': 'Tax Consultancy'
-      };
-      
-      if (serviceMap[preSelectedService]) {
-        serviceTypeSelect.value = serviceMap[preSelectedService];
-        modal.classList.add('active');
-      }
-    }
   </script>
 </body>
 </html>

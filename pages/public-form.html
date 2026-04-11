@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit Your Details — Finreg</title>
+  <meta name="description" content="Submit your details to Finreg and we'll get back to you shortly with our tax and financial services.">
+  <meta name="robots" content="index, follow">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../img/1000473289.png">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    .form-container {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .success-message {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+      padding: var(--spacing-lg);
+      border-radius: var(--radius-md);
+      margin-bottom: var(--spacing-lg);
+      display: none;
+    }
+    .success-message.show {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="/" class="nav-logo">
+        <img src="../img/logo.png" alt="Finreg Logo">
+        <span>Finreg</span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/">Home</a></li>
+        <li><a href="/pages/services.html">Services</a></li>
+        <li><a href="/#calculator">GST Calculator</a></li>
+        <li><a href="/pages/contact.html">Contact</a></li>
+      </ul>
+
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" style="padding: var(--spacing-2xl) 0;">
+    <div class="container">
+      <div class="text-center">
+        <h1 class="hero-title">Get in <span>Touch</span></h1>
+        <p class="hero-description" style="max-width: 600px; margin: 0 auto;">
+          Fill in your details and we'll connect with you shortly to discuss your tax and financial needs.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Form Section -->
+  <section class="section">
+    <div class="container">
+      <div class="form-container">
+        <!-- Success Message -->
+        <div class="success-message" id="successMessage">
+          <div style="display: flex; justify-content: space-between; align-items: start;">
+            <div>
+              <h4 style="margin: 0 0 var(--spacing-sm) 0; font-weight: 600;">
+                <i class="fas fa-check-circle"></i> Thank You!
+              </h4>
+              <p style="margin: 0; font-size: var(--font-size-sm);">
+                Your details have been submitted successfully. Our team will contact you soon.
+              </p>
+            </div>
+            <button class="btn btn-ghost btn-sm" onclick="location.href='/'">
+              <i class="fas fa-home"></i>
+            </button>
+          </div>
+          <div style="margin-top: var(--spacing-md); padding-top: var(--spacing-md); border-top: 1px solid #c3e6cb;">
+            <a href="https://wa.me/919061707348" target="_blank" class="btn btn-success btn-sm" style="display: inline-flex;">
+              <i class="fab fa-whatsapp"></i>
+              Chat on WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div class="card" id="formContainer">
+          <form id="clientForm">
+            <div class="form-group">
+              <label class="form-label">Full Name *</label>
+              <input type="text" name="name" class="form-input" placeholder="Enter your full name" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Email *</label>
+              <input type="email" name="email" class="form-input" placeholder="your.email@example.com" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Phone *</label>
+              <input type="tel" name="phone" class="form-input" placeholder="+91 XXXXX XXXXX" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Additional Notes (Optional)</label>
+              <textarea name="notes" class="form-textarea" placeholder="Tell us about your requirements..." rows="4"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block" id="submitBtn">
+              <i class="fas fa-paper-plane"></i>
+              Submit Your Details
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" class="nav-logo">
+            <img src="../img/logo.png" alt="Finreg Logo" style="height: 40px;">
+            <span style="color: var(--color-text-primary); font-size: var(--font-size-xl); font-weight: 700;">Finreg</span>
+          </a>
+          <p>Your trusted partner for tax compliance and financial services. Simplifying finances for small businesses and individuals across India.</p>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Quick Links</h4>
+          <div class="footer-links">
+            <a href="/">Home</a>
+            <a href="/pages/services.html">Services</a>
+            <a href="/#calculator">GST Calculator</a>
+            <a href="/pages/contact.html">Contact</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Services</h4>
+          <div class="footer-links">
+            <a href="/pages/services.html">GST Registration</a>
+            <a href="/pages/services.html">TDS Filing</a>
+            <a href="/pages/services.html">ITR Filing</a>
+            <a href="/pages/services.html">Bookkeeping</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-title">Contact</h4>
+          <div class="footer-links">
+            <a href="tel:+919061707348"><i class="fas fa-phone"></i> +91 90617 07348</a>
+            <a href="mailto:contact@finreg.in"><i class="fas fa-envelope"></i> contact@finreg.in</a>
+          </div>
+          <div class="footer-social mt-lg">
+            <a href="https://wa.me/919061707348" target="_blank" aria-label="WhatsApp">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="#" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" aria-label="LinkedIn">
+              <i class="fab fa-linkedin"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 Finreg. All rights reserved. | Your Trusted Tax Partner</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Float Button -->
+  <a href="https://wa.me/919061707348" target="_blank" class="whatsapp-btn" aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- Scripts -->
+  <script type="module">
+    import { submitClientInfo } from '../js/submissions.js';
+
+    const form = document.getElementById('clientForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const successMessage = document.getElementById('successMessage');
+    const formContainer = document.getElementById('formContainer');
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navLinks');
+
+    mobileMenuBtn?.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Form submission
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      submitBtn.classList.add('btn-loading');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting...';
+
+      const result = await submitClientInfo({
+        name: form.name.value,
+        email: form.email.value,
+        phone: form.phone.value,
+        notes: form.notes.value
+      });
+
+      if (result.success) {
+        formContainer.style.display = 'none';
+        successMessage.classList.add('show');
+      } else {
+        submitBtn.classList.remove('btn-loading');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit Your Details';
+      }
+    });
+  </script>
+</body>
+</html>

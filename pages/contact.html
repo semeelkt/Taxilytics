@@ -44,9 +44,7 @@
       </ul>
       
       <div class="nav-actions">
-        <a href="/pages/login.html" class="btn btn-secondary btn-sm" id="loginBtn">Login</a>
-        <a href="/pages/signup.html" class="btn btn-primary btn-sm" id="signupBtn">Get Started</a>
-        <a href="/pages/dashboard.html" class="btn btn-primary btn-sm hidden" id="dashboardBtn">Dashboard</a>
+        <a href="/pages/public-form.html" class="btn btn-primary btn-sm" id="getStartedBtn">Get Started</a>
       </div>
       
       <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
@@ -209,54 +207,34 @@
   </a>
 
   <script type="module">
-    import { onAuthChange } from '../js/auth.js';
-    import { showSuccess, showError } from '../js/notifications.js';
-    
     // Mobile menu toggle
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const navLinks = document.getElementById('navLinks');
-    
+
     mobileMenuBtn?.addEventListener('click', () => {
       navLinks.classList.toggle('active');
     });
-    
-    // Update nav based on auth state
-    onAuthChange((user) => {
-      const loginBtn = document.getElementById('loginBtn');
-      const signupBtn = document.getElementById('signupBtn');
-      const dashboardBtn = document.getElementById('dashboardBtn');
-      
-      if (user) {
-        loginBtn?.classList.add('hidden');
-        signupBtn?.classList.add('hidden');
-        dashboardBtn?.classList.remove('hidden');
-      } else {
-        loginBtn?.classList.remove('hidden');
-        signupBtn?.classList.remove('hidden');
-        dashboardBtn?.classList.add('hidden');
-      }
-    });
-    
+
     // Contact form submission
     const form = document.getElementById('contactForm');
     const submitBtn = document.getElementById('submitBtn');
-    
+
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      
+
       submitBtn.classList.add('btn-loading');
       submitBtn.disabled = true;
-      
+
       // Prepare mailto link with form data
       const name = form.name.value.trim();
       const email = form.email.value.trim();
       const phone = form.phone.value.trim();
       const subject = form.subject.value;
       const message = form.message.value.trim();
-      
+
       const mailtoBody = `Name: ${name}%0AEmail: ${email}%0APhone: ${phone || 'Not provided'}%0A%0AMessage:%0A${encodeURIComponent(message)}`;
       const mailtoLink = `mailto:contact@finreg.in?subject=${encodeURIComponent(subject + ' - Finreg Contact')}&body=${mailtoBody}`;
-      
+
       // Open email client
       window.location.href = mailtoLink;
       

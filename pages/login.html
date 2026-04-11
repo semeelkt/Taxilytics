@@ -3,87 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login — Finreg</title>
-  <meta name="description" content="Login to your Finreg account to manage tax services, documents, and finances.">
-  <meta name="robots" content="noindex, nofollow">
-  <link rel="canonical" href="https://finregindia.vercel.app/pages/login.html">
-  
+  <title>Page Moved — Finreg</title>
   <link rel="icon" type="image/png" href="../img/1000473289.png">
   <link rel="stylesheet" href="../css/main.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: var(--spacing-lg);
+    }
+    .container {
+      text-align: center;
+      max-width: 600px;
+    }
+  </style>
 </head>
 <body>
-  <div class="auth-container">
-    <div class="auth-card">
-      <div class="auth-header">
-        <a href="/" class="auth-logo">
-          <img src="../img/logo.png" alt="Finreg Logo" style="width: 80px; margin: 0 auto;">
-        </a>
-        <h1 class="auth-title">Welcome Back</h1>
-        <p class="auth-subtitle">Sign in to continue to your dashboard</p>
-      </div>
-      
-      <form id="loginForm">
-        <div class="form-group">
-          <label class="form-label" for="email">Email Address</label>
-          <input type="email" id="email" name="email" class="form-input" placeholder="you@example.com" required>
-        </div>
-        
-        <div class="form-group">
-          <label class="form-label" for="password">Password</label>
-          <input type="password" id="password" name="password" class="form-input" placeholder="••••••••" required minlength="6">
-        </div>
-        
-        <div class="form-group">
-          <label class="form-checkbox">
-            <input type="checkbox" id="rememberMe" name="rememberMe">
-            <span>Remember me</span>
-          </label>
-        </div>
-        
-        <button type="submit" class="btn btn-primary btn-block" id="submitBtn">
-          <i class="fas fa-sign-in-alt"></i>
-          Sign In
-        </button>
-      </form>
-      
-      <div class="auth-footer">
-        <p>Don't have an account? <a href="/pages/signup.html">Create one</a></p>
-        <p class="mt-sm"><a href="/">← Back to Home</a></p>
-      </div>
+  <div class="container">
+    <h1 style="font-size: var(--font-size-3xl); margin-bottom: var(--spacing-md);">🔄 Page Moved</h1>
+    <p style="color: var(--color-text-secondary); margin-bottom: var(--spacing-lg);">
+      Finreg has been restructured! We no longer use account-based registration.
+      Simply submit your details on our form and we'll contact you.
+    </p>
+    <div style="display: flex; gap: var(--spacing-md); justify-content: center; flex-wrap: wrap;">
+      <a href="/pages/public-form.html" class="btn btn-primary">
+        <i class="fas fa-paper-plane"></i>
+        Get Started
+      </a>
+      <a href="/" class="btn btn-secondary">
+        <i class="fas fa-home"></i>
+        Back to Home
+      </a>
     </div>
   </div>
-
-  <script type="module">
-    import { signIn, redirectIfLoggedIn } from '../js/auth.js';
-    
-    // Redirect if already logged in
-    redirectIfLoggedIn('/pages/dashboard.html');
-    
-    const form = document.getElementById('loginForm');
-    const submitBtn = document.getElementById('submitBtn');
-    
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      
-      const email = form.email.value.trim();
-      const password = form.password.value;
-      const rememberMe = form.rememberMe.checked;
-      
-      // Show loading state
-      submitBtn.classList.add('btn-loading');
-      submitBtn.disabled = true;
-      
-      const result = await signIn(email, password, rememberMe);
-      
-      if (result.success) {
-        window.location.href = '/pages/dashboard.html';
-      } else {
-        submitBtn.classList.remove('btn-loading');
-        submitBtn.disabled = false;
-      }
-    });
-  </script>
 </body>
 </html>
