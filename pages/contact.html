@@ -88,7 +88,7 @@
             <div class="service-icon" style="margin: 0; flex-shrink: 0;">📧</div>
             <div>
               <h4 class="mb-xs">Email</h4>
-              <a href="mailto:contact@finreg.in" style="color: var(--color-text-secondary);">contact@finreg.in</a>
+              <a href="mailto:finreginfo@gmail.com" style="color: var(--color-text-secondary);">finreginfo@gmail.com</a>
             </div>
           </div>
           
@@ -233,7 +233,7 @@
       const message = form.message.value.trim();
 
       const mailtoBody = `Name: ${name}%0AEmail: ${email}%0APhone: ${phone || 'Not provided'}%0A%0AMessage:%0A${encodeURIComponent(message)}`;
-      const mailtoLink = `mailto:contact@finreg.in?subject=${encodeURIComponent(subject + ' - Finreg Contact')}&body=${mailtoBody}`;
+      const mailtoLink = `mailto:finreginfo@gmail.com?subject=${encodeURIComponent(subject + ' - Finreg Contact')}&body=${mailtoBody}`;
 
       // Open email client
       window.location.href = mailtoLink;
